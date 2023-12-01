@@ -1,5 +1,5 @@
 <template>
-  <div class="hamburger-container" :class="{ active: navOpen }" @click="toggleMenu">
+  <div class="hamburger-container" :class="{ active: collapsedMenu.menuOpen }" @click="toggleMenu">
     <div class="line top"></div>
     <div class="line mid"></div>
     <div class="line bot"></div>
@@ -7,18 +7,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
+import { useCollapsedMenuStore } from '@/stores/collapsedMenu'
 
-const emit = defineEmits(['collapseMenu', 'navOpen'])
-const navOpen = ref(false)
+const collapsedMenu = useCollapsedMenuStore()
 
 const toggleMenu = () => {
-  navOpen.value = !navOpen.value
-  emit('collapseMenu', navOpen.value)
+  collapsedMenu.toggleMenu()
 }
 
 onMounted(() => {
-  emit('collapseMenu', navOpen.value)
+  collapsedMenu.toggleMenu()
 })
 </script>
 

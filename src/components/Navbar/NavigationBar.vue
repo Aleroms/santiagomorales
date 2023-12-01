@@ -41,35 +41,21 @@
         </a>
       </div>
     </div>
-    <!-- Collapsed menu  -->
-    <div class="collapse-menu-container" v-else>
-      <HamburgerMenu @collapseMenu="handleCollapseMenu" />
-      <CollapseMenu v-if="isNavOpen" />
-    </div>
+    <!-- Hamburger menu  -->
+    <HamburgerMenu v-else />
   </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import { useWindowWidth } from '@/composables/windowWidth.js'
+import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import HamburgerMenu from '../Utilities/HamburgerMenu.vue'
-import CollapseMenu from './CollapseMenu.vue'
 
 const { windowWidth } = useWindowWidth()
-const isNavOpen = ref(false)
-
-const handleCollapseMenu = (navOpen) => {
-  console.log(navOpen)
-  isNavOpen.value = navOpen
-}
 </script>
 
 <style lang="scss" scoped>
-.collapse-menu-container {
-  position: relative;
-}
 .github-link {
   width: 24px;
   height: 24px;
