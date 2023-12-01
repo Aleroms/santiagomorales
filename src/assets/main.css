@@ -1,0 +1,30 @@
+:root {
+  --primary: #42b983;
+  --secondary: #333;
+  --secondary-soft: #242424;
+  --tertiary: #ccc;
+  --danger: #f4433b;
+  --warning: #ff9800;
+}
+
+h1,
+h2,
+h3,
+a {
+  font-family: 'Lato', sans-serif;
+  color: var(--tertiary);
+}
+p {
+  font-family: 'Noto Sans', sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--secondary);
+}
+main {
+  height: 200vh;
+  position: relative;
+}

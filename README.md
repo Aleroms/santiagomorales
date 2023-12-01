@@ -8,12 +8,22 @@ I started planning the design of the website - each page until I knew how the wh
 
 ## Tools used
 
-- Vue Router
-- Pinia
+- Vue Router `npm install vue-router@4`
+- Pinia `npm install pinia`
 - Firebase `npm install firebase`
 - Firestore `npm install firebase@10.7.0 --save`
 - Sass `npm install -D sass`
+- VueUse `npm install @vueuse/core`
+- Fontawesome 
+
+```shell 
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+npm i --save @fortawesome/vue-fontawesome@latest-3
+```
 
 ## Useful Links
-
+- [Vue Composables](https://vuejs.orrg/guide/reusability/composables) - encapsulates and reuses stateful logic
 ## What I learned
