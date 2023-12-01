@@ -30,8 +30,9 @@ onUnmounted(() => {
 
     <!-- slide down with scroll effect  -->
     <NavigationBar class="navbar" :style="{ top: navbarTop }" />
+
     <Transition name="fade" mode="out-in">
-      <CollapsedMenu v-if="collapsedMenu.menuOpen" />
+      <CollapsedMenu v-if="collapsedMenu.menuOpen && windowWidth < 1024" />
     </Transition>
   </header>
   <main>

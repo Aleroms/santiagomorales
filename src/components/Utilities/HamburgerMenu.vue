@@ -13,6 +13,10 @@ import { useCollapsedMenuStore } from '@/stores/collapsedMenu'
 const collapsedMenu = useCollapsedMenuStore()
 
 const toggleMenu = () => {
+  //stops scrolling for body
+  if (!collapsedMenu.menuOpen) document.body.classList.add('collapse-active')
+  else document.body.classList.remove('collapse-active')
+
   collapsedMenu.toggleMenu()
 }
 
@@ -22,6 +26,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.hamburger-container {
+  cursor: pointer;
+}
 .active {
   .top {
     transform: rotate(-45deg) translateY(17px);
@@ -37,7 +44,7 @@ onMounted(() => {
 .line {
   width: 35px;
   height: 5px;
-  background-color: var(--tertiary);
+  background-color: var(--toggle-collapse);
   margin: 8px 0;
   transition: 0.3s;
   border-radius: 2px;

@@ -9,6 +9,7 @@
   --text-dark-1: #333;
   --toggle-dark: #333;
   --toggle-light: #ccc;
+  --toggle-collapse: #ccc;
 }
 
 h1,
@@ -32,12 +33,17 @@ p {
 body {
   background-color: var(--secondary);
 }
+.collapse-active {
+  overflow-y: hidden;
+}
 main {
   height: 200vh;
   position: relative;
 }
 
 [color-scheme='light'] {
-  background-color: var(--tertiary);
+  background-color: #fff;
   --text-light-1: var(--text-dark-1);
+  --toggle-collapse: #333;
+  --secondary: #fff;
 }
