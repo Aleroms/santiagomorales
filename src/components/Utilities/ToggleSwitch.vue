@@ -1,11 +1,27 @@
 <template>
   <label class="switch">
-    <input type="checkbox" />
+    <input type="checkbox" :checked="themeStore.isDark" @click="toggle" />
     <span class="slider round"></span>
   </label>
 </template>
 
-<script setup></script>
+<script setup>
+import { useThemeStore } from '@/stores/theme.js'
+import { useDark, useToggle } from '@vueuse/core'
+const themeStore = useThemeStore()
+const isDark = useDark({
+  selector: 'body',
+  attribute: 'color-scheme',
+  valueDark: 'dark',
+  valueLight: 'light'
+})
+const toggleDark = useToggle(isDark)
+
+const toggle = () => {
+  themeStore.toggleTheme()
+  toggleDark()
+}
+</script>
 
 <style lang="scss" scoped>
 .switch {
@@ -26,12 +42,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  
+  // when in dark mode
+  background-color: var(--toggle-light);
 }
 .slider::before {
   position: absolute;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
   content: '';
   height: 26px;
   width: 26px;
@@ -42,11 +62,10 @@
   transition: 0.4s;
 }
 input:checked + .slider {
-  background-color: #2196f3;
+  //when in light mode
+  background-color: var(--toggle-dark);
 }
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
+
 input:checked + .slider::before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);

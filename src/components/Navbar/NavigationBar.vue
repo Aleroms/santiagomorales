@@ -92,7 +92,6 @@ const { windowWidth } = useWindowWidth()
 
     a {
       text-decoration: none;
-      color: var(--tertiary);
       font-weight: 900;
     }
   }

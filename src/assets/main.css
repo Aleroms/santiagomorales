@@ -5,17 +5,25 @@
   --tertiary: #ccc;
   --danger: #f4433b;
   --warning: #ff9800;
+  --text-light-1: #ccc;
+  --text-dark-1: #333;
+  --toggle-dark: #333;
+  --toggle-light: #ccc;
 }
 
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 a {
   font-family: 'Lato', sans-serif;
-  color: var(--tertiary);
+  color: var(--text-light-1);
 }
 p {
   font-family: 'Noto Sans', sans-serif;
+  color: var(--text-light-1);
 }
 * {
   margin: 0;
@@ -27,4 +35,9 @@ body {
 main {
   height: 200vh;
   position: relative;
+}
+
+[color-scheme='light'] {
+  background-color: var(--tertiary);
+  --text-light-1: var(--text-dark-1);
 }
