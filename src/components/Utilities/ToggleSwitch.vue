@@ -13,7 +13,8 @@ const isDark = useDark({
   selector: 'body',
   attribute: 'color-scheme',
   valueDark: 'dark',
-  valueLight: 'light'
+  valueLight: 'light',
+  disableTransition: false
 })
 const toggleDark = useToggle(isDark)
 
@@ -44,7 +45,7 @@ const toggle = () => {
   bottom: 0;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  
+
   // when in dark mode
   background-color: var(--toggle-light);
 }
