@@ -45,26 +45,26 @@ const toggle = () => {
   bottom: 0;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  border: 1px solid var(--divider-dark-1);
 
-  // when in dark mode
-  background-color: var(--toggle-light);
+  // when in dark mode slider background
+  background-color: var(--slider-one);
 }
 .slider::before {
   position: absolute;
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
   content: '';
-  height: 26px;
-  width: 26px;
+  height: 23px;
+  width: 23px;
   left: 4px;
   top: 4px;
-  background-color: white;
+  //the slider ball
+  background-color: var(--slider-2);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 input:checked + .slider {
-  //when in light mode
-  background-color: var(--toggle-dark);
+  //when in light mode slider background
+  background-color: var(--slider-one);
 }
 
 input:checked + .slider::before {

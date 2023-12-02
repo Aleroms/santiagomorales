@@ -42,7 +42,9 @@ onUnmounted(() => {
       </Transition>
     </RouterView>
   </main>
-  <footer>footer {{ windowWidth }}</footer>
+  <footer>
+    <p>footer {{ windowWidth }}</p>
+  </footer>
 </template>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@
       <RouterLink to="/">
         <img src="logo.png" alt="logo" />
       </RouterLink>
-      <h2 v-if="windowWidth > 438">Santiago Morales | Portfolio</h2>
+      <h2 v-if="windowWidth > 446">Santiago Morales | Portfolio</h2>
     </div>
     <div class="nav-links" v-if="windowWidth > 1026">
       <div class="nav-links-primary">
@@ -101,7 +101,8 @@ const { windowWidth } = useWindowWidth()
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--divider-dark-1);
+  background-color: var(--secondary);
 }
 
 .logo-wrapper {

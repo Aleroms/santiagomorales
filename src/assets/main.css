@@ -1,15 +1,18 @@
 :root {
   --primary: #42b983;
-  --secondary: #333;
+  --secondary: #1a1a1a;
   --secondary-soft: #242424;
   --tertiary: #ccc;
   --danger: #f4433b;
   --warning: #ff9800;
   --text-light-1: #ccc;
   --text-dark-1: #333;
-  --toggle-dark: #333;
+  --toggle-dark: #f1f1f1;
   --toggle-light: #ccc;
   --toggle-collapse: #ccc;
+  --slider-1: #2f2f2f;
+  --slider-2: #fff;
+  --divider-dark-1: rgba(84, 84, 84, 0.65);
 }
 
 h1,
@@ -36,14 +39,14 @@ body {
 .collapse-active {
   overflow-y: hidden;
 }
-main {
-  height: 200vh;
-  position: relative;
-}
 
 [color-scheme='light'] {
   background-color: #fff;
   --text-light-1: var(--text-dark-1);
   --toggle-collapse: #333;
   --secondary: #fff;
+  --secondary-soft: #f9f9f9;
+  --divider-dark-1: rgba(60, 60, 60, 0.29);
+  --slider-1: #f1f1f1;
+  --slider-2: #8e8e8e;
 }
