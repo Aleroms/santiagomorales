@@ -8,7 +8,7 @@
         <RouterLink to="/projects" @click="closeMenu">Projects</RouterLink>
         <RouterLink to="/contact" @click="closeMenu">Contact</RouterLink>
       </div>
-      <div class="appearance-container">
+      <div class="container-1">
         <h5>Appearance</h5>
         <ToggleSwitch />
       </div>
@@ -52,14 +52,7 @@ const closeMenu = () => {
     margin: 0 15px;
   }
 }
-.appearance-container {
-  background-color: var(--secondary-soft);
-  padding: 1rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 .links {
   display: flex;
   flex-direction: column;

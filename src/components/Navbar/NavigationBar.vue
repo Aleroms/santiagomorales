@@ -90,10 +90,7 @@ const { windowWidth } = useWindowWidth()
   li {
     margin: 0 1rem;
 
-    a {
-      text-decoration: none;
-      font-weight: 900;
-    }
+    
   }
 }
 .nav {

@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage, ref } from 'firebase/storage'
+import { getAuth, signOut, signInWithEmailAndPassword } from 'firebase/auth'
 
 // My portfolio web app's Firebase configuration
 const firebaseConfig = {
@@ -14,6 +15,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app)
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app)
@@ -29,8 +33,20 @@ const activeLearningStorageRef = ref(storage, 'active-learning')
 const educationStorageRef = ref(storage, 'education')
 const certificatesStorageRef = ref(storage, 'certificates')
 
+const signInUserWithEmailAndPassword = async (values) => {
+  await signInWithEmailAndPassword(auth, values.email, values.password)
+}
+const logoutUser = async () => {
+  try {
+    await signOut(auth)
+  } catch (error) {
+    console.log(error)
+  }
+}
 export {
   db,
+  signInUserWithEmailAndPassword,
+  logoutUser,
   skillsStorageRef,
   projectsStorageRef,
   workExperienceStorageRef,

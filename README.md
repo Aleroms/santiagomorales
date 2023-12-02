@@ -14,9 +14,9 @@ I started planning the design of the website - each page until I knew how the wh
 - Firestore `npm install firebase@10.7.0 --save`
 - Sass `npm install -D sass`
 - VueUse `npm install @vueuse/core`
-- Fontawesome 
+- Fontawesome
 
-```shell 
+```shell
 npm i --save @fortawesome/fontawesome-svg-core
 npm i --save @fortawesome/free-solid-svg-icons
 npm i --save @fortawesome/free-regular-svg-icons
@@ -24,8 +24,16 @@ npm i --save @fortawesome/free-brands-svg-icons
 npm i --save @fortawesome/vue-fontawesome@latest-3
 ```
 
+- VeeValidate `npm i vee-validate --save`
+
 ## Issues Encountered
- An issue I encountered had to deal with the navbar. I was trying to make it have a slide down on scroll effect, which worked but my navbar was overflowing on the x. I fixed this by using `box-sizing: border-box;` on my nav container class. This now used the padding and border to calculate the width.
+
+An issue I encountered had to deal with the navbar. I was trying to make it have a slide down on scroll effect, which worked but my navbar was overflowing on the x. I fixed this by using `box-sizing: border-box;` on my nav container class. This now used the padding and border to calculate the width.
+
 ## Useful Links
+
 - [Vue Composables](https://vuejs.orrg/guide/reusability/composables) - encapsulates and reuses stateful logic
+- [VeeValidate](https://vee-validate.logaretm.com/v4/guide/overview/) - Validation for forms.
+- [Vue3 Router](https://router.vuejs.org/api/#useRouter) - How to programatically push routes in Vue 3
+
 ## What I learned

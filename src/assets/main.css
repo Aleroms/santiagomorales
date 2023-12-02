@@ -21,9 +21,14 @@ h3,
 h4,
 h5,
 h6,
-a {
+a,
+label {
   font-family: 'Lato', sans-serif;
   color: var(--text-light-1);
+}
+a {
+  text-decoration: none;
+  font-weight: 900;
 }
 p {
   font-family: 'Noto Sans', sans-serif;
@@ -38,6 +43,14 @@ body {
 }
 .collapse-active {
   overflow-y: hidden;
+}
+.container-1 {
+  background-color: var(--secondary-soft);
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 [color-scheme='light'] {

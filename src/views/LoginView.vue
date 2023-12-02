@@ -1,10 +1,19 @@
 <template>
-  <div>
-    <h1>Login Page</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores, beatae!</p>
-  </div>
+  <section class="login-container">
+    <LoginForm />
+    <div class="go-home">
+      <!-- <font-awesome-icon icon="fa-solid fa-chevron-left" color="var(--heading-color)" /> -->
+      <RouterLink to="/">Go Home</RouterLink>
+    </div>
+  </section>
 </template>
 
-<script setup></script>
+<script setup>
+import LoginForm from '../components/Utilities/Forms/LoginForm.vue'
+</script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.go-home {
+  text-align: center;
+}
+</style>

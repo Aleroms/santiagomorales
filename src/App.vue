@@ -44,6 +44,7 @@ onUnmounted(() => {
   </main>
   <footer>
     <p>footer {{ windowWidth }}</p>
+    <RouterLink to="/login">Login Test btn</RouterLink>
   </footer>
 </template>
 
