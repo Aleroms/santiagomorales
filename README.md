@@ -35,8 +35,10 @@ An issue I encountered had to deal with the navbar. I was trying to make it have
 - [Vue Composables](https://vuejs.orrg/guide/reusability/composables) - encapsulates and reuses stateful logic
 - [VeeValidate](https://vee-validate.logaretm.com/v4/guide/overview/) - Validation for forms.
 - [Vue3 Router](https://router.vuejs.org/api/#useRouter) - How to programatically push routes in Vue 3
+- [FontAwesome sizes](https://fontawesome.com/docs/web/style/size) - FontAwesome documentation on sizes.
 
 ## Reminder
 
 [ ] - lowercase on folders and fix the paths that break
+
 ## What I learned

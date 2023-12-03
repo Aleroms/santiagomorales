@@ -10,22 +10,22 @@
         <p>Santiago Morales</p>
         <p>Mission Viejo, CA</p>
         <div class="icon-link">
-          <SocialMedia social="linkedin" size="md" displayName="true" />
+          <SocialMedia social="linkedin" displayName="true" />
         </div>
         <div class="icon-link">
-          <SocialMedia social="email" size="md" displayName="true" />
+          <SocialMedia social="email" displayName="true" />
         </div>
         <div class="icon-link">
-          <SocialMedia social="resume" size="md" displayName="true" />
+          <SocialMedia social="resume" displayName="true" />
         </div>
       </div>
       <div class="socials">
         <h3 class="title">Links</h3>
         <div class="icon-link">
-          <SocialMedia social="linkedin" size="md" displayName="true" />
+          <SocialMedia social="linkedin" displayName="true" />
         </div>
         <div class="icon-link">
-          <SocialMedia social="github" size="md" displayName="true" />
+          <SocialMedia social="github" displayName="true" />
         </div>
       </div>
       <div class="navigation">
