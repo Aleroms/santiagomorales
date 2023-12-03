@@ -10,6 +10,7 @@ import { onMounted, ref } from 'vue'
 
 const props = defineProps(['social', 'size', 'displayName'])
 const link = ref('')
+
 //needs default value or else it creates warning
 const icon = ref('fa-brands fa-github')
 const name = ref('')

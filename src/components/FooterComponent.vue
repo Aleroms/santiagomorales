@@ -36,6 +36,8 @@
           <RouterLink to="/skills">Skills</RouterLink>
           <RouterLink to="/projects">Projects</RouterLink>
           <RouterLink to="/contact">Contact</RouterLink>
+          <RouterLink to="/login" v-if="!userStore.userLoggedIn">Login</RouterLink>
+          <RouterLink to="/manage" v-else>Manage</RouterLink>
         </div>
       </div>
     </div>
@@ -44,6 +46,8 @@
 
 <script setup>
 import SocialMedia from './socials/SocialMedia.vue'
+import { useUserStore } from '@/stores/user.js'
+const userStore = useUserStore()
 </script>
 
 <style lang="scss" scoped>

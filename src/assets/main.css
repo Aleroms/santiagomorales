@@ -26,14 +26,17 @@ span,
 label {
   font-family: 'Lato', sans-serif;
   color: var(--text-light-1);
+  transition: 0.3s ease-in-out;
 }
 a {
   text-decoration: none;
   font-weight: 900;
+  transition: 0.3s ease-in-out;
 }
 p {
   font-family: 'Noto Sans', sans-serif;
   color: var(--text-light-1);
+  transition: 0.3s ease-in-out;
 }
 * {
   margin: 0;
@@ -42,6 +45,7 @@ p {
 body {
   background-color: var(--secondary);
   scroll-behavior: smooth;
+  /* transition: 0.3s ease-in-out; */
 }
 .collapse-active {
   overflow-y: hidden;

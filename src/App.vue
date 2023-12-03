@@ -44,7 +44,6 @@ onUnmounted(() => {
       </Transition>
     </RouterView>
     <p>footer {{ windowWidth }}</p>
-    <RouterLink to="/login">Login Test btn</RouterLink>
   </main>
   <FooterComponent />
 </template>
