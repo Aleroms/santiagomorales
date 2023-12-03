@@ -29,16 +29,8 @@
       <div class="nav-links-secondary">
         <!-- toggles dark/light mode -->
         <ToggleSwitch />
-
-        <!-- github link  -->
-        <a href="https://github.com/Aleroms" target="_blank">
-          <font-awesome-icon icon="fa-brands fa-github" size="2xl" />
-        </a>
-
-        <!-- linkedin link  -->
-        <a href="https://www.linkedin.com/in/santiago-morales-14b466194/" target="_blank">
-          <font-awesome-icon icon="fa-brands fa-linkedin" size="2xl" />
-        </a>
+        <SocialMedia social="github" size="2xl"/>
+        <SocialMedia social="linkedin" size="2xl"/>
       </div>
     </div>
     <!-- Hamburger menu  -->
@@ -51,6 +43,7 @@ import { RouterLink } from 'vue-router'
 import { useWindowWidth } from '@/composables/windowWidth.js'
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import HamburgerMenu from '../Utilities/HamburgerMenu.vue'
+import SocialMedia from '../socials/SocialMedia.vue'
 
 const { windowWidth } = useWindowWidth()
 </script>
@@ -89,8 +82,6 @@ const { windowWidth } = useWindowWidth()
   }
   li {
     margin: 0 1rem;
-
-    
   }
 }
 .nav {

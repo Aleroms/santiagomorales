@@ -13,15 +13,8 @@
         <ToggleSwitch />
       </div>
       <div class="contact">
-        <!-- github link  -->
-        <a href="https://github.com/Aleroms" target="_blank">
-          <font-awesome-icon icon="fa-brands fa-github" size="2xl" />
-        </a>
-
-        <!-- linkedin link  -->
-        <a href="https://www.linkedin.com/in/santiago-morales-14b466194/" target="_blank">
-          <font-awesome-icon icon="fa-brands fa-linkedin" size="2xl" />
-        </a>
+        <SocialMedia social="github" size="2xl"/>
+        <SocialMedia social="linkedin" size="2xl"/>
       </div>
     </div>
   </div>
@@ -30,6 +23,7 @@
 <script setup>
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import { useCollapsedMenuStore } from '@/stores/collapsedMenu'
+import SocialMedia from '../socials/socialmedia.vue'
 
 const collapsedMenu = useCollapsedMenuStore()
 
