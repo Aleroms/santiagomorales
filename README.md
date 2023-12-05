@@ -25,6 +25,14 @@ npm i --save @fortawesome/vue-fontawesome@latest-3
 ```
 
 - VeeValidate `npm i vee-validate --save`
+- FormKit
+
+```shell
+npm install @formkit/vue
+npm install @formkit/themes
+npm install @formkit/addons
+```
+
 
 ## Issues Encountered
 

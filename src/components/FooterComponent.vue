@@ -41,6 +41,10 @@
         </div>
       </div>
     </div>
+    <h4 class="copyright">
+      Designed by <span>Santiago Morales</span> | All rights reserved
+      <font-awesome-icon icon="fa-regular fa-copyright" />
+    </h4>
   </footer>
 </template>
 
@@ -51,6 +55,14 @@ const userStore = useUserStore()
 </script>
 
 <style lang="scss" scoped>
+.copyright {
+  padding-right: 1rem;
+  letter-spacing: 3px;
+
+  span {
+    color: var(--primary);
+  }
+}
 .navigation,
 .socials {
   border-left: 1px solid var(--divider-dark-1);

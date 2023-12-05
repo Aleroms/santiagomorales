@@ -1,18 +1,18 @@
 <template>
   <div class="manage-wrapper">
-    <h1>Manage Pages:</h1>
-    <h2 id="home">Home Section</h2>
-    <hr />
-    <h2 id="about">About Section</h2>
-    <hr />
-    <h2 id="project">Project Section</h2>
-    <hr />
-    <h2 id="skill">Skill Section</h2>
-    <hr />
+    <h1 id="#">Manage Pages:</h1>
+    <SectionHeader id="home" title="Home Section" />
+    <HomeForm />
+    <SectionHeader id="about" title="About Section" />
+    <SectionHeader id="project" title="Project Section" />
+    <SectionHeader id="skill" title="Skills Section" />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
+import SectionHeader from '../components/Utilities/SectionHeader.vue'
+</script>
 
 <style lang="scss" scoped>
 .manage-wrapper {

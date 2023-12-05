@@ -58,6 +58,13 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.fk-input-global {
+  color: var(--text-light-1) !important;
+}
+.fk-input-global[type='submit'], .fk-input-global[type='button'] {
+  background-color: var(--primary) !important;
+  color: var(--text-light-1);
+}
 
 [color-scheme='light'] {
   background-color: #fff;

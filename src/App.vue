@@ -44,6 +44,7 @@ onUnmounted(() => {
       </Transition>
     </RouterView>
     <p>footer {{ windowWidth }}</p>
+    <RouterLink to="/manage">Manage</RouterLink>
   </main>
   <FooterComponent />
 </template>
