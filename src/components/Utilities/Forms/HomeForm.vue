@@ -58,7 +58,7 @@
           class="list-item"
         >
           <FormKit type="text" name="title" label="title" />
-          <FormKit type="textarea" name="content" label="content" />
+          <FormKit type="textarea" auto-height name="content" label="content" />
           <ul class="controls">
             <li>
               <button

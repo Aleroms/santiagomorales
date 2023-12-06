@@ -1,6 +1,6 @@
 import { plugin } from '@formkit/vue'
 import { createThemePlugin } from '@formkit/themes'
-import { createAutoAnimatePlugin } from '@formkit/addons'
+import { createAutoAnimatePlugin, createAutoHeightTextareaPlugin } from '@formkit/addons'
 
 const customConfig = {
   config: {
@@ -12,7 +12,8 @@ const customConfig = {
     createAutoAnimatePlugin({
       duration: 100
     }),
-    createThemePlugin()
+    createThemePlugin(),
+    createAutoHeightTextareaPlugin()
   ]
 }
 export { plugin, customConfig }
