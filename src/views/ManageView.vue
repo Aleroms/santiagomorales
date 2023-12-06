@@ -1,6 +1,7 @@
 <template>
   <div class="manage-wrapper">
     <h1 id="#">Manage Pages:</h1>
+    <ButtonComponent type="filled" text="logout" @click="userStore.logout" />
     <SectionHeader id="home" title="Home Section" />
     <HomeForm />
     <SectionHeader id="about" title="About Section" />
@@ -12,6 +13,9 @@
 <script setup>
 import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
 import SectionHeader from '../components/Utilities/SectionHeader.vue'
+import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
+import { useUserStore } from '@/stores/user.js'
+const userStore = useUserStore()
 </script>
 
 <style lang="scss" scoped>

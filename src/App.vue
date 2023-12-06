@@ -7,6 +7,7 @@ import { useWindowWidth } from './composables/windowWidth'
 import { useCollapsedMenuStore } from './stores/collapsedMenu'
 import SocialMedia from './components/socials/socialmedia.vue'
 import FooterComponent from './components/FooterComponent.vue'
+import { resumeURL } from './plugins/firebase'
 
 const navbarTop = ref('-100px')
 const collapsedMenu = useCollapsedMenuStore()
@@ -44,6 +45,7 @@ onUnmounted(() => {
       </Transition>
     </RouterView>
     <p>footer {{ windowWidth }}</p>
+    <a :href="resumeURL">resume</a><br>
     <RouterLink to="/manage">Manage</RouterLink>
   </main>
   <FooterComponent />

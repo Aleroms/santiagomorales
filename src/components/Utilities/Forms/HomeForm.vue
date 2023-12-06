@@ -1,49 +1,47 @@
 <template>
-  <FormKit type="form" id="home-form" @submit="submit">
-    <FormKit type="text" label="tile" name="title" />
-    <FormKit type="text" label="subtitle" name="subtitle" />
+  <FormKit type="form" id="home-form" @submit="submit" :disabled="disable">
+    <FormKit type="text" label="tile" name="title" :placeholder="placeholder.title" />
+    <FormKit type="text" label="subtitle" name="subtitle" :placeholder="placeholder.subtitle" />
     <!-- Form Kit List  for slug-->
     <div v-auto-animate class="fk-wrapper">
       <h4 class="title">slug text array</h4>
-      <FormKit v-model="slug" type="list" dynamic #default="{ items }" name="slug">
+      <FormKit v-model="placeholder.slug" type="list" dynamic #default="{ items }" name="slug">
         <div v-for="(item, index) in items" :key="item" class="list-item">
           <FormKit type="text" :index="index" />
           <ul class="controls">
             <li>
-              <button type="button" @click="slug.splice(index - 1, 0, slug.splice(index, 1)[0])">
+              <button
+                type="button"
+                @click="placeholder.slug.splice(index - 1, 0, placeholder.slug.splice(index, 1)[0])"
+              >
                 <font-awesome-icon icon="fa-solid fa-arrow-up" color="#ccc" size="sm" />
               </button>
             </li>
             <li>
-              <button type="button" @click="slug.splice(index + 1, 0, slug.splice(index, 1)[0])">
+              <button
+                type="button"
+                @click="placeholder.slug.splice(index + 1, 0, placeholder.slug.splice(index, 1)[0])"
+              >
                 <font-awesome-icon icon="fa-solid fa-arrow-down" color="#ccc" size="sm" />
               </button>
             </li>
             <li>
-              <button type="button" @click="slug.splice(index, 1)" class="button close">
+              <button type="button" @click="placeholder.slug.splice(index, 1)" class="button close">
                 <font-awesome-icon icon="fa-solid fa-xmark" size="sm" color="#f4433b" />
               </button>
             </li>
           </ul>
         </div>
-        <FormKit type="button" label="add a slug" @click="slug.push('')" />
+        <FormKit type="button" label="add a slug" @click="placeholder.slug.push('')" />
       </FormKit>
     </div>
-    <!-- FK List end -->
-    <FormKit type="text" label="keywords" name="keywords" />
-    <FormKit
-      type="file"
-      label="resume"
-      accept=".pdf"
-      multiple="false"
-      name="resume"
-      placeholder="asd"
-    />
-    <!-- introduction list here  -->
+    <FormKit type="textarea" label="keywords" name="keywords" :placeholder="placeholder.keywords" />
+    <FormKit type="file" label="resume" accept=".pdf" multiple="false" name="resume" />
+    <!-- introduction list  -->
     <div v-auto-animate class="fk-wrapper">
       <h4 class="title">introduction text array</h4>
       <FormKit
-        v-model="introduction"
+        v-model="placeholder.introduction"
         type="list"
         :value="[{}]"
         dynamic
@@ -63,7 +61,13 @@
             <li>
               <button
                 type="button"
-                @click="introduction.splice(index - 1, 0, introduction.splice(index, 1)[0])"
+                @click="
+                  placeholder.introduction.splice(
+                    index - 1,
+                    0,
+                    placeholder.introduction.splice(index, 1)[0]
+                  )
+                "
               >
                 <font-awesome-icon icon="fa-solid fa-arrow-up" color="#ccc" size="sm" />
               </button>
@@ -71,13 +75,23 @@
             <li>
               <button
                 type="button"
-                @click="introduction.splice(index + 1, 0, introduction.splice(index, 1)[0])"
+                @click="
+                  placeholder.introduction.splice(
+                    index + 1,
+                    0,
+                    placeholder.introduction.splice(index, 1)[0]
+                  )
+                "
               >
                 <font-awesome-icon icon="fa-solid fa-arrow-down" color="#ccc" size="sm" />
               </button>
             </li>
             <li>
-              <button type="button" @click="introduction.splice(index, 1)" class="button close">
+              <button
+                type="button"
+                @click="placeholder.introduction.splice(index, 1)"
+                class="button close"
+              >
                 <font-awesome-icon icon="fa-solid fa-xmark" size="sm" color="#f4433b" />
               </button>
             </li>
@@ -86,46 +100,74 @@
         <FormKit
           type="button"
           label="add more"
-          @click="introduction.push({ title: '', content: '' })"
+          @click="placeholder.introduction.push({ title: '', content: '' })"
         />
       </FormKit>
     </div>
-    <FormKit type="text" label="skills tagline" name="skils" />
-    <FormKit type="text" label="projects tagline" name="projects" />
-    <FormKit type="text" label="contact tagline" name="contact" />
+    <FormKit type="text" label="skills tagline" name="skills" :placeholder="placeholder.skills" />
+    <FormKit
+      type="text"
+      label="projects tagline"
+      name="projects"
+      :placeholder="placeholder.projects"
+    />
+    <FormKit
+      type="text"
+      label="contact tagline"
+      name="contact"
+      :placeholder="placeholder.contact"
+    />
   </FormKit>
+  <div v-if="display" class="display-container">
+    <p>{{ displayMessage }}</p>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
+import { submitHomeForm } from '@/plugins/firebase.js'
+import { onMounted } from 'vue'
+import { getHomeFormData } from '@/plugins/firebase.js'
+import { useRouter } from 'vue-router'
 
-const slug = ref([
-  'centering one div at a time!',
-  'inspecting the DOM...',
-  'designing the next page...'
-])
-const introduction = ref([
-  {
-    title: '🚀 Welcome to my Web Development Portfolio',
-    content:
-      'I am on the lookout for exciting opportunities in Web Development, eager to bring my skills, passion and work ethic.'
-  },
-  {
-    title: '💼 Position & Experience',
-    content:
-      'Graduated from UCI with a B.S in Computer Game Science. Recent Content Programmer / Frontend Developer for McGraw Hill in Irvine, CA.'
-  },
-  {
-    title: '🎯 Passion & Goals',
-    content:
-      'Driven by an unyielding passion for coding, I approach each project with a growth mindset and an unwavering commitment to not cut corners. My goal is to create seamless, innovative, and user-friendly web experiences.'
-  }
-])
+const placeholder = ref({})
+const displayMessage = ref('')
+const disable = ref(false)
+const display = ref(false)
+const router = useRouter()
 
-const submit = (values) => {
+const submit = async (values) => {
   console.log(values)
+  disable.value = true
+  displayMessage.value = 'submitting...'
+  display.value = true
+
+  try {
+    await submitHomeForm(values, 'pageContent', 'homePage')
+  } catch (error) {
+    console.log(error.code, error)
+
+    if (error.code === 'storage/unauthorized' || error.code === 'permission-denied')
+      displayMessage.value = 'user does not have permission'
+    else displayMessage.value = 'error occurred...'
+    disable.value = false
+    return
+  }
+
+  //on successfull submission
+  displayMessage.value = 'submitted!'
+  disable.value = false
+  router.push('/manage')
 }
+onMounted(async () => {
+  try {
+    placeholder.value = await getHomeFormData()
+    console.log(placeholder.value.contact, placeholder.value.slug)
+  } catch (error) {
+    console.log(error)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
