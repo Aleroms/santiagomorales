@@ -49,16 +49,14 @@ onMounted(async () => {
 <template>
   <FormKit type="form" id="about-form" @submit="submit" :disabled="disable">
     <h4>Hero</h4>
-    <FormKit type="group" name="hero" id="hero">
-      <FormKit type="text" label="title" name="title" :placeholder="placeholder.hero.title" />
-      <FormKit
-        type="textarea"
-        auto-height
-        label="content"
-        name="content"
-        :placeholder="placeholder.hero.content"
-      />
-    </FormKit>
+    <FormKit type="text" label="title" name="title" :placeholder="placeholder.title" />
+    <FormKit
+      type="textarea"
+      auto-height
+      label="content"
+      name="content"
+      :placeholder="placeholder.content"
+    />
     <!-- my values  -->
     <div v-auto-animate class="fk-wrapper">
       <h4 class="title">My values</h4>

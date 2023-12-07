@@ -7,7 +7,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { resumeURL } from '../../plugins/firebase'
+import { resumeURL } from '@/plugins/firebase'
 
 const props = defineProps(['social', 'size', 'displayName'])
 const link = ref('')
@@ -16,7 +16,7 @@ const link = ref('')
 const icon = ref('fa-brands fa-github')
 const name = ref('')
 
-onMounted(() => {
+onMounted(async () => {
   if (props.social === 'github') {
     link.value = 'https://github.com/Aleroms'
     icon.value = 'fa-brands fa-github'
@@ -30,9 +30,14 @@ onMounted(() => {
     icon.value = 'fa-solid fa-envelope'
     name.value = 'email'
   } else if (props.social === 'resume') {
-    link.value = resumeURL
-    icon.value = 'fa-solid fa-file'
-    name.value = 'resume'
+    try {
+      const url = await resumeURL()
+      link.value = url
+      icon.value = 'fa-solid fa-file'
+      name.value = 'resume'
+    } catch (error) {
+      console.log(error)
+    }
   }
 })
 </script>

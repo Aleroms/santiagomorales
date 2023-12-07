@@ -27,7 +27,16 @@ const storage = getStorage(app)
 
 //resume
 const resumeRef = ref(storage, 'resume.pdf')
-const resumeURL = await getDownloadURL(resumeRef)
+const resumeURL = async () => {
+  try {
+    const url = await getDownloadURL(resumeRef)
+    return url
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+// const resumeURL = await getDownloadURL(resumeRef)
 
 //Storage ref for each folders
 // const miscStorageRef = ref(storage, 'misc')
@@ -70,7 +79,6 @@ const submitPageContentForm = async (form, docId) => {
 const getPageContent = async (docId) => {
   const pageContentRef = doc(db, 'pageContent', docId)
   const docSnap = await getDoc(pageContentRef)
-
   return docSnap.exists() ? docSnap.data() : undefined
 }
 
