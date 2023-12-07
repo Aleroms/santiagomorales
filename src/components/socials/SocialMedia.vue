@@ -7,6 +7,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { resumeURL } from '../../plugins/firebase'
 
 const props = defineProps(['social', 'size', 'displayName'])
 const link = ref('')
@@ -29,7 +30,7 @@ onMounted(() => {
     icon.value = 'fa-solid fa-envelope'
     name.value = 'email'
   } else if (props.social === 'resume') {
-    link.value = '/resume.pdf'
+    link.value = resumeURL
     icon.value = 'fa-solid fa-file'
     name.value = 'resume'
   }

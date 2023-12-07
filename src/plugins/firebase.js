@@ -29,13 +29,6 @@ const storage = getStorage(app)
 const resumeRef = ref(storage, 'resume.pdf')
 const resumeURL = await getDownloadURL(resumeRef)
 
-const getHomeFormData = async () => {
-  const homePageRef = doc(db, 'pageContent', 'homePage')
-  const homeSnap = await getDoc(homePageRef)
-
-  return homeSnap.exists() ? homeSnap.data() : undefined
-}
-
 //Storage ref for each folders
 // const miscStorageRef = ref(storage, 'misc')
 // const skillsStorageRef = ref(storage, 'skills')
@@ -56,22 +49,36 @@ const logoutUser = async () => {
   }
 }
 
-const submitHomeForm = async (form, collection, docId) => {
-  const docRef = doc(db, collection, docId)
+const uploadResume = async (resume) => {
+  // console.log(resume)
+  //make sure to only upload resume when !== undefined
+  if (resume !== undefined || resume.length > 0) await uploadBytes(resumeRef, resume[0].file)
+}
 
-  const resume = form.resume
+const submitPageContentForm = async (form, docId) => {
+  const docRef = doc(db, 'pageContent', docId)
 
   //filtering undefined && resume out of document
   let filteredForm = form
   for (let key in filteredForm) {
     if (filteredForm[key] === undefined || key === 'resume') delete filteredForm[key]
   }
-
+  // console.log(filteredForm)
   await setDoc(docRef, filteredForm, { merge: true })
-
-  //make sure to only upload resume when !== undefined
-  if (resume.length > 0) await uploadBytes(resumeRef, resume[0].file)
 }
 
+const getPageContent = async (docId) => {
+  const pageContentRef = doc(db, 'pageContent', docId)
+  const docSnap = await getDoc(pageContentRef)
 
-export { resumeURL, getHomeFormData, signInUserWithEmailAndPassword, logoutUser, submitHomeForm }
+  return docSnap.exists() ? docSnap.data() : undefined
+}
+
+export {
+  resumeURL,
+  uploadResume,
+  getPageContent,
+  submitPageContentForm,
+  logoutUser,
+  signInUserWithEmailAndPassword
+}

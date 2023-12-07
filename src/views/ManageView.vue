@@ -5,12 +5,14 @@
     <SectionHeader id="home" title="Home Section" />
     <HomeForm />
     <SectionHeader id="about" title="About Section" />
+    <AboutForm />
     <SectionHeader id="project" title="Project Section" />
     <SectionHeader id="skill" title="Skills Section" />
   </div>
 </template>
 
 <script setup>
+import AboutForm from '../components/Utilities/Forms/AboutForm.vue'
 import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
 import SectionHeader from '../components/Utilities/SectionHeader.vue'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'

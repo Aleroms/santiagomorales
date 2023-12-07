@@ -1,5 +1,58 @@
+<script setup>
+import { ref } from 'vue'
+import { vAutoAnimate } from '@formkit/auto-animate'
+import { submitPageContentForm, getPageContent } from '@/plugins/firebase.js'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { uploadResume } from '../../../plugins/firebase'
+
+const placeholder = ref({})
+const displayMessage = ref('')
+const disable = ref(false)
+const display = ref(false)
+const router = useRouter()
+
+const submit = async (values) => {
+  disable.value = true
+  displayMessage.value = 'submitting...'
+  display.value = true
+
+  try {
+    // await submitHomeForm(values, 'pageContent', 'homePage')
+    console.log(values)
+    await uploadResume(values.resume)
+    await submitPageContentForm(values, 'homePage')
+  } catch (error) {
+    console.log(error.code, error)
+
+    if (error.code === 'storage/unauthorized' || error.code === 'permission-denied')
+      displayMessage.value = 'user does not have permission'
+    else displayMessage.value = 'error occurred...'
+    disable.value = false
+    return
+  }
+
+  //on successfull submission
+  displayMessage.value = 'submitted!'
+  disable.value = false
+
+  //refresh page
+  router.push('/manage')
+}
+onMounted(async () => {
+  try {
+    // placeholder.value = await getHomeFormData()
+    placeholder.value = await getPageContent('homePage')
+    // console.log(placeholder)
+  } catch (error) {
+    console.log(error)
+  }
+})
+</script>
+
 <template>
   <FormKit type="form" id="home-form" @submit="submit" :disabled="disable">
+    <FormKit type="file" label="resume" accept=".pdf" multiple="false" name="resume" />
     <FormKit type="text" label="tile" name="title" :placeholder="placeholder.title" />
     <FormKit type="text" label="subtitle" name="subtitle" :placeholder="placeholder.subtitle" />
     <!-- Form Kit List  for slug-->
@@ -35,8 +88,14 @@
         <FormKit type="button" label="add a slug" @click="placeholder.slug.push('')" />
       </FormKit>
     </div>
-    <FormKit type="textarea" label="keywords" name="keywords" :placeholder="placeholder.keywords" />
-    <FormKit type="file" label="resume" accept=".pdf" multiple="false" name="resume" />
+    <FormKit
+      type="textarea"
+      auto-height
+      label="keywords"
+      name="keywords"
+      :placeholder="placeholder.keywords"
+    />
+
     <!-- introduction list  -->
     <div v-auto-animate class="fk-wrapper">
       <h4 class="title">introduction text array</h4>
@@ -122,53 +181,6 @@
     <p>{{ displayMessage }}</p>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import { vAutoAnimate } from '@formkit/auto-animate'
-import { submitHomeForm } from '@/plugins/firebase.js'
-import { onMounted } from 'vue'
-import { getHomeFormData } from '@/plugins/firebase.js'
-import { useRouter } from 'vue-router'
-
-const placeholder = ref({})
-const displayMessage = ref('')
-const disable = ref(false)
-const display = ref(false)
-const router = useRouter()
-
-const submit = async (values) => {
-  console.log(values)
-  disable.value = true
-  displayMessage.value = 'submitting...'
-  display.value = true
-
-  try {
-    await submitHomeForm(values, 'pageContent', 'homePage')
-  } catch (error) {
-    console.log(error.code, error)
-
-    if (error.code === 'storage/unauthorized' || error.code === 'permission-denied')
-      displayMessage.value = 'user does not have permission'
-    else displayMessage.value = 'error occurred...'
-    disable.value = false
-    return
-  }
-
-  //on successfull submission
-  displayMessage.value = 'submitted!'
-  disable.value = false
-  router.push('/manage')
-}
-onMounted(async () => {
-  try {
-    placeholder.value = await getHomeFormData()
-    console.log(placeholder.value.contact, placeholder.value.slug)
-  } catch (error) {
-    console.log(error)
-  }
-})
-</script>
 
 <style lang="scss" scoped>
 .title {
