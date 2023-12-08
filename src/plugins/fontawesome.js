@@ -5,6 +5,7 @@ import {
   faArrowDown,
   faArrowUp,
   faChevronLeft,
+  faCodeBranch,
   faEnvelope,
   faFile,
   faMoon,
@@ -28,7 +29,8 @@ library.add(
   faCopyright,
   faXmark,
   faArrowUp,
-  faArrowDown
+  faArrowDown,
+  faCodeBranch
 )
 
 export { FontAwesomeIcon }
