@@ -36,7 +36,6 @@ const resumeURL = async () => {
     throw error
   }
 }
-// const resumeURL = await getDownloadURL(resumeRef)
 
 //Storage ref for each folders
 // const miscStorageRef = ref(storage, 'misc')
@@ -57,13 +56,7 @@ const logoutUser = async () => {
     console.log(error)
   }
 }
-
-const uploadResume = async (resume) => {
-  // console.log(resume)
-  //make sure to only upload resume when !== undefined
-  if (resume !== undefined || resume.length > 0) await uploadBytes(resumeRef, resume[0].file)
-}
-
+//uploads and returns imgURL . add to document before uploading
 const uploadFile = async (file, path) => {
   const fileRef = ref(storage, path)
   console.log('storage path', fileRef.fullPath)
@@ -75,16 +68,26 @@ const uploadFile = async (file, path) => {
   }
 }
 
+const uploadFile2 = async (file, path) => {
+  const fileRef = ref(storage, path)
+  console.log('storage path', fileRef.fullPath)
+
+  try {
+    await uploadBytes(fileRef, file[0].file)
+    const url = await getDownloadURL(resumeRef)
+    return url
+  } catch (error) {
+    console.log(error)
+  }
+}
+//depricate - make sure home and about are working then remove function
 const submitPageContentForm = async (form, docId) => {
   const docRef = doc(db, 'pageContent', docId)
+  await setDoc(docRef, form, { merge: true })
+}
 
-  //filtering undefined && resume out of document
-  // let filteredForm = form
-  // for (let key in filteredForm) {
-  //   if (filteredForm[key] === undefined || key === 'resume') delete filteredForm[key]
-  // }
-  // console.log(filteredForm)
-  // await setDoc(docRef, filteredForm, { merge: true })
+const submitForm = async (form, collection, docId) => {
+  const docRef = doc(db, collection, docId)
   await setDoc(docRef, form, { merge: true })
 }
 
@@ -94,10 +97,18 @@ const getPageContent = async (docId) => {
   return docSnap.exists() ? docSnap.data() : undefined
 }
 
+const getDocument = async (collection, docId) => {
+  const docRef = doc(db, collection, docId)
+  const docSnap = await getDoc(docRef)
+  return docSnap.exists() ? docSnap.data() : undefined
+}
+
 export {
   resumeURL,
-  uploadResume,
   uploadFile,
+  uploadFile2,
+  submitForm,
+  getDocument,
   getPageContent,
   submitPageContentForm,
   logoutUser,

@@ -48,6 +48,14 @@ body {
   scroll-behavior: smooth;
   /* transition: 0.3s ease-in-out; */
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 .collapse-active {
   overflow-y: hidden;
 }
@@ -66,6 +74,9 @@ body {
 .fk-input-global[type='button'] {
   background-color: var(--primary) !important;
   color: var(--text-light-1);
+}
+.formkit-help {
+  color: var(--text-light-1) !important;
 }
 
 [color-scheme='light'] {

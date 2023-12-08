@@ -9,27 +9,32 @@
         <li @click="selector('about')">
           <h3 :class="{ active: sectionTitle === 'About Section' }">About</h3>
         </li>
+        <li @click="selector('edu')">
+          <h3 :class="{ active: sectionTitle === 'Education' }">Education</h3>
+        </li>
       </ul>
     </div>
     <ButtonComponent type="filled" text="logout" @click="userStore.logout" />
     <SectionHeader :id="sectionTitle" :title="sectionTitle" />
     <component :is="sectionSelector" />
-
-    <!-- <SectionHeader id="project" title="Project Section" />
-    <SectionHeader id="skill" title="Skills Section" />  -->
   </div>
 </template>
 
 <script setup>
 import AboutForm from '../components/Utilities/Forms/AboutForm.vue'
 import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
+import EducationForm from '@/components/Utilities/Forms/EducationForm.vue'
+
 import SectionHeader from '../components/Utilities/SectionHeader.vue'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
+
 import { useUserStore } from '@/stores/user.js'
 import { ref, shallowRef } from 'vue'
+
 const userStore = useUserStore()
 const sectionSelector = shallowRef(HomeForm)
 const sectionTitle = ref('Home Section')
+
 const selector = (id) => {
   if (id === 'home') {
     sectionTitle.value = 'Home Section'
@@ -37,6 +42,9 @@ const selector = (id) => {
   } else if (id === 'about') {
     sectionTitle.value = 'About Section'
     sectionSelector.value = AboutForm
+  } else if (id === 'edu') {
+    sectionTitle.value = 'Education'
+    sectionSelector.value = EducationForm
   }
 }
 </script>
