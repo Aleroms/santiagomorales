@@ -1,13 +1,22 @@
 <template>
   <div class="manage-wrapper">
     <h1 id="#">Manage Pages:</h1>
+    <div class="section-wrapper">
+      <ul class="controls">
+        <li @click="selector('home')">
+          <h3 :class="{ active: sectionTitle === 'Home Section' }">Home</h3>
+        </li>
+        <li @click="selector('about')">
+          <h3 :class="{ active: sectionTitle === 'About Section' }">About</h3>
+        </li>
+      </ul>
+    </div>
     <ButtonComponent type="filled" text="logout" @click="userStore.logout" />
-    <SectionHeader id="home" title="Home Section" />
-    <HomeForm />
-    <SectionHeader id="about" title="About Section" />
-    <AboutForm />
-    <SectionHeader id="project" title="Project Section" />
-    <SectionHeader id="skill" title="Skills Section" />
+    <SectionHeader :id="sectionTitle" :title="sectionTitle" />
+    <component :is="sectionSelector" />
+
+    <!-- <SectionHeader id="project" title="Project Section" />
+    <SectionHeader id="skill" title="Skills Section" />  -->
   </div>
 </template>
 
@@ -17,10 +26,41 @@ import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
 import SectionHeader from '../components/Utilities/SectionHeader.vue'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 import { useUserStore } from '@/stores/user.js'
+import { ref, shallowRef } from 'vue'
 const userStore = useUserStore()
+const sectionSelector = shallowRef(HomeForm)
+const sectionTitle = ref('Home Section')
+const selector = (id) => {
+  if (id === 'home') {
+    sectionTitle.value = 'Home Section'
+    sectionSelector.value = HomeForm
+  } else if (id === 'about') {
+    sectionTitle.value = 'About Section'
+    sectionSelector.value = AboutForm
+  }
+}
 </script>
 
 <style lang="scss" scoped>
+.active {
+  color: var(--text-light-1) !important;
+}
+.section-wrapper {
+  margin: 1rem 0;
+
+  .controls {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    cursor: pointer;
+
+    h3 {
+      color: var(--primary);
+    }
+  }
+}
 .manage-wrapper {
   margin: 1rem;
   max-width: 640px;

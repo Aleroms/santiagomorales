@@ -23,7 +23,8 @@ h5,
 h6,
 a,
 span,
-label {
+label,
+li {
   font-family: 'Lato', sans-serif;
   color: var(--text-light-1);
   transition: 0.3s ease-in-out;
@@ -61,7 +62,8 @@ body {
 .fk-input-global {
   color: var(--text-light-1) !important;
 }
-.fk-input-global[type='submit'], .fk-input-global[type='button'] {
+.fk-input-global[type='submit'],
+.fk-input-global[type='button'] {
   background-color: var(--primary) !important;
   color: var(--text-light-1);
 }

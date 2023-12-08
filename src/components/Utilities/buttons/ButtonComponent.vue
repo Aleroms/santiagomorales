@@ -21,6 +21,7 @@ const props = defineProps({
   border-radius: 30px;
   text-align: center;
   transition: 0.3s ease-in-out;
+  color: var(--text-light-1);
 }
 .filled {
   background-color: var(--primary);
@@ -29,6 +30,6 @@ const props = defineProps({
 .outline {
   border: 2px solid var(--primary);
   background-color: transparent;
-  color: var(--text-light-1);
+
 }
 </style>
