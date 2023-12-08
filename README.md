@@ -49,6 +49,7 @@ npm install @formkit/addons
 - [VeeValidate](https://vee-validate.logaretm.com/v4/guide/overview/) - Validation for forms.
 - [Vue3 Router](https://router.vuejs.org/api/#useRouter) - How to programatically push routes in Vue 3
 - [FontAwesome sizes](https://fontawesome.com/docs/web/style/size) - FontAwesome documentation on sizes.
+- [Vue <Component/>](https://vuejs.org/api/built-in-special-elements.html#component) - dynamically binding components
 
 ## Reminder
 

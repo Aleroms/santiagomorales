@@ -18,7 +18,7 @@ import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
 import EducationForm from '@/components/Utilities/Forms/EducationForm.vue'
 import ProjectsForm from '../components/Utilities/Forms/ProjectsForm.vue'
 import SkillsForm from '../components/Utilities/Forms/SkillsForm.vue'
-
+import WorkExpForm from '../components/Utilities/Forms/WorkExpForm.vue'
 
 import ManageControls from '../components/ManageControls.vue'
 
@@ -54,6 +54,10 @@ const selectorProp = {
     {
       id: 'edu',
       title: 'Education'
+    },
+    {
+      id: 'workexp',
+      title: 'Work Experience'
     }
   ]
 }
@@ -74,6 +78,9 @@ const selector = (id) => {
   } else if (id === 'skills') {
     sectionTitle.value = 'Skills Section'
     sectionSelector.value = SkillsForm
+  } else if (id === 'workexp') {
+    sectionTitle.value = 'Work Experience'
+    sectionSelector.value = WorkExpForm
   }
 }
 </script>

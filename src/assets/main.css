@@ -78,6 +78,9 @@ body {
 .formkit-help {
   color: var(--text-light-1) !important;
 }
+.formkit-message {
+  color: var(--danger) !important;
+}
 
 [color-scheme='light'] {
   background-color: #fff;
