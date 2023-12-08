@@ -28,5 +28,7 @@ const props = defineProps({
 }
 .outline {
   border: 2px solid var(--primary);
+  background-color: transparent;
+  color: var(--text-light-1);
 }
 </style>

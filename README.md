@@ -45,7 +45,7 @@ npm install @formkit/addons
 
 ## Useful Links
 
-- [Vue Composables](https://vuejs.orrg/guide/reusability/composables) - encapsulates and reuses stateful logic
+- [Vue Composables](https://vuejs.org/guide/reusability/composables) - encapsulates and reuses stateful logic
 - [VeeValidate](https://vee-validate.logaretm.com/v4/guide/overview/) - Validation for forms.
 - [Vue3 Router](https://router.vuejs.org/api/#useRouter) - How to programatically push routes in Vue 3
 - [FontAwesome sizes](https://fontawesome.com/docs/web/style/size) - FontAwesome documentation on sizes.

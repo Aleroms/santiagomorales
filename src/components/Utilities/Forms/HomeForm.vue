@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
-import { submitPageContentForm, getPageContent } from '@/plugins/firebase.js'
+import { submitPageContentForm, getPageContent, uploadFile } from '@/plugins/firebase.js'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { uploadResume } from '../../../plugins/firebase'
+import { filterForm } from '@/utils/filterForm.js'
+import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 
 const placeholder = ref({})
 const displayMessage = ref('')
@@ -16,12 +17,17 @@ const submit = async (values) => {
   disable.value = true
   displayMessage.value = 'submitting...'
   display.value = true
+  console.log(values)
 
   try {
-    // await submitHomeForm(values, 'pageContent', 'homePage')
-    console.log(values)
-    await uploadResume(values.resume)
-    await submitPageContentForm(values, 'homePage')
+    await uploadFile(values.resume, 'resume.pdf')
+    await uploadFile(values.avatar, 'misc/avatar.jpg')
+
+    //submit filtered form
+    let filteredForm = filterForm(values)
+
+    // await submitPageContentForm(values, 'homePage')
+    await submitPageContentForm(filteredForm, 'homePage')
   } catch (error) {
     console.log(error.code, error)
 
@@ -41,9 +47,7 @@ const submit = async (values) => {
 }
 onMounted(async () => {
   try {
-    // placeholder.value = await getHomeFormData()
     placeholder.value = await getPageContent('homePage')
-    // console.log(placeholder)
   } catch (error) {
     console.log(error)
   }
@@ -52,15 +56,42 @@ onMounted(async () => {
 
 <template>
   <FormKit type="form" id="home-form" @submit="submit" :disabled="disable">
-    <FormKit type="file" label="resume" accept=".pdf" multiple="false" name="resume" />
-    <FormKit type="text" label="tile" name="title" :placeholder="placeholder.title" />
-    <FormKit type="text" label="subtitle" name="subtitle" :placeholder="placeholder.subtitle" />
+    <FormKit
+      type="file"
+      label="resume"
+      accept=".pdf"
+      multiple="false"
+      name="resume"
+      validation="required"
+    />
+    <FormKit
+      type="file"
+      label="avatar"
+      accept=".jpg,.png"
+      multiple="false"
+      name="avatar"
+      validation="required"
+    />
+    <FormKit
+      type="text"
+      label="title"
+      name="title"
+      :placeholder="placeholder.title"
+      validation="required"
+    />
+    <FormKit
+      type="text"
+      label="subtitle"
+      name="subtitle"
+      :placeholder="placeholder.subtitle"
+      validation="required"
+    />
     <!-- Form Kit List  for slug-->
     <div v-auto-animate class="fk-wrapper">
       <h4 class="title">slug text array</h4>
       <FormKit v-model="placeholder.slug" type="list" dynamic #default="{ items }" name="slug">
         <div v-for="(item, index) in items" :key="item" class="list-item">
-          <FormKit type="text" :index="index" />
+          <FormKit type="text" :index="index" validation="required" />
           <ul class="controls">
             <li>
               <button
@@ -85,7 +116,12 @@ onMounted(async () => {
             </li>
           </ul>
         </div>
-        <FormKit type="button" label="add a slug" @click="placeholder.slug.push('')" />
+        <ButtonComponent
+          type="outline"
+          text="add a slug"
+          @click="placeholder.slug.push('')"
+          style="margin: 1rem 0;"
+        />
       </FormKit>
     </div>
     <FormKit
@@ -94,6 +130,7 @@ onMounted(async () => {
       label="keywords"
       name="keywords"
       :placeholder="placeholder.keywords"
+      validation="required"
     />
 
     <!-- introduction list  -->
@@ -113,9 +150,16 @@ onMounted(async () => {
           :key="item"
           :index="index"
           class="list-item"
+          validation="required"
         >
-          <FormKit type="text" name="title" label="title" />
-          <FormKit type="textarea" auto-height name="content" label="content" />
+          <FormKit type="text" name="title" label="title" validation="required" />
+          <FormKit
+            type="textarea"
+            auto-height
+            name="content"
+            label="content"
+            validation="required"
+          />
           <ul class="controls">
             <li>
               <button
@@ -156,25 +200,34 @@ onMounted(async () => {
             </li>
           </ul>
         </FormKit>
-        <FormKit
-          type="button"
-          label="add more"
+        <ButtonComponent
+          type="outline"
+          text="add more"
           @click="placeholder.introduction.push({ title: '', content: '' })"
+          style="margin-bottom: 1rem"
         />
       </FormKit>
     </div>
-    <FormKit type="text" label="skills tagline" name="skills" :placeholder="placeholder.skills" />
+    <FormKit
+      type="text"
+      label="skills tagline"
+      name="skills"
+      :placeholder="placeholder.skills"
+      validation="required"
+    />
     <FormKit
       type="text"
       label="projects tagline"
       name="projects"
       :placeholder="placeholder.projects"
+      validation="required"
     />
     <FormKit
       type="text"
       label="contact tagline"
       name="contact"
       :placeholder="placeholder.contact"
+      validation="required"
     />
   </FormKit>
   <div v-if="display" class="display-container">

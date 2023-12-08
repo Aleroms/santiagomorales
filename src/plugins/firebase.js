@@ -64,16 +64,28 @@ const uploadResume = async (resume) => {
   if (resume !== undefined || resume.length > 0) await uploadBytes(resumeRef, resume[0].file)
 }
 
+const uploadFile = async (file, path) => {
+  const fileRef = ref(storage, path)
+  console.log('storage path', fileRef.fullPath)
+
+  try {
+    await uploadBytes(fileRef, file[0].file)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const submitPageContentForm = async (form, docId) => {
   const docRef = doc(db, 'pageContent', docId)
 
   //filtering undefined && resume out of document
-  let filteredForm = form
-  for (let key in filteredForm) {
-    if (filteredForm[key] === undefined || key === 'resume') delete filteredForm[key]
-  }
+  // let filteredForm = form
+  // for (let key in filteredForm) {
+  //   if (filteredForm[key] === undefined || key === 'resume') delete filteredForm[key]
+  // }
   // console.log(filteredForm)
-  await setDoc(docRef, filteredForm, { merge: true })
+  // await setDoc(docRef, filteredForm, { merge: true })
+  await setDoc(docRef, form, { merge: true })
 }
 
 const getPageContent = async (docId) => {
@@ -85,6 +97,7 @@ const getPageContent = async (docId) => {
 export {
   resumeURL,
   uploadResume,
+  uploadFile,
   getPageContent,
   submitPageContentForm,
   logoutUser,

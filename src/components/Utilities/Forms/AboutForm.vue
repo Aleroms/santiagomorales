@@ -4,7 +4,8 @@ import { vAutoAnimate } from '@formkit/auto-animate'
 import { submitPageContentForm, getPageContent } from '@/plugins/firebase.js'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { filterForm } from '@/utils/filterForm.js'
+import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 const router = useRouter()
 
 const placeholder = ref({})
@@ -19,7 +20,8 @@ const submit = async (form) => {
   console.log(form)
 
   try {
-    await submitPageContentForm(form, 'aboutPage')
+    const filteredForm = filterForm(form)
+    await submitPageContentForm(filteredForm, 'aboutPage')
   } catch (error) {
     console.log(error.code, error)
 
@@ -116,10 +118,11 @@ onMounted(async () => {
             </li>
           </ul>
         </FormKit>
-        <FormKit
-          type="button"
-          label="add more"
+        <ButtonComponent
+          type="outline"
+          text="add more"
           @click="placeholder.values.push({ title: '', content: '', icon: '' })"
+          style="margin: 1rem 0"
         />
       </FormKit>
     </div>
