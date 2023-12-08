@@ -9,9 +9,15 @@
         <li @click="selector('about')">
           <h3 :class="{ active: sectionTitle === 'About Section' }">About</h3>
         </li>
-        <li @click="selector('edu')">
-          <h3 :class="{ active: sectionTitle === 'Education' }">Education</h3>
+        <li @click="selector('projects')">
+          <h3 :class="{ active: sectionTitle === 'Projects Section' }">Projects</h3>
         </li>
+        <li @click="selector('skills')">
+          <h3 :class="{ active: sectionTitle === 'Skills Section' }">Skills</h3>
+        </li>
+        <!-- <li @click="selector('edu')">
+          <h3 :class="{ active: sectionTitle === 'Education' }">Education</h3>
+        </li> -->
       </ul>
     </div>
     <ButtonComponent type="filled" text="logout" @click="userStore.logout" />
@@ -24,6 +30,8 @@
 import AboutForm from '../components/Utilities/Forms/AboutForm.vue'
 import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
 import EducationForm from '@/components/Utilities/Forms/EducationForm.vue'
+import ProjectsForm from '../components/Utilities/Forms/ProjectsForm.vue'
+import SkillsForm from '../components/Utilities/Forms/SkillsForm.vue'
 
 import SectionHeader from '../components/Utilities/SectionHeader.vue'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
@@ -45,6 +53,12 @@ const selector = (id) => {
   } else if (id === 'edu') {
     sectionTitle.value = 'Education'
     sectionSelector.value = EducationForm
+  } else if (id === 'projects') {
+    sectionTitle.value = 'Projects Section'
+    sectionSelector.value = ProjectsForm
+  } else if (id === 'skills') {
+    sectionTitle.value = 'Skills Section'
+    sectionSelector.value = SkillsForm
   }
 }
 </script>

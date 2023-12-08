@@ -133,6 +133,13 @@ onMounted(async () => {
       name="how_i_learn"
       :placeholder="placeholder.how_i_learn"
     />
+    <FormKit
+      type="textarea"
+      auto-height
+      label="how I develop"
+      name="how_i_develop"
+      :placeholder="placeholder.how_i_develop"
+    />
   </FormKit>
 </template>
 
