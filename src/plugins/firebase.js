@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, getDoc, getDocs, collection } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getAuth, signOut, signInWithEmailAndPassword } from 'firebase/auth'
 
@@ -59,7 +59,7 @@ const logoutUser = async () => {
 const uploadFile = async (file, path) => {
   const fileRef = ref(storage, path)
   console.log('storage path', fileRef.fullPath)
-  
+
   try {
     await uploadBytes(fileRef, file[0].file)
   } catch (error) {
@@ -74,7 +74,7 @@ const uploadFile2 = async (file, path) => {
 
   try {
     await uploadBytes(fileRef, file[0].file)
-    const url = await getDownloadURL(resumeRef)
+    const url = await getDownloadURL(fileRef)
     return url
   } catch (error) {
     console.log(error)
@@ -86,8 +86,8 @@ const submitPageContentForm = async (form, docId) => {
   await setDoc(docRef, form, { merge: true })
 }
 
-const submitForm = async (form, collection, docId) => {
-  const docRef = doc(db, collection, docId)
+const submitForm = async (form, collectionId, docId) => {
+  const docRef = doc(db, collectionId, docId)
   await setDoc(docRef, form, { merge: true })
 }
 
@@ -97,10 +97,19 @@ const getPageContent = async (docId) => {
   return docSnap.exists() ? docSnap.data() : undefined
 }
 
-const getDocument = async (collection, docId) => {
-  const docRef = doc(db, collection, docId)
+const getDocument = async (collectionId, docId) => {
+  const docRef = doc(db, collectionId, docId)
   const docSnap = await getDoc(docRef)
   return docSnap.exists() ? docSnap.data() : undefined
+}
+
+const getDocuments = async (collectionId) => {
+  const query = await getDocs(collection(db, collectionId))
+  const documents = []
+  query.forEach((doc) => {
+    documents.push(doc.data())
+  })
+  return documents
 }
 
 export {
@@ -109,6 +118,7 @@ export {
   uploadFile2,
   submitForm,
   getDocument,
+  getDocuments,
   getPageContent,
   submitPageContentForm,
   logoutUser,

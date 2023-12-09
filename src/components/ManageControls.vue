@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-//@click="selector('edu')"
+
 //default
 const isActive = ref('home')
 

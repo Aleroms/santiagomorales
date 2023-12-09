@@ -18,7 +18,8 @@ import HomeForm from '../components/Utilities/Forms/HomeForm.vue'
 import EducationForm from '@/components/Utilities/Forms/EducationForm.vue'
 import ProjectsForm from '../components/Utilities/Forms/ProjectsForm.vue'
 import SkillsForm from '../components/Utilities/Forms/SkillsForm.vue'
-import WorkExpForm from '../components/Utilities/Forms/WorkExpForm.vue'
+import WorkExpFormControls from '../components/workExperience/WorkExpFormControls.vue'
+// import WorkExpForm from '../components/Utilities/Forms/WorkExpForm.vue'
 
 import ManageControls from '../components/ManageControls.vue'
 
@@ -83,7 +84,8 @@ const selector = (id) => {
     sectionSelector.value = SkillsForm
   } else if (id === 'workexp') {
     sectionTitle.value = 'Work Experience'
-    sectionSelector.value = WorkExpForm
+    // sectionSelector.value = WorkExpForm
+    sectionSelector.value = WorkExpFormControls
   }
 }
 

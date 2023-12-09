@@ -18,6 +18,7 @@
     />
     <FormKit type="text" label="company name" name="company" validation="required" />
     <FormKit type="file" label="logo" help="company logo" name="logo" validation="required" />
+    <FormKit type="text" label="location" name="location" validation="required" />
     <FormKit
       type="select"
       :options="location_type"
@@ -46,7 +47,7 @@
         <div class="number-pad">
           <FormKit
             type="number"
-            name="day"
+            name="year"
             :value="current_year"
             step="1"
             class="number-pad"
@@ -67,7 +68,7 @@
         <div class="number-pad">
           <FormKit
             type="number"
-            name="day"
+            name="year"
             :value="current_year"
             step="1"
             :validation="`min:${current_year}`"
@@ -108,11 +109,15 @@ const submit = async (values) => {
     //adds img url to form
     values.imgURL = imgURL
 
+    //splice start & end month for 3 char breviation of month
+    values.start.month = values.start.month.slice(0, 3)
+    values.end.month = values.end.month.slice(0, 3)
+
     //filter form for files
     const filteredForm = filterForm(values)
 
     //submit form
-    await submitForm(filteredForm, 'workExperience', 'contentprogrammer')
+    await submitForm(filteredForm, 'workExperience', filteredForm.id)
   } catch (error) {
     console.log(error)
     displayMessage.value = 'error occurred'
