@@ -56,11 +56,10 @@ const logoutUser = async () => {
     console.log(error)
   }
 }
-//uploads and returns imgURL . add to document before uploading
 const uploadFile = async (file, path) => {
   const fileRef = ref(storage, path)
   console.log('storage path', fileRef.fullPath)
-
+  
   try {
     await uploadBytes(fileRef, file[0].file)
   } catch (error) {
@@ -68,6 +67,7 @@ const uploadFile = async (file, path) => {
   }
 }
 
+//uploads and returns imgURL . add to document before uploading
 const uploadFile2 = async (file, path) => {
   const fileRef = ref(storage, path)
   console.log('storage path', fileRef.fullPath)
