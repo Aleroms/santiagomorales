@@ -50,6 +50,7 @@ npm install @formkit/addons
 - [Vue3 Router](https://router.vuejs.org/api/#useRouter) - How to programatically push routes in Vue 3
 - [FontAwesome sizes](https://fontawesome.com/docs/web/style/size) - FontAwesome documentation on sizes.
 - [Vue <Component/>](https://vuejs.org/api/built-in-special-elements.html#component) - dynamically binding components
+- [Simple Local Storage implementation using Vue 3, Vueuse and Pinia with zero extra lines of code.](https://stephanlangeveld.medium.com/simple-local-storage-implementation-using-vue-3-vueuse-and-pinia-with-zero-extra-lines-of-code-cb9ed2cce42a) - fun and easy way to persist the user's authentication pinia state without any extra code. Kinda like magic tbh.
 
 ## Reminder
 

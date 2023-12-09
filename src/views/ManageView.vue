@@ -6,7 +6,7 @@
     <div class="section-wrapper">
       <ManageControls :selector="selectorProp" @emit-selector-id="selector" />
     </div>
-    <ButtonComponent type="filled" text="logout" @click="userStore.logout" />
+    <ButtonComponent type="filled" text="logout" @click="logout" />
     <SectionHeader :id="sectionTitle" :title="sectionTitle" />
     <component :is="sectionSelector" />
   </div>
@@ -27,8 +27,11 @@ import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 
 import { useUserStore } from '@/stores/user.js'
 import { ref, shallowRef } from 'vue'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
+const router = useRouter()
+
 const sectionSelector = shallowRef(HomeForm)
 const sectionTitle = ref('Home Section')
 const selectorProp = {
@@ -82,6 +85,11 @@ const selector = (id) => {
     sectionTitle.value = 'Work Experience'
     sectionSelector.value = WorkExpForm
   }
+}
+
+const logout = () => {
+  userStore.logout()
+  router.push('/')
 }
 </script>
 

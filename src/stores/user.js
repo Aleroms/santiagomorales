@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import { signInUserWithEmailAndPassword, logoutUser } from '../plugins/firebase'
+import { useStorage } from '@vueuse/core'
 export const useUserStore = defineStore('userStore', {
   state: () => ({
-    userLoggedIn: false
+    userLoggedIn: useStorage('userLoggedIn', false)
   }),
   actions: {
     async login(values) {
