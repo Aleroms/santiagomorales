@@ -29,4 +29,22 @@ const months = [
   'December'
 ]
 
-export { employment_type, location_type, months }
+const workExpDefault = {
+  company: 'company',
+  current_job: false,
+  emp_type: 'Please select',
+  end: {
+    month: 'January',
+    year: 2023
+  },
+  id: 'unique id',
+  loc_type: 'On-site',
+  location: 'Irvine, California',
+  start: {
+    month: 'January',
+    year: 2023
+  },
+  title: 'Job Title'
+}
+
+export { employment_type, location_type, months, workExpDefault }

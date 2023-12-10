@@ -7,7 +7,7 @@
       <h3 class="title">{{ data.title }}</h3>
       <h4>{{ data.company }} - {{ data.emp_type }}</h4>
       <p class="subtitle" v-if="!data.current_job">
-        {{ data.start.month }} {{ data.start.year }} - {{ data.end.month }} {{ data.end.year }} -
+        {{ startMonth }} {{ data.start.year }} - {{ endMonth }} {{ data.end.year }} -
         {{ duration }}
       </p>
       <p class="subtitle" v-else>
@@ -30,6 +30,9 @@ const props = defineProps({
 })
 
 const duration = calculateDuration(props.data.start, props.data.end)
+const startMonth = props.data.start.month.slice(0, 3)
+const endMonth = props.data.end.month.slice(0, 3)
+
 </script>
 
 <style lang="scss" scoped>
@@ -37,7 +40,6 @@ const duration = calculateDuration(props.data.start, props.data.end)
   display: flex;
   flex-direction: row;
   gap: 25px;
-  margin: 2rem 0;
 
   .title {
     font-weight: 900;

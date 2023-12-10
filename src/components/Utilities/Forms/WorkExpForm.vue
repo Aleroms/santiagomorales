@@ -1,31 +1,52 @@
 <template>
+  <p v-if="display">{{ displayMessage }}</p>
   <FormKit type="form" id="workExp-form" @submit="submit" :disabled="disable">
-    <FormKit type="text" label="title" name="title" hint="job title" validation="required" />
+    <FormKit
+      type="text"
+      label="title"
+      name="title"
+      hint="job title"
+      validation="required"
+      :placeholder="placeholder.title"
+    />
     <FormKit
       type="text"
       label="id"
       name="id"
       hint="document ID on firebase"
       validation="required"
+      :placeholder="placeholder.id"
     />
     <FormKit
       type="select"
       :options="employment_type"
       label="employment type"
-      placeholder="Please select"
+      :placeholder="placeholder.emp_type"
       name="emp_type"
       validation="required"
     />
-    <FormKit type="text" label="company name" name="company" validation="required" />
+    <FormKit
+      type="text"
+      label="company name"
+      name="company"
+      validation="required"
+      :placeholder="placeholder.company"
+    />
     <FormKit type="file" label="logo" help="company logo" name="logo" validation="required" />
-    <FormKit type="text" label="location" name="location" validation="required" />
+    <FormKit
+      type="text"
+      label="location"
+      name="location"
+      validation="required"
+      :placeholder="placeholder.location"
+    />
     <FormKit
       type="select"
       :options="location_type"
       label="location type"
       name="loc_type"
       help="pick a location type (ex: remote)"
-      placeholder="Please select"
+      :placeholder="placeholder.loc_type"
       validation="required"
     />
     <FormKit
@@ -48,7 +69,6 @@
           <FormKit
             type="number"
             name="year"
-            :value="current_year"
             step="1"
             class="number-pad"
             :validation="`max:${current_year}`"
@@ -71,7 +91,7 @@
             name="year"
             :value="current_year"
             step="1"
-            :validation="`min:${current_year}`"
+            :validation="`max:${current_year}`"
           />
         </div>
       </FormKit>
@@ -81,13 +101,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { employment_type, location_type, months } from '@/utils/formOptions.js'
+import { onMounted, ref } from 'vue'
+import { employment_type, location_type, months, workExpDefault } from '@/utils/formOptions.js'
 import { filterForm } from '@/utils/filterForm.js'
 import { submitForm, uploadFile2 } from '@/plugins/firebase'
-import { useRouter } from 'vue-router'
+import { getDocument } from '@/plugins/firebase.js'
 
-const router = useRouter()
+const props = defineProps({
+  docId: {
+    type: String
+  }
+})
+const placeholder = ref({})
+const startDate = ref({})
+const endDate = ref({})
 
 const disable = ref(false)
 const display = ref(false)
@@ -95,6 +122,8 @@ const displayMessage = ref('')
 
 const current_role = ref(false)
 const current_year = new Date().getFullYear()
+
+const emit = defineEmits(['formSubmitted'])
 
 const submit = async (values) => {
   disable.value = true
@@ -105,13 +134,11 @@ const submit = async (values) => {
   try {
     //uploads and returns img url
     const imgURL = await uploadFile2(values.logo, `workExperience/${values.logo[0].name}`)
+    const imgPath = `workExperience/${values.logo[0].name}`
 
-    //adds img url to form
+    //adds img url & name to form
     values.imgURL = imgURL
-
-    //splice start & end month for 3 char breviation of month
-    values.start.month = values.start.month.slice(0, 3)
-    values.end.month = values.end.month.slice(0, 3)
+    values.imgPath = imgPath
 
     //filter form for files
     const filteredForm = filterForm(values)
@@ -126,8 +153,26 @@ const submit = async (values) => {
   //on successful submission
   displayMessage.value = 'submitted!'
   disable.value = false
-  router.push('/manage')
+  emit('formSubmitted')
 }
+onMounted(async () => {
+  //
+  console.log(workExpDefault)
+  console.log(props.docId.length, props.docId)
+  try {
+    //no docId passed - must be creating new form
+    if (props.docId.length !== 0)
+      placeholder.value = await getDocument('workExperience', props.docId)
+    else {
+      placeholder.value = workExpDefault
+    }
+    startDate.value = placeholder.value.start
+    endDate.value = placeholder.value.end
+    console.log(startDate, endDate)
+  } catch (error) {
+    console.log(error)
+  }
+})
 </script>
 
 <style lang="scss" scoped>

@@ -9,7 +9,10 @@ import {
   faEnvelope,
   faFile,
   faMoon,
+  faPen,
+  faPlus,
   faSun,
+  faTrash,
   faTurnUp,
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
@@ -30,7 +33,10 @@ library.add(
   faXmark,
   faArrowUp,
   faArrowDown,
-  faCodeBranch
+  faCodeBranch,
+  faPlus,
+  faPen,
+  faTrash
 )
 
 export { FontAwesomeIcon }

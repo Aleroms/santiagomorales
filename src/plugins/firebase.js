@@ -1,6 +1,14 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, doc, setDoc, getDoc, getDocs, collection } from 'firebase/firestore'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  deleteDoc,
+  collection
+} from 'firebase/firestore'
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { getAuth, signOut, signInWithEmailAndPassword } from 'firebase/auth'
 
 // My portfolio web app's Firebase configuration
@@ -80,6 +88,17 @@ const uploadFile2 = async (file, path) => {
     console.log(error)
   }
 }
+
+//deletes image from storage
+const deleteFile = async (path) => {
+  const fileRef = ref(storage, path)
+  console.log('deleting file', fileRef.fullPath)
+  try {
+    await deleteObject(fileRef)
+  } catch (error) {
+    console.log(error)
+  }
+}
 //depricate - make sure home and about are working then remove function
 const submitPageContentForm = async (form, docId) => {
   const docRef = doc(db, 'pageContent', docId)
@@ -112,11 +131,17 @@ const getDocuments = async (collectionId) => {
   return documents
 }
 
+const deleteDocument = async (collectionId, docId) => {
+  await deleteDoc(doc(db, collectionId, docId))
+}
+
 export {
   resumeURL,
   uploadFile,
   uploadFile2,
   submitForm,
+  deleteDocument,
+  deleteFile,
   getDocument,
   getDocuments,
   getPageContent,
