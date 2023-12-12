@@ -11,6 +11,10 @@ const props = defineProps({
   text: {
     required: true,
     type: String
+  },
+  warning: {
+    required: false,
+    type: String
   }
 })
 </script>
@@ -30,6 +34,9 @@ const props = defineProps({
 .outline {
   border: 2px solid var(--primary);
   background-color: transparent;
-
+}
+.filled-warning {
+  background-color: var(--danger);
+  border: 2px solid var(--danger);
 }
 </style>

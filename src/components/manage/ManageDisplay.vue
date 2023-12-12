@@ -6,10 +6,14 @@
 </template>
 
 <script>
-//no script setup :,(
+//no script setup :,( bcz stupid eslint </3
 import { useManageStore } from '@/stores/manage'
 import SectionHeader from '@/components//Utilities/SectionHeader.vue'
+
+//Manage
 import ManageList from './ManageList.vue'
+import ManageDelete from './ManageDelete.vue'
+import ManageAlert from './ManageAlert.vue'
 
 //Forms
 import AboutForm from '@/components/Utilities/Forms/manageForms/AboutForm.vue'
@@ -57,12 +61,13 @@ export default {
     SkillsDataList,
     ToolsList,
     WorkExperienceList,
-    ManageList
+    ManageList,
+    ManageDelete,
+    ManageAlert
   },
 
   setup() {
     const manageStore = useManageStore()
-
     return { manageStore }
   }
 }

@@ -34,6 +34,7 @@
 </template>
 
 <script setup>
+//depricate component when merge with master
 import { onMounted, ref } from 'vue'
 import { getDocuments, deleteDocument, deleteFile } from '@/plugins/firebase.js'
 import workExpDisplay from './workExpDisplay.vue'
