@@ -4,6 +4,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowDown,
   faArrowUp,
+  faArrowUpRightFromSquare,
   faChevronLeft,
   faCodeBranch,
   faEnvelope,
@@ -36,7 +37,8 @@ library.add(
   faCodeBranch,
   faPlus,
   faPen,
-  faTrash
+  faTrash,
+  faArrowUpRightFromSquare
 )
 
 export { FontAwesomeIcon }

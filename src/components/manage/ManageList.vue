@@ -6,7 +6,11 @@
     </div>
     <!-- delete and edit entry  -->
     <div class="list-wrapper" v-for="doc in manageStore.listDocuments" :key="doc.id">
-      <component :is="manageStore.activeId" :data="doc" v-if="!manageStore.isLoading"/>
+      <component
+        :is="manageStore.activeId"
+        :data="doc"
+        v-if="!manageStore.isLoading"
+      />
       <div class="icons">
         <font-awesome-icon
           @click="manageStore.edit(doc.id)"
@@ -83,7 +87,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin: 1rem 0 1.625rem;
+  min-height: 60px;
 
   .item {
     margin: 1rem 0;
@@ -92,6 +97,9 @@ export default {
   .icons {
     display: flex;
   }
+}
+.list {
+  border-bottom: 1px solid var(--divider-dark-1);
 }
 @media (max-width: 370px) {
   .list-wrapper {
