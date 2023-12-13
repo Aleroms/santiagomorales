@@ -1,13 +1,9 @@
 <template>
-    <div>
-
-    </div>
+  <div>
+    <p>tools form</p>
+  </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

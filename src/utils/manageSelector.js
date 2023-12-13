@@ -26,48 +26,56 @@ const selector = {
       id: 'EducationList',
       editId: 'EducationForm',
       title: 'Education',
+      collection: 'education',
       isList: true
     },
     {
       id: 'WorkExperienceList',
       editId: 'WorkExpForm',
       title: 'Work Experience',
+      collection: 'workExperience',
       isList: true
     },
     {
       id: 'CertificateList',
       editId: 'CertificateForm',
       title: 'Certificates',
+      collection: 'certificates',
       isList: true
     },
     {
       id: 'SkillsDataList',
       editId: 'SkillsDataForm',
       title: 'Skills',
+      collection: 'skills',
       isList: true
     },
     {
       id: 'SkillsCategoryList',
       editId: 'SkillsCategoryForm',
       title: 'Skills Category',
+      collection: 'skillsCategory',
       isList: true
     },
     {
       id: 'ActiveLearningList',
       editId: 'ActiveLearningForm',
       title: 'Active Learning',
+      collection: 'activeLearning',
       isList: true
     },
     {
       id: 'ProjectsDataList',
       editId: 'ProjectsDataForm',
       title: 'Projects',
+      collection: 'projects',
       isList: true
     },
     {
       id: 'ToolsList',
       editId: 'ToolsForm',
       title: 'Tools',
+      collection: 'tools',
       isList: true
     }
   ]
@@ -78,4 +86,11 @@ const getEditId = (activeId) => {
 
   return foundItem ? foundItem.editId : null
 }
-export { selector, getEditId }
+
+const getCollectionId = (activeId) => {
+  const data = selector.manageData
+  const foundItem = data.find((item) => item.id === activeId)
+
+  return foundItem ? foundItem.collection : null
+}
+export { selector, getEditId, getCollectionId }

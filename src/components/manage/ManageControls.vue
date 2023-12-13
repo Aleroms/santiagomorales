@@ -20,7 +20,7 @@
           :key="item.id"
           @click="manageStore.setActive(item.id, item.title, item.isList)"
         >
-          <h3 :class="{ active: manageStore.activeId === item.id }">{{ item.title }}</h3>
+          <h3 :class="{ active: manageStore.navId === item.id }">{{ item.title }}</h3>
         </li>
       </ul>
     </div>

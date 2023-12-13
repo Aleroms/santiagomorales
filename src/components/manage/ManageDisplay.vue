@@ -1,6 +1,13 @@
 <template>
   <div class="manage-display">
     <SectionHeader :id="manageStore.activeId" :title="manageStore.activeTitle" />
+    <h4
+      @click="manageStore.goBack"
+      v-show="manageStore.navId !== manageStore.activeId && !manageStore.isDelete"
+      class="go-back"
+    >
+      go back
+    </h4>
     <component :is="manageStore.setComponent" />
   </div>
 </template>
@@ -29,15 +36,6 @@ import SkillsForm from '@/components/Utilities/Forms/manageForms/SkillsForm.vue'
 import ToolsForm from '@/components/Utilities/Forms/manageForms/ToolsForm.vue'
 import WorkExpForm from '@/components/Utilities/Forms/manageForms/WorkExpForm.vue'
 
-//Lists
-import ActiveLearningList from '@/components/lists/ActiveLearningList.vue'
-import CertificateList from '@/components/lists/CertificateList.vue'
-import EducationList from '@/components/lists/EducationList.vue'
-import ProjectsDataList from '@/components/lists/ProjectsDataList.vue'
-import SkillsCategoryList from '@/components/lists/SkillsCategoryList.vue'
-import SkillsDataList from '@/components/lists/SkillsDataList.vue'
-import ToolsList from '@/components/lists/ToolsList.vue'
-import WorkExperienceList from '@/components/lists/WorkExperienceList.vue'
 export default {
   components: {
     SectionHeader,
@@ -53,14 +51,6 @@ export default {
     SkillsForm,
     ToolsForm,
     WorkExpForm,
-    ActiveLearningList,
-    CertificateList,
-    EducationList,
-    ProjectsDataList,
-    SkillsCategoryList,
-    SkillsDataList,
-    ToolsList,
-    WorkExperienceList,
     ManageList,
     ManageDelete,
     ManageAlert
@@ -73,4 +63,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.go-back {
+  margin: 1rem 0;
+  color: var(--primary);
+}
+</style>

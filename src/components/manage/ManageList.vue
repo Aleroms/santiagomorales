@@ -1,20 +1,23 @@
 <template>
   <div class="manage-list">
+    <!-- add entry -->
     <div class="add-more" @click="manageStore.addMore">
       <font-awesome-icon :icon="['fas', 'plus']" size="2xl" color="#ccc" class="icon" />
     </div>
-    <div class="list-wrapper">
-      <p class="item">component :is='{{ manageStore.activeId }}'</p>
+    <!-- delete and edit entry  -->
+    <div class="list-wrapper" v-for="doc in manageStore.listDocuments" :key="doc.id">
+      <!-- <component :is="manageStore.activeId" :data="doc" /> -->
+      <component :is="manageStore.activeId" :data="doc" />
       <div class="icons">
         <font-awesome-icon
-          @click="manageStore.edit('editId')"
+          @click="manageStore.edit(doc.id)"
           :icon="['fas', 'pen']"
           size="lg"
           color="#ccc"
           class="icon"
         />
         <font-awesome-icon
-          @click="manageStore.deleteItem('deleteId')"
+          @click="manageStore.deleteItem(doc.id)"
           :icon="['fas', 'trash']"
           size="lg"
           color="#ccc"
@@ -25,9 +28,35 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { useManageStore } from '@/stores/manage'
-const manageStore = useManageStore()
+
+//Lists
+import ActiveLearningList from '@/components/lists/ActiveLearningList.vue'
+import CertificateList from '@/components/lists/CertificateList.vue'
+import EducationList from '@/components/lists/EducationList.vue'
+import ProjectsDataList from '@/components/lists/ProjectsDataList.vue'
+import SkillsCategoryList from '@/components/lists/SkillsCategoryList.vue'
+import SkillsDataList from '@/components/lists/SkillsDataList.vue'
+import ToolsList from '@/components/lists/ToolsList.vue'
+import WorkExperienceList from '@/components/lists/WorkExperienceList.vue'
+
+export default {
+  components: {
+    ActiveLearningList,
+    CertificateList,
+    EducationList,
+    ProjectsDataList,
+    SkillsCategoryList,
+    SkillsDataList,
+    ToolsList,
+    WorkExperienceList
+  },
+  setup() {
+    const manageStore = useManageStore()
+    return { manageStore }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -61,13 +90,13 @@ const manageStore = useManageStore()
     margin: 1rem 0;
   }
 
-  .icons{
+  .icons {
     display: flex;
   }
 }
-@media(max-width: 370px){
+@media (max-width: 370px) {
   .list-wrapper {
-    .icons{
+    .icons {
       flex-direction: column;
     }
   }

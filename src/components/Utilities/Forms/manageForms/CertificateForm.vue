@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <p>CertificateForm</p>
     </div>
 </template>
 

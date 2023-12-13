@@ -1,13 +1,7 @@
 <template>
-    <div>
-
-    </div>
+  <div><p>education list</p></div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

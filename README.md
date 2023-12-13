@@ -43,6 +43,8 @@ npm install @formkit/addons
 
 - I was trying to fetch data from Firebase to bind it to my `aboutForm` but weirdly enough, I was receiving errors like ` Cannot read properties of undefined`. I thought maybe that it the issue was with rendering. Like, maybe the data _was_ `undefined` at the time of binding, so I tried resolving this by hooking into earlier lifecycle hooks. I originally had it on `onMounted` so I tried `onBeforeMount` but to no avail. I fixed this by removing the `FormKit type='group'>` component. I think this might be an issue with FormKit. The code that wacked out vue was ` :placeholder="placeholder.hero.title"`. After removing the group, `:placeholder=placeholder.title` worked as expected. What I think is weird behavior is that if I remove the binding, refresh the page, have the dom render, and _then_ bind the placeholder, it works properly. Like wtf?
 
+- whenever I got an error in my pinia store "function not found" and it was in the getter, just remove the '()'
+
 ## Useful Links
 
 - [Vue Composables](https://vuejs.org/guide/reusability/composables) - encapsulates and reuses stateful logic

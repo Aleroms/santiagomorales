@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
 import { submitPageContentForm, getPageContent } from '@/plugins/firebase.js'
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { filterForm } from '@/utils/filterForm.js'
+import { useManageStore } from '@/stores/manage'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
-const router = useRouter()
+
+const manageStore = useManageStore()
 
 const placeholder = ref({})
 const displayMessage = ref('')
@@ -24,20 +24,13 @@ const submit = async (form) => {
     await submitPageContentForm(filteredForm, 'aboutPage')
   } catch (error) {
     console.log(error.code, error)
-
-    if (error.code === 'storage/unauthorized' || error.code === 'permission-denied')
-      displayMessage.value = 'user does not have permission'
-    else displayMessage.value = 'error occurred...'
+    manageStore.result(error)
     disable.value = false
     return
   }
 
   //on successfull submission
-  displayMessage.value = 'submitted!'
-  disable.value = false
-
-  //refresh page
-  router.push('/manage')
+  manageStore.result('success')
 }
 onMounted(async () => {
   try {

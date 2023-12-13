@@ -4,8 +4,8 @@
       <h2>Are you sure?</h2>
       <p>This will permanently delete {{ manageStore.deleteId }}.</p>
       <div class="controls">
-        <ButtonComponent text="cancel" type="outline" @click="manageStore.resetState" />
-        <ButtonComponent text="confirm" type="filled" @click="deleteItem" />
+        <ButtonComponent text="cancel" type="outline" @click="manageStore.goBack" />
+        <ButtonComponent text="confirm" type="filled" @click="removeItem" />
       </div>
     </div>
   </div>
@@ -13,19 +13,28 @@
 
 <script setup>
 import { useManageStore } from '@/stores/manage'
+import { deleteFile, deleteDocument } from '@/plugins/firebase.js'
+import { getCollectionId } from '@/utils/manageSelector'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 const manageStore = useManageStore()
 
-const deleteItem = () => {
-  console.log(
-    'replace this with firebase method that handles deletion and pass it manageStore.deleteId'
-  )
-  //make this async and do try-catch for firebase deleteDoc method
-  //then update manageStore to ManageAlert w/ display message
+const removeItem = async () => {
+  //get document from listDocuments
+  const doc = manageStore.getDeleteDocument
+  try {
+    if (doc.imgPath) await deleteFile(doc.imgPath)
+    else console.log('imgPath DNE')
 
+    const collection = getCollectionId(manageStore.activeId)
+    console.log(collection, doc.id)
+    await deleteDocument(collection, doc.id)
+  } catch (error) {
+    console.log(error)
+    manageStore.result(error)
+    return
+  }
   //deleting document...
-  manageStore.setMessage('delete')
-  manageStore.setActive('ManageAlert', 'Successfully deleted!', false)
+  manageStore.deleteResolution()
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <p>active learning form</p>
     </div>
 </template>
 

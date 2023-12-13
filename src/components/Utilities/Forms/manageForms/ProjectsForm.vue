@@ -24,9 +24,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { submitForm, getDocument } from '@/plugins/firebase.js'
-import { useRouter } from 'vue-router'
+import { useManageStore } from '@/stores/manage'
 
-const router = useRouter()
+const manageStore = useManageStore()
 const disable = ref(false)
 const display = ref(false)
 const displayMessage = ref('')
@@ -42,14 +42,13 @@ const submit = async (values) => {
   try {
     await submitForm(values, 'pageContent', 'projectsPage')
   } catch (error) {
-    console.log(error)
-    disable.value = false
-    displayMessage.value = 'error occurred...'
+    console.log(error.code, error)
+    manageStore.result(error)
+    return
   }
-  //on successful submission
-  displayMessage.value = 'success!'
-  disable.value = false
-  router.push('/manage')
+
+  //on successfull submission
+  manageStore.result('success')
 }
 
 onMounted(async () => {

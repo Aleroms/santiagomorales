@@ -1,17 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
 import { submitPageContentForm, getPageContent, uploadFile } from '@/plugins/firebase.js'
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { filterForm } from '@/utils/filterForm.js'
+import { useManageStore } from '@/stores/manage'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 
 const placeholder = ref({})
 const displayMessage = ref('')
 const disable = ref(false)
 const display = ref(false)
-const router = useRouter()
+const manageStore = useManageStore()
 
 const submit = async (values) => {
   disable.value = true
@@ -30,20 +29,12 @@ const submit = async (values) => {
     await submitPageContentForm(filteredForm, 'homePage')
   } catch (error) {
     console.log(error.code, error)
-
-    if (error.code === 'storage/unauthorized' || error.code === 'permission-denied')
-      displayMessage.value = 'user does not have permission'
-    else displayMessage.value = 'error occurred...'
-    disable.value = false
+    manageStore.result(error)
     return
   }
 
   //on successfull submission
-  displayMessage.value = 'submitted!'
-  disable.value = false
-
-  //refresh page
-  router.push('/manage')
+  manageStore.result('success')
 }
 onMounted(async () => {
   try {
@@ -120,7 +111,7 @@ onMounted(async () => {
           type="outline"
           text="add a slug"
           @click="placeholder.slug.push('')"
-          style="margin: 1rem 0;"
+          style="margin: 1rem 0"
         />
       </FormKit>
     </div>
