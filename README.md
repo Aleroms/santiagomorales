@@ -6,7 +6,7 @@ Hello, this is my full stack portfolio website for web development. It uses `Vue
 
 I started planning the design of the website - each page until I knew how the whole website would look like. I created wireframes with pen and paper, prototyping the website and its animations of HTML elements.
 
-Afterwards, I architected the structure of data I would store in Firebase. My main concern was organization/maintainability and scalability.
+Afterwards, I architected the structure of data I would store in Firebase. My main concern was organization/maintainability and scalability. As I was coding the forms I realized that the page content section were only one document in the collection, but the data had multiple documents in the collection that I would display individually in a list. After creating one component, work experience, i realized this code was not maintainable if every section had its own view and controller. I adapted to change by modifying the code and created a store to manage the forms and lists. I had to learn how to use the dynamic vue component `<component :is""/>`. The code I wrote, in my opinion, is now more managable since the store is a centralized place that each component roughly uses the same logic.
 
 ## Tools used
 
@@ -44,6 +44,8 @@ npm install @formkit/addons
 - I was trying to fetch data from Firebase to bind it to my `aboutForm` but weirdly enough, I was receiving errors like ` Cannot read properties of undefined`. I thought maybe that it the issue was with rendering. Like, maybe the data _was_ `undefined` at the time of binding, so I tried resolving this by hooking into earlier lifecycle hooks. I originally had it on `onMounted` so I tried `onBeforeMount` but to no avail. I fixed this by removing the `FormKit type='group'>` component. I think this might be an issue with FormKit. The code that wacked out vue was ` :placeholder="placeholder.hero.title"`. After removing the group, `:placeholder=placeholder.title` worked as expected. What I think is weird behavior is that if I remove the binding, refresh the page, have the dom render, and _then_ bind the placeholder, it works properly. Like wtf?
 
 - whenever I got an error in my pinia store "function not found" and it was in the getter, just remove the '()'
+
+- I was receiving `undefined` values for my component after the pinia store fetched the data in an api call. I was stuck cause I didn't know how to handle this but I reached out for help and I created a `isLoading` boolean that was used when fetching data and updated after receiving data. Now, the data would only be rendered when data was received.
 
 ## Useful Links
 

@@ -99,21 +99,10 @@ const deleteFile = async (path) => {
     console.log(error)
   }
 }
-//depricate - make sure home and about are working then remove function
-const submitPageContentForm = async (form, docId) => {
-  const docRef = doc(db, 'pageContent', docId)
-  await setDoc(docRef, form, { merge: true })
-}
 
 const submitForm = async (form, collectionId, docId) => {
   const docRef = doc(db, collectionId, docId)
   await setDoc(docRef, form, { merge: true })
-}
-
-const getPageContent = async (docId) => {
-  const pageContentRef = doc(db, 'pageContent', docId)
-  const docSnap = await getDoc(pageContentRef)
-  return docSnap.exists() ? docSnap.data() : undefined
 }
 
 const getDocument = async (collectionId, docId) => {
@@ -144,8 +133,6 @@ export {
   deleteFile,
   getDocument,
   getDocuments,
-  getPageContent,
-  submitPageContentForm,
   logoutUser,
   signInUserWithEmailAndPassword
 }

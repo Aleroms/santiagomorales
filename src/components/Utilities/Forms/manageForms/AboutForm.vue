@@ -1,8 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
-import { submitPageContentForm, getPageContent } from '@/plugins/firebase.js'
-import { filterForm } from '@/utils/filterForm.js'
+import { submitForm, getDocument } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 
@@ -20,8 +19,7 @@ const submit = async (form) => {
   console.log(form)
 
   try {
-    const filteredForm = filterForm(form)
-    await submitPageContentForm(filteredForm, 'aboutPage')
+    await submitForm(form, 'pageContent', 'aboutPage')
   } catch (error) {
     console.log(error.code, error)
     manageStore.result(error)
@@ -34,7 +32,7 @@ const submit = async (form) => {
 }
 onMounted(async () => {
   try {
-    placeholder.value = await getPageContent('aboutPage')
+    placeholder.value = await getDocument('pageContent', 'aboutPage')
   } catch (error) {
     console.log(error)
   }

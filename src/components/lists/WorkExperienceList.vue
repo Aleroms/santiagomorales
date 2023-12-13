@@ -7,11 +7,11 @@
       <h3 class="title">{{ data.title }}</h3>
       <h4>{{ data.company }} - {{ data.emp_type }}</h4>
       <p class="subtitle" v-if="!data.current_job">
-        {{ startMonth }} {{ startYear }} - {{ endMonth }} {{ endYear }} -
+        {{ start.month }} {{ start.year }} - {{ end.month }} {{ end.year }} -
         {{ duration }}
       </p>
       <p class="subtitle" v-else>
-        {{ startMonth }} {{ startYear }} - Present -
+        {{ start.month }} {{ start.year }} - Present -
         {{ duration }}
       </p>
       <p class="subtitle">{{ data.location }} - {{ data.loc_type }}</p>
@@ -29,23 +29,10 @@ const props = defineProps({
   }
 })
 
-//this code is honestly bad but its the only way i got it to work
 const start = props.data.start
 const end = props.data.end
-let duration = ''
-let startMonth = ''
-let endMonth = ''
-let startYear = ''
-let endYear = ''
-
-if (start !== undefined && end !== undefined) {
-  duration = calculateDuration(start, end)
-  startMonth = start.month.slice(0, 3)
-  endMonth = end.month.slice(0, 3)
-  startYear = start.year
-  endYear = end.year
-}
-console.log(duration, startMonth, endMonth, startYear, endYear)
+const duration = calculateDuration(start, end)
+console.log(duration)
 </script>
 
 <style lang="scss" scoped>

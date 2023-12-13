@@ -6,8 +6,7 @@
     </div>
     <!-- delete and edit entry  -->
     <div class="list-wrapper" v-for="doc in manageStore.listDocuments" :key="doc.id">
-      <!-- <component :is="manageStore.activeId" :data="doc" /> -->
-      <component :is="manageStore.activeId" :data="doc" />
+      <component :is="manageStore.activeId" :data="doc" v-if="!manageStore.isLoading"/>
       <div class="icons">
         <font-awesome-icon
           @click="manageStore.edit(doc.id)"

@@ -15,7 +15,8 @@ export const useManageStore = defineStore('manageStore', {
     listDocuments: [],
     isList: false,
     isEdit: false,
-    isDelete: false
+    isDelete: false,
+    isLoading: false
   }),
   actions: {
     async setActive(id, title, list) {
@@ -28,11 +29,14 @@ export const useManageStore = defineStore('manageStore', {
       //retreive Documents from Firebase
       if (this.isList) {
         this.collectionId = getCollectionId(this.activeId)
+        this.isLoading = true
         try {
           this.listDocuments = await getDocuments(this.collectionId)
           console.log(this.listDocuments)
         } catch (error) {
           console.log(error)
+        } finally {
+          this.isLoading = false
         }
       }
     },
@@ -114,7 +118,7 @@ export const useManageStore = defineStore('manageStore', {
       this.isList = true
       this.isEdit = false
       this.isDelete = false
-    },
+    }
   },
   getters: {
     setComponent() {
