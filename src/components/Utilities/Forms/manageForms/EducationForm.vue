@@ -1,6 +1,13 @@
 <template>
   <FormKit type="form" id="edu-form" @submit="submit" :disabled="disable">
     <FormKit
+      type="text"
+      label="school"
+      name="school"
+      validation="required"
+      :placeholder="placeholder.school"
+    />
+    <FormKit
       type="file"
       label="school logo"
       name="image"
@@ -8,19 +15,56 @@
       accepts=".jpg,.png"
     />
     <FormKit
-      type="text"
+      type="select"
+      :options="educationOptions"
       label="degree"
       name="degree"
       validation="required"
-      :placeholder="placeholder.degree"
     />
     <FormKit
       type="text"
-      label="years"
-      help="from x to y format"
-      name="years"
+      label="field of study"
+      name="field_of_study"
+      :placeholder="placeholder.field_of_study"
       validation="required"
-      :placeholder="placeholder.years"
+    />
+    <FormKit type="group" name="start">
+      <div class="form-date-wrapper">
+        <FormKit
+          type="select"
+          :options="months"
+          label="start date"
+          name="month"
+          validation="required"
+        />
+        <FormKit type="number" name="year" validation="required" />
+      </div>
+    </FormKit>
+    <FormKit type="group" name="end">
+      <div class="form-date-wrapper">
+        <FormKit
+          type="select"
+          :options="months"
+          label="end date (or expected)"
+          name="month"
+          validation="required"
+        />
+        <FormKit type="number" name="year" validation="required" />
+      </div>
+    </FormKit>
+    <FormKit
+      type="textarea"
+      name="activities"
+      label="activities and societies"
+      :placeholder="placeholder.activities"
+      validation="required"
+    />
+    <FormKit
+      type="textarea"
+      name="description"
+      label="description"
+      :placeholder="placeholder.description"
+      validation="required"
     />
   </FormKit>
   <div v-if="display">
@@ -29,17 +73,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { uploadFile2, submitForm, getDocument } from '@/plugins/firebase.js'
+import { onMounted, ref } from 'vue'
+import { uploadFile3, submitForm, getDocument, deleteFile } from '@/plugins/firebase.js'
 import { filterForm } from '@/utils/filterForm.js'
-import { useRouter } from 'vue-router'
+import { educationOptions, months } from '@/utils/formOptions'
+import { useManageStore } from '@/stores/manage'
+import { educationPlaceholder } from '@/utils/defaultManageForms.js'
 
-const router = useRouter()
-const placeholder = ref({})
+const manageStore = useManageStore()
 
 const disable = ref(false)
 const displayMessage = ref(false)
 const display = ref(false)
+const placeholder = ref({})
 
 const submit = async (values) => {
   console.log(values)
@@ -49,35 +95,35 @@ const submit = async (values) => {
   displayMessage.value = 'submitting...'
 
   try {
-    //uploads and returns img url
-    const imgURL = await uploadFile2(values.image, `education/${values.image[0].name}`)
-
-    //adds img url to form
-    values.imgURL = imgURL
-
+    if (manageStore.isEdit) {
+      values.id = placeholder.value.id
+    } else {
+      values.id = values.school + ' - ' + values.field_of_study
+    }
+    const image = await uploadFile3(values.image, 'education')
+    values.image = image
     //filter form for files
     const filteredForm = filterForm(values)
-
-    //submit form
-    await submitForm(filteredForm, 'education', 'edu')
+    await submitForm(filteredForm, 'education', filteredForm.id)
   } catch (error) {
-    console.log(error)
-    displayMessage.value = 'error occurred'
+    console.log(error.code, error)
+    manageStore.result(error)
     disable.value = false
     return
   }
-  //on successful submission
-  displayMessage.value = 'submitted!'
-  disable.value = false
-  //refresh
-  router.push('/manage')
+  //on successfull submission
+  if (manageStore.isEdit) {
+    manageStore.resetEdit()
+  }
+  manageStore.result('success')
 }
 
 onMounted(async () => {
-  try {
-    placeholder.value = await getDocument('education', 'edu')
-  } catch (error) {
-    console.log(error)
+  if (manageStore.isEdit) {
+    placeholder.value = await getDocument('education', manageStore.editId)
+    console.log('edit mode', placeholder.value)
+  } else {
+    placeholder.value = educationPlaceholder
   }
 })
 </script>

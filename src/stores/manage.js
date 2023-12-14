@@ -69,6 +69,7 @@ export const useManageStore = defineStore('manageStore', {
       this.previousTitle = this.activeTitle
       this.activeTitle = 'Edit item ' + itemId
       this.isList = false
+      this.editId = itemId
       this.activeId = getEditId(this.activeId)
       this.isEdit = true
     },
@@ -100,6 +101,9 @@ export const useManageStore = defineStore('manageStore', {
         this.setActive('ManageAlert', 'Error', false)
       }
     },
+    resetEdit(){
+      this.isEdit = false
+    },
     resetState() {
       this.activeId = 'HomeForm'
       this.activeTitle = 'Home Page'
@@ -126,6 +130,7 @@ export const useManageStore = defineStore('manageStore', {
     },
     getDeleteDocument() {
       const foundItem = this.listDocuments.find((item) => item.id === this.deleteId)
+      console.log('found', foundItem)
       return foundItem
     }
   }

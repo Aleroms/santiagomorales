@@ -33,12 +33,14 @@ const props = defineProps({
   }
 }
 .img-wrapper {
-  height: 48px;
-  width: 48px;
+  max-height: 50px;
+  max-width: 50px;
+  
 
   img {
     width: 100%;
-    padding: 0.625rem;
+    // padding: 0.625rem;
+    box-sizing: border-box;
   }
 }
 .info-wrapper {

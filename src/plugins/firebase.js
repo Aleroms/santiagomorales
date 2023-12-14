@@ -64,17 +64,20 @@ const logoutUser = async () => {
     console.log(error)
   }
 }
+//depricate
 const uploadFile = async (file, path) => {
   const fileRef = ref(storage, path)
   console.log('storage path', fileRef.fullPath)
 
   try {
     await uploadBytes(fileRef, file[0].file)
+    const url = await getDownloadURL(fileRef)
+    return url
   } catch (error) {
     console.log(error)
   }
 }
-
+//depricate
 //uploads and returns imgURL . add to document before uploading
 const uploadFile2 = async (file, path) => {
   const fileRef = ref(storage, path)
@@ -86,6 +89,21 @@ const uploadFile2 = async (file, path) => {
     return url
   } catch (error) {
     console.log(error)
+  }
+}
+
+const uploadFile3 = async (file, storageId) => {
+  const fileName = file[0].name
+  const filePath = `${storageId}/${fileName}`
+  const fileRef = ref(storage, filePath)
+  console.log('storage path', fileRef.fullPath)
+
+  await uploadBytes(fileRef, file[0].file)
+  const fileURL = await getDownloadURL(fileRef)
+  return {
+    name: fileName,
+    path: filePath,
+    url: fileURL
   }
 }
 
@@ -128,6 +146,7 @@ export {
   resumeURL,
   uploadFile,
   uploadFile2,
+  uploadFile3,
   submitForm,
   deleteDocument,
   deleteFile,

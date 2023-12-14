@@ -47,4 +47,6 @@ const workExpDefault = {
   title: 'Job Title'
 }
 
-export { employment_type, location_type, months, workExpDefault }
+const educationOptions = ['Associate degree', 'B.A', 'B.S', 'M.S', 'Doctoral degree']
+
+export { employment_type, location_type, months, workExpDefault, educationOptions }

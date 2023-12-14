@@ -14,20 +14,18 @@
 <script setup>
 import { useManageStore } from '@/stores/manage'
 import { deleteFile, deleteDocument } from '@/plugins/firebase.js'
-import { getCollectionId } from '@/utils/manageSelector'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
 const manageStore = useManageStore()
 
 const removeItem = async () => {
-  //get document from listDocuments
+  //get document from pinia store
   const doc = manageStore.getDeleteDocument
   try {
-    if (doc.imgPath) await deleteFile(doc.imgPath)
-    else console.log('imgPath DNE')
+    if (doc.image.path) await deleteFile(doc.image.path)
+    else console.log('image DNE')
 
-    const collection = getCollectionId(manageStore.activeId)
-    console.log(collection, doc.id)
-    await deleteDocument(collection, doc.id)
+    console.log(manageStore.collectionId, doc.id)
+    await deleteDocument(manageStore.collectionId, doc.id)
   } catch (error) {
     console.log(error)
     manageStore.result(error)

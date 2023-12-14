@@ -61,5 +61,6 @@ npm install @formkit/addons
 ## Reminder
 
 [ ] - lowercase on folders and fix the paths that break
+[ ] - do date validation for forms
 
 ## What I learned
