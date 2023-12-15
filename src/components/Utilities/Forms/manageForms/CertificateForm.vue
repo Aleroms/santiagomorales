@@ -48,45 +48,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { months } from '@/utils/formOptions.js'
 import { useManageStore } from '@/stores/manage.js'
-import { submitForm, uploadFile3 } from '@/plugins/firebase.js'
-// import { certificatePlaceholder } from '@/utils/defaultManageForms.js'
-import { filterForm } from '@/utils/filterForm.js'
 import { useFormPlaceholder } from '@/composables/formPlaceholder'
+import { useManageForm } from '@/composables/manageForm.js'
 
 const manageStore = useManageStore()
 
 const { placeholder } = useFormPlaceholder()
-const displayMessage = ref('')
-const disable = ref(false)
-const display = ref(false)
+const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
 const submit = async (values) => {
-  disable.value = true
-  displayMessage.value = 'submitting...'
-  display.value = true
-  console.log(values)
-
   values.id = manageStore.isEdit ? placeholder.value.id : values.issuer + ' - ' + values.name
 
   try {
-    const image = await uploadFile3(values.image, manageStore.collectionId)
-    values.image = image
-
-    //filter form for files
-    const filteredForm = filterForm(values)
-    await submitForm(filteredForm, 'certificates', filteredForm.id)
+    submitManageForm(values)
   } catch (error) {
     console.log(error.code, error)
-    manageStore.result(error)
-    disable.value = false
     return
   }
-
-  //on successful submission
-  manageStore.result('success')
 }
 </script>
 

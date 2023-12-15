@@ -14,26 +14,17 @@
 </template>
 
 <script setup>
-//img name category
-import { ref } from 'vue'
-import { submitForm, uploadFile3 } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
-import { filterForm } from '@/utils/filterForm.js'
+
+import { useManageForm } from '@/composables/manageForm.js'
 
 const manageStore = useManageStore()
 
 const { placeholder } = useFormPlaceholder()
-const displayMessage = ref('')
-const disable = ref(false)
-const display = ref(false)
+const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
 const submit = async (values) => {
-  disable.value = true
-  displayMessage.value = 'submitting...'
-  display.value = true
-  console.log(values)
-
   if (manageStore.isEdit) {
     values.id = placeholder.value.id
   } else {
@@ -41,21 +32,11 @@ const submit = async (values) => {
   }
 
   try {
-    const image = await uploadFile3(values.image, manageStore.collectionId)
-    values.image = image
-
-    //filter form for files
-    const filteredForm = filterForm(values)
-    await submitForm(filteredForm, manageStore.collectionId, filteredForm.id)
+    submitManageForm(values)
   } catch (error) {
     console.log(error.code, error)
-    manageStore.result(error)
-    disable.value = false
     return
   }
-
-  //on successfull submission
-  manageStore.result('success')
 }
 </script>
 

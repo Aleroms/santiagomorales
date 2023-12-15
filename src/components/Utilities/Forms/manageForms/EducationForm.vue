@@ -77,27 +77,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { uploadFile3, submitForm } from '@/plugins/firebase.js'
-import { filterForm } from '@/utils/filterForm.js'
 import { educationOptions, months } from '@/utils/formOptions'
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder'
+import { useManageForm } from '@/composables/manageForm.js'
 
 const manageStore = useManageStore()
 
-const disable = ref(false)
-const displayMessage = ref(false)
-const display = ref(false)
 const { placeholder } = useFormPlaceholder
+const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
 const submit = async (values) => {
-  console.log(values)
-
-  disable.value = true
-  display.value = true
-  displayMessage.value = 'submitting...'
-
   if (manageStore.isEdit) {
     values.id = placeholder.value.id
   } else {
@@ -105,20 +95,11 @@ const submit = async (values) => {
   }
 
   try {
-    const image = await uploadFile3(values.image, 'education')
-    values.image = image
-
-    //filter form for files
-    const filteredForm = filterForm(values)
-    await submitForm(filteredForm, 'education', filteredForm.id)
+    submitManageForm(values)
   } catch (error) {
     console.log(error.code, error)
-    manageStore.result(error)
-    disable.value = false
     return
   }
-  //on successfull submission
-  manageStore.result('success')
 }
 </script>
 
