@@ -98,7 +98,6 @@ const submit = async (values) => {
     submitManageForm(values)
   } catch (error) {
     console.log(error.code, error)
-    return
   }
 }
 </script>

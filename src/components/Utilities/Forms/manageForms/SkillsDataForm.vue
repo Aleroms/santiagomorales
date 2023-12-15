@@ -16,7 +16,6 @@
 <script setup>
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
-
 import { useManageForm } from '@/composables/manageForm.js'
 
 const manageStore = useManageStore()
@@ -30,9 +29,9 @@ const submit = async (values) => {
   } else {
     values.id = values.name + '-id'
   }
-
+  console.log('editing', values)
   try {
-    submitManageForm(values)
+    await submitManageForm(values)
   } catch (error) {
     console.log(error.code, error)
     return

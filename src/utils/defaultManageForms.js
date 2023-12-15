@@ -30,4 +30,40 @@ const skillsPlaceholder = {
   category: 'frontend',
   name: 'pinia'
 }
-export { educationPlaceholder, workExpPlaceholder, certificatePlaceholder, skillsPlaceholder }
+const skillsCategoryPlaceholder = {
+  name: 'frontend',
+  desc: 'frontend is awesome bcz backend bad! Sticky!!'
+}
+const activeLearningPlaceholder = {
+  body: ['item1', 'item2', 'item3'],
+  name: 'vue'
+}
+const toolsPlaceholder = {
+  name: 'FormKit'
+}
+const projectsPlaceholder = {
+  category: 'Full Stack',
+  desc: 'the description...',
+  githubLink: '',
+  isPrivate: false,
+  issues_encountered: 'issues encountered...',
+  liveSiteLink: '',
+  my_process: 'my process...',
+  name: 'pinia tasks',
+  start: {
+    month: 'October',
+    year: 2023
+  },
+  toolsUsed: ['vue', 'firebase'],
+  what_i_learned: 'what I learned...'
+}
+export {
+  educationPlaceholder,
+  workExpPlaceholder,
+  certificatePlaceholder,
+  skillsPlaceholder,
+  skillsCategoryPlaceholder,
+  activeLearningPlaceholder,
+  toolsPlaceholder,
+  projectsPlaceholder
+}

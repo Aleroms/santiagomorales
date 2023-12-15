@@ -64,6 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .go-back {
   margin: 1rem 0;
   color: var(--primary);

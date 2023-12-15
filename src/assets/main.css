@@ -94,6 +94,8 @@ body {
   margin-top: 1.4rem;
 }
 
+
+
 [color-scheme='light'] {
   background-color: #fff;
   --text-light-1: var(--text-dark-1);

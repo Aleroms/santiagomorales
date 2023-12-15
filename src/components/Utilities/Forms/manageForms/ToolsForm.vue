@@ -1,42 +1,33 @@
 <template>
   <FormKit type="form" id="tools-form" @submit="submit" :disable="disable">
-    <FormKit type="file" accept=".jpg,.png" name="img" validation="required" />
+    <FormKit type="file" accept=".jpg,.png" name="image" validation="required" />
     <FormKit type="text" name="name" label="name" help="tool name" validation="required" />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>
 </template>
 
 <script setup>
-//img name
-
-import { ref } from 'vue'
-import { submitForm } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage'
+import { useFormPlaceholder } from '@/composables/formPlaceholder'
+import { useManageForm } from '@/composables/manageForm.js'
 
 const manageStore = useManageStore()
 
-// const placeholder = ref({})
-const displayMessage = ref('')
-const disable = ref(false)
-const display = ref(false)
+const { placeholder } = useFormPlaceholder()
+const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
-const submit = async (form) => {
-  disable.value = true
-  displayMessage.value = 'submitting...'
-  display.value = true
-  console.log(form)
-
-  try {
-    await submitForm(form, 'tools', form.name)
-  } catch (error) {
-    console.log(error.code, error)
-    manageStore.result(error)
-    disable.value = false
-    return
+const submit = async (values) => {
+  if (manageStore.isEdit) {
+    values.id = placeholder.value.id
+  } else {
+    values.id = values.name + '-id'
   }
 
-  //on successfull submission
-  manageStore.result('success')
+  try {
+    submitManageForm(values)
+  } catch (error) {
+    console.log(error.code, error)
+  }
 }
 </script>
 

@@ -52,7 +52,7 @@ export const useManageStore = defineStore('manageStore', {
       } else if (code === 'delete') {
         this.displayMessage = 'Item successfully deleted from Firebase...'
       } else if (typeof code === 'object') {
-        console.log(code.error)
+        console.log(code)
         this.displayMessage = 'handle error codes here'
       } else {
         this.displayMessage = 'error on server side. Please check manage.js...'

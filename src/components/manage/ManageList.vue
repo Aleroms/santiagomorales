@@ -64,6 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .add-more {
   display: flex;
   align-items: center;
@@ -88,7 +89,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1rem 0 1.625rem;
+  margin: 1rem 0.625rem 1.625rem;
   min-height: 60px;
 
   .item {

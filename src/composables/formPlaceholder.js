@@ -6,7 +6,10 @@ import {
   educationPlaceholder,
   workExpPlaceholder,
   certificatePlaceholder,
-  skillsPlaceholder
+  skillsPlaceholder,
+  activeLearningPlaceholder,
+  toolsPlaceholder,
+  projectsPlaceholder
 } from '@/utils/defaultManageForms.js'
 
 function getPlaceholder(collectionId) {
@@ -23,6 +26,15 @@ function getPlaceholder(collectionId) {
       break
     case 'skills':
       ph = skillsPlaceholder
+      break
+    case 'activeLearning':
+      ph = activeLearningPlaceholder
+      break
+    case 'tools':
+      ph = toolsPlaceholder
+      break
+    case 'projects':
+      ph = projectsPlaceholder
       break
   }
   return ph
