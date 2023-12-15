@@ -91,19 +91,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { employment_type, location_type, months } from '@/utils/formOptions.js'
 import { filterForm } from '@/utils/filterForm.js'
-import { submitForm, uploadFile3, getDocument } from '@/plugins/firebase'
+import { submitForm, uploadFile3 } from '@/plugins/firebase'
 import { useManageStore } from '@/stores/manage'
-import { workExpPlaceholder } from '@/utils/defaultManageForms.js'
+import { useFormPlaceholder } from '@/composables/formPlaceholder'
 
 const manageStore = useManageStore()
 
 const disable = ref(false)
 const display = ref(false)
 const displayMessage = ref('')
-const placeholder = ref({})
+const { placeholder } = useFormPlaceholder()
 
 const current_role = ref(false)
 const current_year = new Date().getFullYear()
@@ -136,19 +136,6 @@ const submit = async (values) => {
   //on successfull submission
   manageStore.result('success')
 }
-
-onMounted(async () => {
-  try {
-    if (manageStore.isEdit) {
-      placeholder.value = await getDocument(manageStore.collectionId, manageStore.editId)
-      console.log('edit mode', placeholder.value)
-    } else {
-      placeholder.value = workExpPlaceholder
-    }
-  } catch (error) {
-    console.log(error)
-  }
-})
 </script>
 
 <style lang="scss" scoped></style>

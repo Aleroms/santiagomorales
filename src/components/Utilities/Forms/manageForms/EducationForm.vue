@@ -77,19 +77,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import { uploadFile3, submitForm, getDocument } from '@/plugins/firebase.js'
+import { ref } from 'vue'
+import { uploadFile3, submitForm } from '@/plugins/firebase.js'
 import { filterForm } from '@/utils/filterForm.js'
 import { educationOptions, months } from '@/utils/formOptions'
 import { useManageStore } from '@/stores/manage'
-import { educationPlaceholder } from '@/utils/defaultManageForms.js'
+import { useFormPlaceholder } from '@/composables/formPlaceholder'
 
 const manageStore = useManageStore()
 
 const disable = ref(false)
 const displayMessage = ref(false)
 const display = ref(false)
-const placeholder = ref({})
+const { placeholder } = useFormPlaceholder
 
 const submit = async (values) => {
   console.log(values)
@@ -120,19 +120,6 @@ const submit = async (values) => {
   //on successfull submission
   manageStore.result('success')
 }
-
-onMounted(async () => {
-  try {
-    if (manageStore.isEdit) {
-      placeholder.value = await getDocument('education', manageStore.editId)
-      console.log('edit mode', placeholder.value)
-    } else {
-      placeholder.value = educationPlaceholder
-    }
-  } catch (error) {
-    console.log(error)
-  }
-})
 </script>
 
 <style lang="scss" scoped></style>

@@ -48,16 +48,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { months } from '@/utils/formOptions.js'
 import { useManageStore } from '@/stores/manage.js'
-import { submitForm, getDocument, uploadFile3 } from '@/plugins/firebase.js'
-import { certificatePlaceholder } from '@/utils/defaultManageForms.js'
+import { submitForm, uploadFile3 } from '@/plugins/firebase.js'
+// import { certificatePlaceholder } from '@/utils/defaultManageForms.js'
 import { filterForm } from '@/utils/filterForm.js'
+import { useFormPlaceholder } from '@/composables/formPlaceholder'
 
 const manageStore = useManageStore()
 
-const placeholder = ref({})
+const { placeholder } = useFormPlaceholder()
 const displayMessage = ref('')
 const disable = ref(false)
 const display = ref(false)
@@ -87,19 +88,6 @@ const submit = async (values) => {
   //on successful submission
   manageStore.result('success')
 }
-
-onMounted(async () => {
-  try {
-    if (manageStore.isEdit) {
-      placeholder.value = await getDocument(manageStore.collectionId, manageStore.editId)
-      console.log('edit mode', placeholder.value)
-    } else {
-      placeholder.value = certificatePlaceholder
-    }
-  } catch (error) {
-    console.log(error)
-  }
-})
 </script>
 
 <style lang="scss" scoped></style>
