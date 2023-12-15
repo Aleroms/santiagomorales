@@ -135,16 +135,20 @@ const submit = async (values) => {
   }
   //on successfull submission
   manageStore.result('success')
+}
 
-  onMounted(async () => {
+onMounted(async () => {
+  try {
     if (manageStore.isEdit) {
       placeholder.value = await getDocument(manageStore.collectionId, manageStore.editId)
       console.log('edit mode', placeholder.value)
     } else {
       placeholder.value = workExpPlaceholder
     }
-  })
-}
+  } catch (error) {
+    console.log(error)
+  }
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -122,11 +122,15 @@ const submit = async (values) => {
 }
 
 onMounted(async () => {
-  if (manageStore.isEdit) {
-    placeholder.value = await getDocument('education', manageStore.editId)
-    console.log('edit mode', placeholder.value)
-  } else {
-    placeholder.value = educationPlaceholder
+  try {
+    if (manageStore.isEdit) {
+      placeholder.value = await getDocument('education', manageStore.editId)
+      console.log('edit mode', placeholder.value)
+    } else {
+      placeholder.value = educationPlaceholder
+    }
+  } catch (error) {
+    console.log(error)
   }
 })
 </script>

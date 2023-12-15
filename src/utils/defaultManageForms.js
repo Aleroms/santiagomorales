@@ -20,4 +20,10 @@ const workExpPlaceholder = {
   },
   title: 'Job Title'
 }
-export { educationPlaceholder , workExpPlaceholder}
+const certificatePlaceholder = {
+  name: 'certificate name',
+  issuer: 'udemy...',
+  cNum: '',
+  certUrl: 'https://www.go...'
+}
+export { educationPlaceholder, workExpPlaceholder, certificatePlaceholder }
