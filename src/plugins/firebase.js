@@ -45,15 +45,6 @@ const resumeURL = async () => {
   }
 }
 
-//Storage ref for each folders
-// const miscStorageRef = ref(storage, 'misc')
-// const skillsStorageRef = ref(storage, 'skills')
-// const projectsStorageRef = ref(storage, 'projects')
-// const workExperienceStorageRef = ref(storage, 'workExperience')
-// const activeLearningStorageRef = ref(storage, 'active-learning')
-// const educationStorageRef = ref(storage, 'education')
-// const certificatesStorageRef = ref(storage, 'certificates')
-
 const signInUserWithEmailAndPassword = async (values) => {
   await signInWithEmailAndPassword(auth, values.email, values.password)
 }

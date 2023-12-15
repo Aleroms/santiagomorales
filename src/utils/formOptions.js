@@ -11,7 +11,7 @@ const employment_type = [
   'Seasonal'
 ]
 
-const location_type = ['On-site', 'Hybrid', 'Remote']
+const location_type = ['Please select', 'On-site', 'Hybrid', 'Remote']
 
 const months = [
   'Please select',
@@ -28,25 +28,7 @@ const months = [
   'November',
   'December'
 ]
-//revice this file. Do you need workExpDefault??
-const workExpDefault = {
-  company: 'company',
-  current_job: false,
-  emp_type: 'Please select',
-  end: {
-    month: 'January',
-    year: 2023
-  },
-  id: 'unique id',
-  loc_type: 'On-site',
-  location: 'Irvine, California',
-  start: {
-    month: 'January',
-    year: 2023
-  },
-  title: 'Job Title'
-}
 
 const educationOptions = ['Associate degree', 'B.A', 'B.S', 'M.S', 'Doctoral degree']
 
-export { employment_type, location_type, months, workExpDefault, educationOptions }
+export { employment_type, location_type, months, educationOptions }

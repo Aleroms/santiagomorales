@@ -5,27 +5,28 @@
       <font-awesome-icon :icon="['fas', 'plus']" size="2xl" color="#ccc" class="icon" />
     </div>
     <!-- delete and edit entry  -->
-    <div class="list-wrapper" v-for="doc in manageStore.listDocuments" :key="doc.id">
-      <component
-        :is="manageStore.activeId"
-        :data="doc"
-        v-if="!manageStore.isLoading"
-      />
-      <div class="icons">
-        <font-awesome-icon
-          @click="manageStore.edit(doc.id)"
-          :icon="['fas', 'pen']"
-          size="lg"
-          color="#ccc"
-          class="icon"
-        />
-        <font-awesome-icon
-          @click="manageStore.deleteItem(doc.id)"
-          :icon="['fas', 'trash']"
-          size="lg"
-          color="#ccc"
-          class="icon"
-        />
+    <p class="subtitle" v-if="manageStore.listDocuments.length === 0">
+      currently no entries. Add new entry! 😉
+    </p>
+    <div v-else>
+      <div class="list-wrapper" v-for="doc in manageStore.listDocuments" :key="doc.id">
+        <component :is="manageStore.activeId" :data="doc" v-if="!manageStore.isLoading" />
+        <div class="icons">
+          <font-awesome-icon
+            @click="manageStore.edit(doc.id)"
+            :icon="['fas', 'pen']"
+            size="lg"
+            color="#ccc"
+            class="icon"
+          />
+          <font-awesome-icon
+            @click="manageStore.deleteItem(doc.id)"
+            :icon="['fas', 'trash']"
+            size="lg"
+            color="#ccc"
+            class="icon"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -101,6 +102,7 @@ export default {
 .list {
   border-bottom: 1px solid var(--divider-dark-1);
 }
+
 @media (max-width: 370px) {
   .list-wrapper {
     .icons {

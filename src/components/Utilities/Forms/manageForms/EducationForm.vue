@@ -12,7 +12,7 @@
       label="school logo"
       name="image"
       validation="required"
-      accepts=".jpg,.png"
+      accept=".jpg,.png"
     />
     <FormKit
       type="select"
@@ -37,7 +37,9 @@
           name="month"
           validation="required"
         />
-        <FormKit type="number" name="year" validation="required" />
+        <div class="number-pad">
+          <FormKit type="number" name="year" validation="required" step="1" />
+        </div>
       </div>
     </FormKit>
     <FormKit type="group" name="end">
@@ -45,11 +47,13 @@
         <FormKit
           type="select"
           :options="months"
-          label="end date (or expected)"
+          label="end date"
           name="month"
           validation="required"
         />
-        <FormKit type="number" name="year" validation="required" />
+        <div class="number-pad">
+          <FormKit type="number" name="year" validation="required" class="number-pad" />
+        </div>
       </div>
     </FormKit>
     <FormKit
@@ -74,7 +78,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { uploadFile3, submitForm, getDocument, deleteFile } from '@/plugins/firebase.js'
+import { uploadFile3, submitForm, getDocument } from '@/plugins/firebase.js'
 import { filterForm } from '@/utils/filterForm.js'
 import { educationOptions, months } from '@/utils/formOptions'
 import { useManageStore } from '@/stores/manage'
@@ -94,14 +98,16 @@ const submit = async (values) => {
   display.value = true
   displayMessage.value = 'submitting...'
 
+  if (manageStore.isEdit) {
+    values.id = placeholder.value.id
+  } else {
+    values.id = values.school + ' - ' + values.field_of_study
+  }
+
   try {
-    if (manageStore.isEdit) {
-      values.id = placeholder.value.id
-    } else {
-      values.id = values.school + ' - ' + values.field_of_study
-    }
     const image = await uploadFile3(values.image, 'education')
     values.image = image
+
     //filter form for files
     const filteredForm = filterForm(values)
     await submitForm(filteredForm, 'education', filteredForm.id)
@@ -112,9 +118,6 @@ const submit = async (values) => {
     return
   }
   //on successfull submission
-  if (manageStore.isEdit) {
-    manageStore.resetEdit()
-  }
   manageStore.result('success')
 }
 

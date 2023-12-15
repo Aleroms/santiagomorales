@@ -1,5 +1,4 @@
 <template>
-  <p v-if="display">{{ displayMessage }}</p>
   <FormKit type="form" id="workExp-form" @submit="submit" :disabled="disable">
     <FormKit
       type="text"
@@ -8,14 +7,6 @@
       hint="job title"
       validation="required"
       :placeholder="placeholder.title"
-    />
-    <FormKit
-      type="text"
-      label="id"
-      name="id"
-      hint="document ID on firebase"
-      validation="required"
-      :placeholder="placeholder.id"
     />
     <FormKit
       type="select"
@@ -32,7 +23,13 @@
       validation="required"
       :placeholder="placeholder.company"
     />
-    <FormKit type="file" label="logo" help="company logo" name="logo" validation="required" />
+    <FormKit
+      type="file"
+      label="comapny logo"
+      name="image"
+      validation="required"
+      accept=".jpg,.png"
+    />
     <FormKit
       type="text"
       label="location"
@@ -46,7 +43,6 @@
       label="location type"
       name="loc_type"
       help="pick a location type (ex: remote)"
-      :placeholder="placeholder.loc_type"
       validation="required"
     />
     <FormKit
@@ -56,8 +52,8 @@
       :value="current_role"
       @click="current_role = !current_role"
     />
-    <div class="date-wrapper">
-      <FormKit type="group" name="start" class="date-wrapper">
+    <FormKit type="group" name="start" class="date-wrapper">
+      <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
@@ -74,16 +70,10 @@
             :validation="`max:${current_year}`"
           />
         </div>
-      </FormKit>
-    </div>
-    <div class="date-wrapper">
-      <FormKit
-        type="group"
-        name="end"
-        class="date-wrapper"
-        :disabled="current_role"
-        validation="required"
-      >
+      </div>
+    </FormKit>
+    <FormKit type="group" name="end" :disabled="current_role" validation="required">
+      <div class="form-date-wrapper">
         <FormKit type="select" :options="months" name="month" label="end date" />
         <div class="number-pad">
           <FormKit
@@ -94,36 +84,29 @@
             :validation="`max:${current_year}`"
           />
         </div>
-      </FormKit>
-    </div>
+      </div>
+    </FormKit>
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { employment_type, location_type, months, workExpDefault } from '@/utils/formOptions.js'
+import { employment_type, location_type, months } from '@/utils/formOptions.js'
 import { filterForm } from '@/utils/filterForm.js'
-import { submitForm, uploadFile2 } from '@/plugins/firebase'
-import { getDocument } from '@/plugins/firebase.js'
+import { submitForm, uploadFile3, getDocument } from '@/plugins/firebase'
+import { useManageStore } from '@/stores/manage'
+import { workExpPlaceholder } from '@/utils/defaultManageForms.js'
 
-const props = defineProps({
-  docId: {
-    type: String
-  }
-})
-const placeholder = ref({})
-const startDate = ref({})
-const endDate = ref({})
+const manageStore = useManageStore()
 
 const disable = ref(false)
 const display = ref(false)
 const displayMessage = ref('')
+const placeholder = ref({})
 
 const current_role = ref(false)
 const current_year = new Date().getFullYear()
-
-const emit = defineEmits(['formSubmitted'])
 
 const submit = async (values) => {
   disable.value = true
@@ -131,57 +114,37 @@ const submit = async (values) => {
   displayMessage.value = 'submitting...'
   console.log(values)
 
-  try {
-    //uploads and returns img url
-    const imgURL = await uploadFile2(values.logo, `workExperience/${values.logo[0].name}`)
-    const imgPath = `workExperience/${values.logo[0].name}`
+  if (manageStore.isEdit) {
+    values.id = placeholder.value.id
+  } else {
+    values.id = values.company + ' - ' + values.title.replace('/', '')
+  }
 
-    //adds img url & name to form
-    values.imgURL = imgURL
-    values.imgPath = imgPath
+  try {
+    const image = await uploadFile3(values.image, 'workExperience')
+    values.image = image
 
     //filter form for files
     const filteredForm = filterForm(values)
-
-    //submit form
     await submitForm(filteredForm, 'workExperience', filteredForm.id)
   } catch (error) {
-    console.log(error)
-    displayMessage.value = 'error occurred'
+    console.log(error.code, error)
+    manageStore.result(error)
     disable.value = false
+    return
   }
-  //on successful submission
-  displayMessage.value = 'submitted!'
-  disable.value = false
-  emit('formSubmitted')
-}
-onMounted(async () => {
-  //
-  console.log(workExpDefault)
-  console.log(props.docId.length, props.docId)
-  try {
-    //no docId passed - must be creating new form
-    if (props.docId.length !== 0)
-      placeholder.value = await getDocument('workExperience', props.docId)
-    else {
-      placeholder.value = workExpDefault
+  //on successfull submission
+  manageStore.result('success')
+
+  onMounted(async () => {
+    if (manageStore.isEdit) {
+      placeholder.value = await getDocument(manageStore.collectionId, manageStore.editId)
+      console.log('edit mode', placeholder.value)
+    } else {
+      placeholder.value = workExpPlaceholder
     }
-    startDate.value = placeholder.value.start
-    endDate.value = placeholder.value.end
-    console.log(startDate, endDate)
-  } catch (error) {
-    console.log(error)
-  }
-})
+  })
+}
 </script>
 
-<style lang="scss" scoped>
-.date-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-}
-.number-pad {
-  margin-top: 1.4rem;
-}
-</style>
+<style lang="scss" scoped></style>

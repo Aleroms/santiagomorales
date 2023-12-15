@@ -85,6 +85,15 @@ body {
 .subtitle {
   color: var(--text-light-2);
 }
+.form-date-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.number-pad {
+  margin-top: 1.4rem;
+}
+
 [color-scheme='light'] {
   background-color: #fff;
   --text-light-1: var(--text-dark-1);

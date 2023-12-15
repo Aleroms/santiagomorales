@@ -45,6 +45,7 @@ export const useManageStore = defineStore('manageStore', {
         //did user successfully edit form?
         if (this.isEdit) {
           this.displayMessage = 'successfully modified entry...'
+          this.editId = false
         } else {
           this.displayMessage = 'successfully created new entry...'
         }
@@ -100,9 +101,6 @@ export const useManageStore = defineStore('manageStore', {
         this.setMessage(status)
         this.setActive('ManageAlert', 'Error', false)
       }
-    },
-    resetEdit(){
-      this.isEdit = false
     },
     resetState() {
       this.activeId = 'HomeForm'
