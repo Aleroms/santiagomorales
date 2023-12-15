@@ -8,31 +8,45 @@
       name="category"
       validation="required"
     />
-    <FormKit type="file" name="img" accept=".jpg,.png" validation="required" label="icon" />
+    <FormKit type="file" name="image" accept=".jpg,.png" validation="required" label="icon" />
   </FormKit>
+  <p v-if="display">{{ displayMessage }}</p>
 </template>
 
 <script setup>
 //img name category
 import { ref } from 'vue'
-import { submitForm } from '@/plugins/firebase.js'
+import { submitForm, uploadFile3 } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage'
+import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
+import { filterForm } from '@/utils/filterForm.js'
 
 const manageStore = useManageStore()
 
-// const placeholder = ref({})
+const { placeholder } = useFormPlaceholder()
 const displayMessage = ref('')
 const disable = ref(false)
 const display = ref(false)
 
-const submit = async (form) => {
+const submit = async (values) => {
   disable.value = true
   displayMessage.value = 'submitting...'
   display.value = true
-  console.log(form)
+  console.log(values)
+
+  if (manageStore.isEdit) {
+    values.id = placeholder.value.id
+  } else {
+    values.id = values.name + '-id'
+  }
 
   try {
-    await submitForm(form, 'pageContent', 'aboutPage')
+    const image = await uploadFile3(values.image, manageStore.collectionId)
+    values.image = image
+
+    //filter form for files
+    const filteredForm = filterForm(values)
+    await submitForm(filteredForm, manageStore.collectionId, filteredForm.id)
   } catch (error) {
     console.log(error.code, error)
     manageStore.result(error)

@@ -26,4 +26,8 @@ const certificatePlaceholder = {
   cNum: '',
   certUrl: 'https://www.go...'
 }
-export { educationPlaceholder, workExpPlaceholder, certificatePlaceholder }
+const skillsPlaceholder = {
+  category: 'frontend',
+  name: 'pinia'
+}
+export { educationPlaceholder, workExpPlaceholder, certificatePlaceholder, skillsPlaceholder }

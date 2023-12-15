@@ -5,7 +5,8 @@ import { useManageStore } from '@/stores/manage.js'
 import {
   educationPlaceholder,
   workExpPlaceholder,
-  certificatePlaceholder
+  certificatePlaceholder,
+  skillsPlaceholder
 } from '@/utils/defaultManageForms.js'
 
 function getPlaceholder(collectionId) {
@@ -19,6 +20,9 @@ function getPlaceholder(collectionId) {
       break
     case 'certificates':
       ph = certificatePlaceholder
+      break
+    case 'skills':
+      ph = skillsPlaceholder
       break
   }
   return ph
