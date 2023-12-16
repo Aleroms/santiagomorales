@@ -40,9 +40,7 @@
             </p>
             <p>
               Description:
-              <span class="subtitle"
-                >{{ data.desc }}</span
-              >
+              <span class="subtitle">{{ cutText(data.desc) }}</span>
             </p>
           </div>
         </div>
