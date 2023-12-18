@@ -20,6 +20,7 @@
       label="degree"
       name="degree"
       validation="required"
+      placeholder="Please Select"
     />
     <FormKit
       type="text"
@@ -35,10 +36,11 @@
           :options="months"
           label="start date"
           name="month"
-          validation="required"
+          validation="required|date_val"
+          placeholder="Please Select "
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required" step="1" />
+          <FormKit type="number" name="year" validation="required|min:1997" step="1" />
         </div>
       </div>
     </FormKit>
@@ -49,10 +51,11 @@
           :options="months"
           label="end date"
           name="month"
-          validation="required"
+          validation="required|date_val"
+          placeholder="Please Select "
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required" class="number-pad" />
+          <FormKit type="number" name="year" validation="required|min:1997" class="number-pad" />
         </div>
       </div>
     </FormKit>
@@ -84,7 +87,7 @@ import { useManageForm } from '@/composables/manageForm.js'
 
 const manageStore = useManageStore()
 
-const { placeholder } = useFormPlaceholder
+const { placeholder } = useFormPlaceholder()
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
 const submit = async (values) => {

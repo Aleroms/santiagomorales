@@ -15,7 +15,7 @@
       :placeholder="placeholder.name"
     />
     <FormKit
-      type="text"
+      type="textarea"
       name="desc"
       label="description"
       validation="required"
@@ -30,17 +30,17 @@
       :placeholder="placeholder.category"
     />
 
-    <FormKit type="group" name="start" validation="required">
+    <FormKit type="group" name="start">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           name="month"
-          validation="required"
+          validation="required|date_val"
           label="start date"
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required" />
+          <FormKit type="number" name="year" validation="required|min:1997" />
         </div>
       </div>
     </FormKit>
@@ -50,11 +50,11 @@
           type="select"
           :options="months"
           name="month"
-          validation="required"
+          validation="required|date_val"
           label="end date"
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required" />
+          <FormKit type="number" name="year" validation="required|min:1997" />
         </div>
       </div>
     </FormKit>
@@ -109,19 +109,19 @@
     />
     <FormKit type="checkbox" name="isPrivate" label="Private Repository" />
     <FormKit
-      type="text"
+      type="url"
       label="github link"
       name="githubLink"
       help="github repo"
-      validation="required"
+      validation="required|url"
       :placeholder="placeholder.githubLink"
     />
     <FormKit
-      type="text"
+      type="url"
       label="live site link"
       name="liveSiteLink"
       help="live site"
-      validation="required"
+      validation="required|url"
       :placeholder="placeholder.liveSiteLink"
     />
   </FormKit>

@@ -1,6 +1,13 @@
 <template>
   <FormKit type="form" id="skills-data-form" @submit="submit" :disable="disable">
-    <FormKit type="text" label="name" help="skill name" name="name" validation="required" />
+    <FormKit
+      type="text"
+      label="name"
+      help="skill name"
+      name="name"
+      validation="required"
+      :placeholder="placeholder.name"
+    />
     <FormKit
       type="text"
       label="category"

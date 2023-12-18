@@ -9,7 +9,7 @@
       validation="required"
     />
     <div v-auto-animate class="fk-wrapper">
-      <h4>Body</h4>
+      <h4 class="list-title">Body</h4>
       <FormKit
         v-model="placeholder.body"
         type="list"
@@ -90,6 +90,9 @@ const submit = async (values) => {
     margin-bottom: 0;
     flex-grow: 1;
   }
+}
+.list-title {
+  margin-bottom: 0.625rem;
 }
 .controls {
   list-style-type: none;

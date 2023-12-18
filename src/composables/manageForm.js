@@ -29,7 +29,7 @@ export function useManageForm() {
     }
     //on successfull submission
     manageStore.result('success')
-    
+
     // Returning reactive properties directly from the setup function
     return { disable, displayMessage, display }
   }

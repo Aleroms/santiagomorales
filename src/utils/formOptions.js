@@ -11,23 +11,37 @@ const employment_type = [
   'Seasonal'
 ]
 
-const location_type = ['Please select', 'On-site', 'Hybrid', 'Remote']
+const location_type = ['On-site', 'Hybrid', 'Remote']
 
-const months = [
-  'Please select',
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-]
+// const months = [
+//   'Please select',
+//   'January',
+//   'February',
+//   'March',
+//   'April',
+//   'May',
+//   'June',
+//   'July',
+//   'August',
+//   'September',
+//   'October',
+//   'November',
+//   'December'
+// ]
+const months = {
+  jan: 'January',
+  feb: 'February',
+  mar: 'March',
+  apr: 'April',
+  may: 'May',
+  jun: 'June',
+  jul: 'July',
+  aug: 'August',
+  sep: 'September',
+  oct: 'October',
+  nov: 'November',
+  dec: 'December'
+}
 
 const educationOptions = ['Associate degree', 'B.A', 'B.S', 'M.S', 'Doctoral degree']
 

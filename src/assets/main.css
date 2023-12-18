@@ -82,6 +82,7 @@ body {
 .formkit-message {
   color: var(--danger) !important;
 }
+
 .subtitle {
   color: var(--text-light-2);
 }
@@ -93,8 +94,6 @@ body {
 .number-pad {
   margin-top: 1.4rem;
 }
-
-
 
 [color-scheme='light'] {
   background-color: #fff;

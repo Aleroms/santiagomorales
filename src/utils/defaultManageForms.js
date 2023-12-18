@@ -7,12 +7,12 @@ const educationPlaceholder = {
 const workExpPlaceholder = {
   company: 'company',
   current_job: false,
-  emp_type: 'Please select',
+  emp_type: 'Please Select',
   end: {
     month: 'January',
     year: 2023
   },
-  loc_type: 'On-site',
+  loc_type: 'Please Select',
   location: 'Irvine, California',
   start: {
     month: 'January',
@@ -23,7 +23,7 @@ const workExpPlaceholder = {
 const certificatePlaceholder = {
   name: 'certificate name',
   issuer: 'udemy...',
-  cNum: '',
+  cNum: 'certificate number',
   certUrl: 'https://www.go...'
 }
 const skillsPlaceholder = {
@@ -39,7 +39,7 @@ const activeLearningPlaceholder = {
   name: 'vue'
 }
 const toolsPlaceholder = {
-  name: 'FormKit'
+  name: ''
 }
 const projectsPlaceholder = {
   category: 'Full Stack',

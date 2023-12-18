@@ -50,6 +50,7 @@ export function useFormPlaceholder() {
         console.log('edit mode', placeholder.value)
       } else {
         placeholder.value = getPlaceholder(manageStore.collectionId)
+        console.log('new entry', placeholder.value)
       }
     } catch (error) {
       console.log(error)

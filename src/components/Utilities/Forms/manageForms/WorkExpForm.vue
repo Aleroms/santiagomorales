@@ -12,7 +12,7 @@
       type="select"
       :options="employment_type"
       label="employment type"
-      :placeholder="placeholder.emp_type"
+      placeholder="Please Select"
       name="emp_type"
       validation="required"
     />
@@ -44,6 +44,7 @@
       name="loc_type"
       help="pick a location type (ex: remote)"
       validation="required"
+      placeholder="Please Select"
     />
     <FormKit
       type="checkbox"
@@ -52,14 +53,15 @@
       :value="current_role"
       @click="current_role = !current_role"
     />
-    <FormKit type="group" name="start" class="date-wrapper">
+    <FormKit type="group" name="start">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           name="month"
           label="start date"
-          validation="required"
+          validation="required|date_val"
+          placeholder="Please Select"
         />
         <div class="number-pad">
           <FormKit
@@ -67,22 +69,24 @@
             name="year"
             step="1"
             class="number-pad"
-            :validation="`max:${current_year}`"
+            validation="required|min:1997"
+            :value="current_year"
           />
         </div>
       </div>
     </FormKit>
-    <FormKit type="group" name="end" :disabled="current_role" validation="required">
+    <FormKit type="group" name="end" :disabled="current_role">
       <div class="form-date-wrapper">
-        <FormKit type="select" :options="months" name="month" label="end date" />
+        <FormKit
+          type="select"
+          :options="months"
+          name="month"
+          label="end date"
+          validation="date_val"
+          placeholder="Please Select"
+        />
         <div class="number-pad">
-          <FormKit
-            type="number"
-            name="year"
-            :value="current_year"
-            step="1"
-            :validation="`max:${current_year}`"
-          />
+          <FormKit type="number" name="year" :value="current_year" step="1" validation="min:1997" />
         </div>
       </div>
     </FormKit>
@@ -112,9 +116,10 @@ const submit = async (values) => {
   } else {
     values.id = values.company + ' - ' + values.title.replace('/', '')
   }
-
+  if (current_role.value) delete values.end
   try {
     submitManageForm(values)
+    // console.log(values)
   } catch (error) {
     console.log(error.code, error)
 

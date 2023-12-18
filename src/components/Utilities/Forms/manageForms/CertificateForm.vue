@@ -25,8 +25,21 @@
     />
     <FormKit type="group" name="issue_date" validation="required">
       <div class="form-date-wrapper">
-        <FormKit type="select" :options="months" label="month" name="month" />
-        <FormKit type="number" label="year" name="year" />
+        <FormKit
+          type="select"
+          :options="months"
+          label="month"
+          name="month"
+          placeholder="Please Select"
+          validation="required"
+        />
+        <FormKit
+          type="number"
+          label="year"
+          name="year"
+          validation="required|min:1997"
+          :value="current_year"
+        />
       </div>
     </FormKit>
     <FormKit
@@ -57,6 +70,7 @@ const manageStore = useManageStore()
 
 const { placeholder } = useFormPlaceholder()
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
+const current_year = new Date().getFullYear()
 
 const submit = async (values) => {
   values.id = manageStore.isEdit ? placeholder.value.id : values.issuer + ' - ' + values.name
