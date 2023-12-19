@@ -13,20 +13,20 @@ const employment_type = [
 
 const location_type = ['On-site', 'Hybrid', 'Remote']
 
-const months = {
-  jan: 'January',
-  feb: 'February',
-  mar: 'March',
-  apr: 'April',
-  may: 'May',
-  jun: 'June',
-  jul: 'July',
-  aug: 'August',
-  sep: 'September',
-  oct: 'October',
-  nov: 'November',
-  dec: 'December'
-}
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
 
 const skillsCategory = ['Frontend', 'Backend', 'Full Stack', 'Programming Languages']
 

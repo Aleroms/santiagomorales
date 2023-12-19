@@ -46,7 +46,7 @@ const projectsPlaceholder = {
   desc: 'the description...',
   githubLink: 'https://google.com',
   isPrivate: false,
-  issues_encountered: 'issues encountered...',
+  issues_encountered: ['issues encountered...'],
   liveSiteLink: 'https://google.com',
   my_process: 'my process...',
   name: 'pinia tasks',

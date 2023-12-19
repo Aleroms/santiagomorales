@@ -21,7 +21,6 @@
       validation="required"
       :placeholder="placeholder.desc"
     />
-    <!-- might want to change this to select  -->
     <FormKit
       type="select"
       name="category"
@@ -39,6 +38,7 @@
           name="month"
           validation="required|date_val"
           label="start date"
+          placeholder="Please Select"
         />
         <div class="number-pad">
           <FormKit
@@ -59,6 +59,7 @@
           name="month"
           validation="required|date_val"
           label="end date"
+          placeholder="Please Select"
         />
         <div class="number-pad">
           <FormKit
@@ -109,13 +110,37 @@
       validation="required"
       :placeholder="placeholder.my_process"
     />
-    <FormKit
-      type="textarea"
-      name="issues_encountered"
-      label="issues encountered"
-      validation="required"
-      :placeholder="placeholder.issues_encountered"
-    />
+    <div class="dynam-list" v-auto-animate>
+      <h3>issues encountered</h3>
+      <FormKit
+        type="list"
+        :value="['']"
+        dynamic
+        #default="{ items }"
+        name="issues_encountered"
+        v-model="placeholder.issues_encountered"
+      >
+        <FormKit
+          v-for="(item, index) in items"
+          :key="item"
+          :index="index"
+          :label="`issue #${index + 1}`"
+          type="textarea"
+          validation="required"
+          suffix-icon="trash"
+          @suffix-icon-click="
+            placeholder.issues_encountered = placeholder.issues_encountered.filter(
+              (_, i) => i !== index
+            )
+          "
+        />
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.issues_encountered.push('')"
+        />
+      </FormKit>
+    </div>
     <FormKit
       type="textarea"
       name="what_i_learned"
@@ -123,7 +148,7 @@
       validation="required"
       :placeholder="placeholder.what_i_learned"
     />
-    <FormKit type="checkbox" name="isPrivate" label="Private Repository" />
+    <FormKit type="checkbox" name="isPrivate" label="Private Repository" :value="false" />
     <div class="dynam-list" v-auto-animate>
       <h3>useful links</h3>
       <FormKit
@@ -135,14 +160,28 @@
         v-model="placeholder.usefulLinks"
       >
         <FormKit type="group" v-for="(item, index) in items" :key="item" :index="index">
-          <FormKit type="text" name="name" label="name" help="link title for anchor tag" />
+          <FormKit
+            type="text"
+            name="name"
+            label="name"
+            help="link title for anchor tag"
+            validation="required"
+            :placeholder="placeholder.usefulLinks.name"
+          />
           <FormKit
             label="link"
             type="url"
             :placeholder="placeholder.usefulLinks.link"
-            validation="required"
+            validation="required|url"
+            name="link"
           />
-          <FormKit type="textarea" name="desc" label="description" />
+          <FormKit
+            type="textarea"
+            name="desc"
+            label="description"
+            validation="required"
+            :placeholder="placeholder.usefulLinks.desc"
+          />
           <ButtonComponent
             type="outline"
             text="Remove"
@@ -201,27 +240,25 @@ const submit = async (values) => {
   values.toolsUsed = filteredTools
 
   try {
-    // submitManageForm(values)
-    console.log(values)
+    submitManageForm(values)
   } catch (error) {
     console.log(error.code, error)
   }
+
 }
+
 onBeforeMount(async () => {
-  console.log('projects data form before mounted')
   try {
     toolsOptions.value = await getDocuments('tools')
     toolsOptions.value = toolsOptions.value.map((doc) => doc.name)
-    console.log(toolsOptions.value)
   } catch (error) {
     console.log(error)
   }
-  //retreive toolsUsed from Firebase and assign it to toolsOptions after formatting it
 })
 </script>
 
 <style lang="scss" scoped>
-.btn-remove{
+.btn-remove {
   margin: 1rem;
 }
 .dynam-list {

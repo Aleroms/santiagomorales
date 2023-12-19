@@ -11,16 +11,7 @@ const date_val = (node) => {
   const endDate = new Date(`${end.month} ${end.year}`)
 
   if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
-    if (startDate > endDate) {
-      console.log("End date can't be earlier than start date")
-      return false
-    } else if (endDate > new Date()) {
-      console.log('end date cannot be in the future')
-      return false
-    } else {
-      console.log('dates are valid')
-      return true
-    }
+    return startDate > endDate ? false : true
   }
   return false
 }
@@ -54,8 +45,6 @@ const customConfig = {
               return name === 'start date'
                 ? "Start date can't be later than end date"
                 : "End date can't be earlier than start date"
-            } else if (endDate > new Date()) {
-              return 'End Date cannot be in the future'
             }
           } else {
             return ''

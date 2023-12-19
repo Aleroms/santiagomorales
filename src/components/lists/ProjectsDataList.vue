@@ -16,11 +16,15 @@
             </div>
             <div class="links-container">
               <a :href="data.gitHubLink"
-                >view on GitHub <font-awesome-icon icon="fa-brands fa-github" color="#ccc" size="lg"
+                >view on GitHub
+                <font-awesome-icon icon="fa-brands fa-github" color="#ccc" size="lg"
               /></a>
               <a :href="data.liveSiteLink"
                 >view live site
-                <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" color="#ccc" size="lg"
+                <font-awesome-icon
+                  icon="fa-solid fa-arrow-up-right-from-square"
+                  color="#ccc"
+                  size="lg"
               /></a>
               <p class="subtitle">is private repo: {{ data.isPrivate ? 'true' : 'false' }}</p>
             </div>
@@ -32,9 +36,9 @@
             <p>
               what I learned: <span class="subtitle">{{ cutText(data.what_i_learned) }}</span>
             </p>
-            <p>
-              Issues Encountered:
-              <span class="subtitle">{{ cutText(data.issues_encountered) }}</span>
+            <h4>Issues Encountered:</h4>
+            <p v-for="issue in data.issues_encountered" :key="issue" class="subtitle">
+              {{ cutText(issue) }}
             </p>
             <p>
               Description:
@@ -61,7 +65,7 @@ const startMonth = start.month.slice(0, 3)
 const endMonth = end.month.slice(0, 3)
 
 const cutText = (str) => {
-  return str.length < 40 ? str : str.slice(0, 40) + '. . .'
+  return str.length < 37 ? str : str.slice(0, 37) + '. . .'
 }
 </script>
 
