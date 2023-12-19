@@ -28,7 +28,7 @@ const months = {
   dec: 'December'
 }
 
-const skillsCategory = ['Frontend', 'Backend', 'Programming Languages', 'Tools']
+const skillsCategory = ['Frontend', 'Backend', 'Full Stack', 'Programming Languages']
 
 const educationOptions = ['Associate degree', 'B.A', 'B.S', 'M.S', 'Doctoral degree']
 

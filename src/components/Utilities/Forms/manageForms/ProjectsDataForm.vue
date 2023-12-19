@@ -71,7 +71,7 @@
         </div>
       </div>
     </FormKit>
-    <div class="tools-used" v-auto-animate>
+    <div class="dynam-list" v-auto-animate>
       <h3>tools used</h3>
       <FormKit
         type="list"
@@ -124,6 +124,40 @@
       :placeholder="placeholder.what_i_learned"
     />
     <FormKit type="checkbox" name="isPrivate" label="Private Repository" />
+    <div class="dynam-list" v-auto-animate>
+      <h3>useful links</h3>
+      <FormKit
+        type="list"
+        :value="[{}]"
+        dynamic
+        #default="{ items }"
+        name="usefulLinks"
+        v-model="placeholder.usefulLinks"
+      >
+        <FormKit type="group" v-for="(item, index) in items" :key="item" :index="index">
+          <FormKit type="text" name="name" label="name" help="link title for anchor tag" />
+          <FormKit
+            label="link"
+            type="url"
+            :placeholder="placeholder.usefulLinks.link"
+            validation="required"
+          />
+          <FormKit type="textarea" name="desc" label="description" />
+          <ButtonComponent
+            type="outline"
+            text="Remove"
+            class="btn-remove"
+            @click="placeholder.usefulLinks = placeholder.usefulLinks.filter((_, i) => i !== index)"
+          />
+        </FormKit>
+
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.usefulLinks.push({ name: '', desc: '', link: '' })"
+        />
+      </FormKit>
+    </div>
     <FormKit
       type="url"
       label="github link"
@@ -167,7 +201,8 @@ const submit = async (values) => {
   values.toolsUsed = filteredTools
 
   try {
-    submitManageForm(values)
+    // submitManageForm(values)
+    console.log(values)
   } catch (error) {
     console.log(error.code, error)
   }
@@ -186,7 +221,10 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
-.tools-used {
+.btn-remove{
+  margin: 1rem;
+}
+.dynam-list {
   margin: 1rem 0;
   h3 {
     margin-bottom: 0.625rem;

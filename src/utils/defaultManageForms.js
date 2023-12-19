@@ -55,6 +55,13 @@ const projectsPlaceholder = {
     year: 2023
   },
   toolsUsed: ['Sass'],
+  usefulLinks: [
+    {
+      name: 'google',
+      link: 'https://google.com',
+      desc: 'description'
+    }
+  ],
   what_i_learned: 'what I learned...'
 }
 export {
