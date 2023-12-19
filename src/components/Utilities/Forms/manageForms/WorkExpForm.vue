@@ -116,6 +116,7 @@ const submit = async (values) => {
   } else {
     values.id = values.company + ' - ' + values.title.replace('/', '')
   }
+  //filter out end obj if this is current role...
   if (current_role.value) delete values.end
   try {
     submitManageForm(values)

@@ -64,7 +64,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .add-more {
   display: flex;
   align-items: center;
@@ -104,7 +103,7 @@ export default {
   border-bottom: 1px solid var(--divider-dark-1);
 }
 
-@media (max-width: 370px) {
+@media (max-width: 420px) {
   .list-wrapper {
     .icons {
       flex-direction: column;

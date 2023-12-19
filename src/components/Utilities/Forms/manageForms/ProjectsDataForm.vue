@@ -23,11 +23,12 @@
     />
     <!-- might want to change this to select  -->
     <FormKit
-      type="text"
+      type="select"
       name="category"
       label="category"
       validation="required"
-      :placeholder="placeholder.category"
+      placeholder="Please Select"
+      :options="skillsCategory"
     />
 
     <FormKit type="group" name="start">
@@ -40,7 +41,13 @@
           label="start date"
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required|min:1997" />
+          <FormKit
+            type="number"
+            name="year"
+            validation="required|min:1997"
+            :value="new Date().getFullYear()"
+            step="1"
+          />
         </div>
       </div>
     </FormKit>
@@ -54,7 +61,13 @@
           label="end date"
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required|min:1997" />
+          <FormKit
+            type="number"
+            name="year"
+            validation="required|min:1997"
+            :value="new Date().getFullYear()"
+            step="1"
+          />
         </div>
       </div>
     </FormKit>
@@ -73,7 +86,10 @@
           :key="item"
           :index="index"
           label="tool"
-          placeholder="tool name"
+          type="select"
+          :options="toolsOptions"
+          placeholder="Please select"
+          validation="required"
           suffix-icon="trash"
           @suffix-icon-click="
             placeholder.toolsUsed = placeholder.toolsUsed.filter((_, i) => i !== index)
@@ -131,15 +147,17 @@
 <script setup>
 import { vAutoAnimate } from '@formkit/auto-animate'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
-import { months } from '@/utils/formOptions'
+import { months, skillsCategory } from '@/utils/formOptions'
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
 import { useManageForm } from '@/composables/manageForm.js'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, ref } from 'vue'
+import { getDocuments } from '@/plugins/firebase.js'
 
 const manageStore = useManageStore()
 const { placeholder } = useFormPlaceholder()
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
+const toolsOptions = ref({})
 
 const submit = async (values) => {
   values.id = manageStore.isEdit
@@ -154,8 +172,16 @@ const submit = async (values) => {
     console.log(error.code, error)
   }
 }
-onBeforeMount(() => {
+onBeforeMount(async () => {
   console.log('projects data form before mounted')
+  try {
+    toolsOptions.value = await getDocuments('tools')
+    toolsOptions.value = toolsOptions.value.map((doc) => doc.name)
+    console.log(toolsOptions.value)
+  } catch (error) {
+    console.log(error)
+  }
+  //retreive toolsUsed from Firebase and assign it to toolsOptions after formatting it
 })
 </script>
 

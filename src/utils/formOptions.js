@@ -13,21 +13,6 @@ const employment_type = [
 
 const location_type = ['On-site', 'Hybrid', 'Remote']
 
-// const months = [
-//   'Please select',
-//   'January',
-//   'February',
-//   'March',
-//   'April',
-//   'May',
-//   'June',
-//   'July',
-//   'August',
-//   'September',
-//   'October',
-//   'November',
-//   'December'
-// ]
 const months = {
   jan: 'January',
   feb: 'February',
@@ -43,6 +28,8 @@ const months = {
   dec: 'December'
 }
 
+const skillsCategory = ['Frontend', 'Backend', 'Programming Languages', 'Tools']
+
 const educationOptions = ['Associate degree', 'B.A', 'B.S', 'M.S', 'Doctoral degree']
 
-export { employment_type, location_type, months, educationOptions }
+export { employment_type, location_type, months, educationOptions, skillsCategory }

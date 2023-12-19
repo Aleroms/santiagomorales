@@ -7,6 +7,7 @@
       label="name"
       help="what am I learning?"
       validation="required"
+      :placeholder="placeholder.name"
     />
     <div v-auto-animate class="fk-wrapper">
       <h4 class="list-title">Body</h4>

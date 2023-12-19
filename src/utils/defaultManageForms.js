@@ -2,7 +2,7 @@ const educationPlaceholder = {
   school: 'Ex: UC Irvine',
   field_of_study: 'Ex: Computer Science',
   activities: 'Ex: VGDC',
-  description: ''
+  description: 'description...'
 }
 const workExpPlaceholder = {
   company: 'company',
@@ -36,7 +36,7 @@ const skillsCategoryPlaceholder = {
 }
 const activeLearningPlaceholder = {
   body: ['item1', 'item2', 'item3'],
-  name: 'vue'
+  name: 'name...'
 }
 const toolsPlaceholder = {
   name: ''
@@ -44,17 +44,17 @@ const toolsPlaceholder = {
 const projectsPlaceholder = {
   category: 'Full Stack',
   desc: 'the description...',
-  githubLink: '',
+  githubLink: 'https://google.com',
   isPrivate: false,
   issues_encountered: 'issues encountered...',
-  liveSiteLink: '',
+  liveSiteLink: 'https://google.com',
   my_process: 'my process...',
   name: 'pinia tasks',
   start: {
     month: 'October',
     year: 2023
   },
-  toolsUsed: ['vue', 'firebase'],
+  toolsUsed: ['Sass'],
   what_i_learned: 'what I learned...'
 }
 export {

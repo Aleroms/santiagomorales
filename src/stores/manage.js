@@ -32,7 +32,7 @@ export const useManageStore = defineStore('manageStore', {
         this.isLoading = true
         try {
           this.listDocuments = await getDocuments(this.collectionId)
-          console.log(this.listDocuments)
+          //console.log(this.listDocuments)
         } catch (error) {
           console.log(error)
         } finally {
@@ -59,14 +59,14 @@ export const useManageStore = defineStore('manageStore', {
       }
     },
     addMore() {
-      console.log('adding ', this.activeId, getEditId(this.activeId))
+      //console.log('adding ', this.activeId, getEditId(this.activeId))
       this.previousTitle = this.activeTitle
       this.activeTitle = 'Add new entry'
       this.isList = false
       this.activeId = getEditId(this.activeId)
     },
     edit(itemId) {
-      console.log('edit item ', itemId, getEditId(this.activeId))
+      //console.log('edit item ', itemId, getEditId(this.activeId))
       this.previousTitle = this.activeTitle
       this.activeTitle = 'Edit item ' + itemId
       this.isList = false
@@ -75,7 +75,7 @@ export const useManageStore = defineStore('manageStore', {
       this.isEdit = true
     },
     deleteItem(deleteId) {
-      console.log('deleting', deleteId)
+      //console.log('deleting', deleteId)
       this.previousTitle = this.activeTitle
       this.deleteId = deleteId
       this.activeId = 'ManageDelete'
@@ -128,7 +128,7 @@ export const useManageStore = defineStore('manageStore', {
     },
     getDeleteDocument() {
       const foundItem = this.listDocuments.find((item) => item.id === this.deleteId)
-      console.log('found', foundItem)
+      //console.log('found', foundItem)
       return foundItem
     }
   }

@@ -40,7 +40,13 @@
           placeholder="Please Select "
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required|min:1997" step="1" />
+          <FormKit
+            type="number"
+            name="year"
+            validation="required|min:1997"
+            :value="new Date().getFullYear()"
+            step="1"
+          />
         </div>
       </div>
     </FormKit>
@@ -55,7 +61,14 @@
           placeholder="Please Select "
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" validation="required|min:1997" class="number-pad" />
+          <FormKit
+            type="number"
+            name="year"
+            validation="required|min:1997"
+            class="number-pad"
+            :value="new Date().getFullYear()"
+            step="1"
+          />
         </div>
       </div>
     </FormKit>

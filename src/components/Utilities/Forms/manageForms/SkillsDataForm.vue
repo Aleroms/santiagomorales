@@ -9,11 +9,13 @@
       :placeholder="placeholder.name"
     />
     <FormKit
-      type="text"
+      type="select"
       label="category"
       help="skill category"
       name="category"
       validation="required"
+      placeholder="Please select"
+      :options="skillsCategory"
     />
     <FormKit type="file" name="image" accept=".jpg,.png" validation="required" label="icon" />
   </FormKit>
@@ -24,6 +26,7 @@
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
 import { useManageForm } from '@/composables/manageForm.js'
+import { skillsCategory } from '@/utils/formOptions'
 
 const manageStore = useManageStore()
 

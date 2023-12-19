@@ -10,21 +10,19 @@
               {{ startMonth }} {{ start.year }} - {{ endMonth }} {{ end.year }}
             </p>
             <p class="subtitle" v-else>{{ start.month }} {{ start.year }} - Present</p>
-            <p>
-              tools used:
-              <span class="subtitle tool" v-for="(tool, index) in data.toolsUsed" :key="index">{{
-                tool
-              }}</span>
-            </p>
+            <h4>tools used:</h4>
+            <div class="tools">
+              <p class="subtitle tool" v-for="tool in data.toolsUsed" :key="tool">{{ tool }}</p>
+            </div>
             <div class="links-container">
               <a :href="data.gitHubLink"
-                >view on GitHub <font-awesome-icon icon="fa-brands fa-github" color="#ccc"
+                >view on GitHub <font-awesome-icon icon="fa-brands fa-github" color="#ccc" size="lg"
               /></a>
               <a :href="data.liveSiteLink"
                 >view live site
-                <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" color="#ccc"
+                <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" color="#ccc" size="lg"
               /></a>
-              <p class="subtitle">is private repo: {{ data.isPrivate }}</p>
+              <p class="subtitle">is private repo: {{ data.isPrivate ? 'true' : 'false' }}</p>
             </div>
           </div>
           <div class="secondary">
@@ -63,11 +61,20 @@ const startMonth = start.month.slice(0, 3)
 const endMonth = end.month.slice(0, 3)
 
 const cutText = (str) => {
-  return str.length < 80 ? str : str.slice(0, 80) + '. . .'
+  return str.length < 40 ? str : str.slice(0, 40) + '. . .'
 }
 </script>
 
 <style lang="scss" scoped>
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .tool {
+    flex: 1;
+  }
+}
 .proj-container {
   display: flex;
   flex-direction: row;
@@ -79,15 +86,12 @@ const cutText = (str) => {
     border-right: 1px solid var(--divider-dark-1);
     margin-right: 1rem;
     padding-right: 1rem;
-
-    .tool {
-      margin-right: 5px;
-    }
   }
 }
 .links-container {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 
   a {
     display: flex;
@@ -99,5 +103,19 @@ const cutText = (str) => {
 }
 .secondary {
   max-width: 200px;
+}
+@media (max-width: 600px) {
+  .proj-container {
+    flex-direction: column;
+
+    .main {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+      border-bottom: 1px solid var(--divider-dark-1);
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
 }
 </style>
