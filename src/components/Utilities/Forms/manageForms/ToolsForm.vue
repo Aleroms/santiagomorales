@@ -1,18 +1,13 @@
 <template>
   <FormKit type="form" id="tools-form" @submit="submit" :disable="disable">
-    <FormKit
-      type="file"
-      accept=".jpg,.png"
-      name="image"
-      :validation="onIsEdit()"
-    />
+    <FormKit type="file" accept=".jpg,.png" name="image" validation="required" />
     <FormKit
       type="text"
       name="name"
       label="name"
       help="tool name"
       :placeholder="placeholder.name"
-      :validation="onIsEdit()"
+      validation="required"
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>
@@ -28,9 +23,6 @@ const manageStore = useManageStore()
 const { placeholder } = useFormPlaceholder()
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
-const onIsEdit = () => {
-  return manageStore.isEdit ? '' : 'required'
-}
 const submit = async (values) => {
   if (manageStore.isEdit) {
     values.id = placeholder.value.id
@@ -40,6 +32,7 @@ const submit = async (values) => {
 
   try {
     submitManageForm(values)
+    console.log(values)
   } catch (error) {
     console.log(error.code, error)
   }

@@ -135,6 +135,7 @@ import { months } from '@/utils/formOptions'
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
 import { useManageForm } from '@/composables/manageForm.js'
+import { onBeforeMount } from 'vue'
 
 const manageStore = useManageStore()
 const { placeholder } = useFormPlaceholder()
@@ -153,6 +154,9 @@ const submit = async (values) => {
     console.log(error.code, error)
   }
 }
+onBeforeMount(() => {
+  console.log('projects data form before mounted')
+})
 </script>
 
 <style lang="scss" scoped>

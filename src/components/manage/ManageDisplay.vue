@@ -1,13 +1,16 @@
 <template>
   <div class="manage-display">
     <SectionHeader :id="manageStore.activeId" :title="manageStore.activeTitle" />
-    <h4
-      @click="manageStore.goBack"
-      v-show="manageStore.navId !== manageStore.activeId && !manageStore.isDelete"
-      class="go-back"
-    >
-      go back
-    </h4>
+    <div class="go-back-wrapper">
+      <h4
+        @click="manageStore.goBack"
+        v-show="manageStore.navId !== manageStore.activeId && !manageStore.isDelete"
+        class="go-back"
+      >
+        go back
+      </h4>
+    </div>
+
     <component :is="manageStore.setComponent" />
   </div>
 </template>
@@ -64,9 +67,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.go-back-wrapper{
+  display: flex;
+}
 .go-back {
   margin: 1rem 0;
   color: var(--primary);
+  cursor: pointer;
 }
 </style>
