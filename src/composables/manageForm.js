@@ -62,7 +62,7 @@ export function useManageForm() {
         throw error
       }
       return
-    } 
+    }
     //on successfull submission
     manageStore.result('success')
 

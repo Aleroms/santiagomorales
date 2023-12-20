@@ -49,7 +49,7 @@ const projectsPlaceholder = {
     year: 2023
   },
   frameworkUsed: '',
-  githubLink: '',
+  githubLink: 'a',
   isPrivate: false,
   issues_encountered: [''],
   liveSiteLink: '',
