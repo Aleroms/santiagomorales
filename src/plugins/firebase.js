@@ -84,15 +84,62 @@ const uploadFile2 = async (file, path) => {
     console.log(error)
   }
 }
+const modifyFileName = async (originalFileName, folderPath) => {
+  let modifiedFileName = originalFileName
+  let counter = 1
+
+  // Check if the modified file name exists
+  while (await checkFileExists(`${folderPath}/${modifiedFileName}`)) {
+    counter++
+    const [name, extension] = originalFileName.split('.')
+    modifiedFileName = `${name}${counter}.${extension}`
+  }
+  return modifiedFileName
+}
+
+const checkFileExists = async (filePath) => {
+  try {
+    console.log(filePath, 'checkfileexist')
+    const storageRef = ref(storage, filePath)
+    await getDownloadURL(storageRef)
+    return true // File exists
+  } catch (error) {
+    if (error.code === 'storage/object-not-found') {
+      return false // File doesn't exist
+    }
+    throw error // Handle other errors
+  }
+}
 
 const uploadFile3 = async (file, storageId) => {
-  const fileName = file[0].name
-  const filePath = `${storageId}/${fileName}`
-  const fileRef = ref(storage, filePath)
-  console.log('storage path', fileRef.fullPath)
+  let fileName = file[0].name
+  let filePath = `${storageId}/${fileName}`
+  let fileRef = ref(storage, filePath)
+  let fileURL
+  console.log(file, fileName, filePath, fileRef)
 
-  await uploadBytes(fileRef, file[0].file)
-  const fileURL = await getDownloadURL(fileRef)
+  try {
+    //if no error is thrown then file exists
+    fileURL = await getDownloadURL(fileRef)
+
+    //modify file values
+    fileName = await modifyFileName(fileName, storageId)
+    filePath = `${storageId}/${fileName}`
+    fileRef = ref(storage, filePath)
+
+    //upload modified file
+    await uploadBytes(fileRef, file[0].file)
+    fileURL = await getDownloadURL(fileRef)
+    console.log(`File ${file[0].name} already exists. Uploaded as ${fileName}`)
+  } catch (error) {
+    // upload new file - file DNE
+    await uploadBytes(fileRef, file[0].file)
+    fileURL = await getDownloadURL(fileRef)
+    console.log(`File ${fileName} uploaded successfully`)
+  }
+
+  // await uploadBytes(fileRef, file[0].file)
+  // const fileURL = await getDownloadURL(fileRef)
   return {
     name: fileName,
     path: filePath,
@@ -105,7 +152,7 @@ const updateFile = async (file, storageId, editId) => {
   if (Object.keys(prevFileDoc.image).length !== 0 && prevFileDoc.image.path !== '') {
     await deleteFile(prevFileDoc.image.path)
   }
-  
+
   const fileName = file[0].name
   const filePath = `${storageId}/${fileName}`
   const fileRef = ref(storage, filePath)

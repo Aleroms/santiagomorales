@@ -35,34 +35,39 @@ const skillsCategoryPlaceholder = {
   desc: 'frontend is awesome bcz backend bad! Sticky!!'
 }
 const activeLearningPlaceholder = {
-  body: ['item1', 'item2', 'item3'],
-  name: 'name...'
+  body: ['', '', ''],
+  name: ''
 }
 const toolsPlaceholder = {
-  name: 'tool name...'
+  name: ''
 }
 const projectsPlaceholder = {
-  category: 'Full Stack',
-  desc: 'the description...',
-  githubLink: 'https://google.com',
-  isPrivate: false,
-  issues_encountered: ['issues encountered...'],
-  liveSiteLink: 'https://google.com',
-  my_process: ['my process...'],
-  name: 'pinia tasks',
-  start: {
-    month: 'October',
+  category: '',
+  desc: '',
+  end: {
+    month: '',
     year: 2023
   },
-  toolsUsed: ['Sass'],
+  frameworkUsed: '',
+  githubLink: '',
+  isPrivate: false,
+  issues_encountered: [''],
+  liveSiteLink: '',
+  my_process: [''],
+  name: '',
+  start: {
+    month: '',
+    year: 2023
+  },
+  toolsUsed: [''],
   usefulLinks: [
     {
-      name: 'google',
-      link: 'https://google.com',
-      desc: 'description'
+      name: '',
+      link: '',
+      desc: ''
     }
   ],
-  what_i_learned: ['what I learned...']
+  what_i_learned: ['']
 }
 export {
   educationPlaceholder,

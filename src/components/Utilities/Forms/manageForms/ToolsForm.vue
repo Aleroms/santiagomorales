@@ -1,13 +1,14 @@
 <template>
   <FormKit type="form" id="tools-form" @submit="submit" :disable="disable">
-    <FormKit type="file" accept=".jpg,.png" name="image" :validation="test" />
+    <FormKit type="file" accept=".jpg,.png" name="image" :validation="manageStore.required" />
     <FormKit
       type="text"
       name="name"
       label="name"
       help="tool name"
-      :placeholder="placeholder.name"
-      :validation="test"
+      placeholder="tool name"
+      :validation="manageStore.required"
+      v-model="placeholder.name"
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>
@@ -17,14 +18,12 @@
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder'
 import { useManageForm } from '@/composables/manageForm.js'
-import { ref, onBeforeMount } from 'vue'
 
 const manageStore = useManageStore()
 
 const { placeholder } = useFormPlaceholder()
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
 
-const test = ref('')
 const submit = async (values) => {
   if (manageStore.isEdit) {
     values.id = placeholder.value.id
@@ -38,14 +37,6 @@ const submit = async (values) => {
     console.log(error.code, error)
   }
 }
-onBeforeMount(() => {
-  // edit mode validation required is off
-  if (manageStore.isEdit) {
-    test.value = ''
-  } else {
-    test.value = 'required'
-  }
-})
 </script>
 
 <style lang="scss" scoped></style>

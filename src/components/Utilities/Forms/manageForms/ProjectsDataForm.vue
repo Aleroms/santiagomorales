@@ -5,47 +5,51 @@
       name="image"
       label="project cover"
       help="used to describe the project"
-      validation="required"
+      :validation="manageStore.required"
     />
     <FormKit
       type="text"
       name="name"
       label="project name"
-      validation="required"
-      :placeholder="placeholder.name"
+      :validation="manageStore.required"
+      placeholder="project name..."
+      v-model="placeholder.name"
     />
     <FormKit
       type="textarea"
       name="desc"
       label="description"
-      validation="required"
-      :placeholder="placeholder.desc"
+      :validation="manageStore.required"
+      placeholder="description..."
+      v-model="placeholder.desc"
     />
     <FormKit
       type="select"
       name="category"
       label="category"
-      validation="required"
+      :validation="manageStore.required"
       placeholder="Please Select"
       :options="skillsCategory"
+      v-model="placeholder.category"
     />
     <FormKit
       type="select"
       name="frameworkUsed"
       label="framework"
-      validation="required"
+      :validation="manageStore.required"
       placeholder="Please Select"
       hint="which framework did you use"
       :options="framework"
+      v-model="placeholder.frameworkUsed"
     />
 
-    <FormKit type="group" name="start">
+    <FormKit type="group" name="start" v-model="placeholder.start">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           name="month"
-          validation="required|date_val"
+          :validation="`${manageStore.required}|date_val`"
           label="start date"
           placeholder="Please Select"
         />
@@ -53,20 +57,20 @@
           <FormKit
             type="number"
             name="year"
-            validation="required|min:1997"
+            :validation="`${manageStore.required}|min:1997`"
             :value="new Date().getFullYear()"
             step="1"
           />
         </div>
       </div>
     </FormKit>
-    <FormKit type="group" name="end" validation="required">
+    <FormKit type="group" name="end" v-model="placeholder.end">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           name="month"
-          validation="required|date_val"
+          :validation="`${manageStore.required}|date_val`"
           label="end date"
           placeholder="Please Select"
         />
@@ -74,7 +78,7 @@
           <FormKit
             type="number"
             name="year"
-            validation="required|min:1997"
+            :validation="`${manageStore.required}|min:1997`"
             :value="new Date().getFullYear()"
             step="1"
           />
@@ -130,6 +134,7 @@
           type="textarea"
           validation="required"
           suffix-icon="trash"
+          placeholder="my process..."
           @suffix-icon-click="
             placeholder.my_process = placeholder.my_process.filter((_, i) => i !== index)
           "
@@ -159,6 +164,7 @@
           type="textarea"
           validation="required"
           suffix-icon="trash"
+          placeholder="issues encountered..."
           @suffix-icon-click="
             placeholder.issues_encountered = placeholder.issues_encountered.filter(
               (_, i) => i !== index
@@ -189,6 +195,7 @@
           label="learned item"
           type="textarea"
           validation="required"
+          placeholder="what I learned..."
           suffix-icon="trash"
           @suffix-icon-click="
             placeholder.what_i_learned = placeholder.what_i_learned.filter((_, i) => i !== index)
@@ -201,7 +208,13 @@
         />
       </FormKit>
     </div>
-    <FormKit type="checkbox" name="isPrivate" label="Private Repository" :value="false" />
+    <FormKit
+      type="checkbox"
+      name="isPrivate"
+      label="Private Repository"
+      :value="false"
+      v-model="placeholder.isPrivate"
+    />
     <div class="dynam-list" v-auto-animate>
       <h3>useful links</h3>
       <FormKit
@@ -219,12 +232,12 @@
             label="name"
             help="link title for anchor tag"
             validation="required"
-            :placeholder="placeholder.usefulLinks.name"
+            placeholder="link name..."
           />
           <FormKit
             label="link"
             type="text"
-            :placeholder="placeholder.usefulLinks.link"
+            placeholder="https://google.com"
             validation="required"
             name="link"
           />
@@ -233,7 +246,7 @@
             name="desc"
             label="description"
             validation="required"
-            :placeholder="placeholder.usefulLinks.desc"
+            placeholder="description..."
           />
           <ButtonComponent
             type="outline"
@@ -255,16 +268,18 @@
       label="github link"
       name="githubLink"
       help="github repo"
-      validation="required"
-      :placeholder="placeholder.githubLink"
+      :validation="manageStore.required"
+      placeholder="https://github.com/Aleroms"
+      v-model="placeholder.githubLink"
     />
     <FormKit
       type="text"
       label="live site link"
       name="liveSiteLink"
       help="live site"
-      validation="required"
-      :placeholder="placeholder.liveSiteLink"
+      :validation="manageStore.required"
+      placeholder="https://goo..."
+      v-model="placeholder.liveSiteLink"
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>

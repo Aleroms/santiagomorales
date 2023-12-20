@@ -62,6 +62,7 @@ export const useManageStore = defineStore('manageStore', {
       this.activeTitle = 'Add new entry'
       this.isList = false
       this.activeId = getEditId(this.activeId)
+      this.required = 'required'
     },
     edit(itemId) {
       //console.log('edit item ', itemId, getEditId(this.activeId))
@@ -124,6 +125,7 @@ export const useManageStore = defineStore('manageStore', {
       this.isList = true
       this.isEdit = false
       this.isDelete = false
+      this.required = 'required'
     }
   },
   getters: {

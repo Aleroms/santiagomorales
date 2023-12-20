@@ -1,13 +1,14 @@
 <template>
   <FormKit type="form" id="active-learning" @submit="submit" :disable="disable">
-    <FormKit type="file" name="image" label="icon" validation="required" />
+    <FormKit type="file" name="image" label="icon" :validation="manageStore.required" />
     <FormKit
       type="text"
       name="name"
       label="name"
       help="what am I learning?"
-      validation="required"
-      :placeholder="placeholder.name"
+      :validation="manageStore.required"
+      placeholder="actively learning..."
+      v-model="placeholder.name"
     />
     <div v-auto-animate class="fk-wrapper">
       <h4 class="list-title">Body</h4>
@@ -20,7 +21,7 @@
         name="body"
       >
         <div v-for="(item, index) in items" :key="item" class="list-item">
-          <FormKit type="textarea" :index="index" validation="required" />
+          <FormKit type="textarea" :index="index" :validation="manageStore.required" placeholder="item..." />
           <ul class="controls">
             <li>
               <button

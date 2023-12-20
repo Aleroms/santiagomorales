@@ -1,5 +1,5 @@
 //composable
-import { ref, onMounted } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage.js'
 import {
@@ -43,14 +43,15 @@ export function useFormPlaceholder() {
   const manageStore = useManageStore()
   const placeholder = ref({})
 
-  onMounted(async () => {
+  onBeforeMount(async () => {
     try {
       if (manageStore.isEdit) {
         placeholder.value = await getDocument(manageStore.collectionId, manageStore.editId)
-        //console.log('edit mode', placeholder.value)
+        console.log('edit mode', placeholder.value)
       } else {
+        console.log(manageStore.collectionId)
         placeholder.value = getPlaceholder(manageStore.collectionId)
-        //console.log('new entry', placeholder.value)
+        console.log('new entry', placeholder.value)
       }
     } catch (error) {
       console.log(error)

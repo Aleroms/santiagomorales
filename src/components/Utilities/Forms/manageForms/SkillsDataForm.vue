@@ -5,7 +5,7 @@
       label="name"
       help="skill name"
       name="name"
-      validation="required"
+      :validation="manageStore.required"
       :placeholder="placeholder.name"
     />
     <FormKit
@@ -13,11 +13,17 @@
       label="category"
       help="skill category"
       name="category"
-      validation="required"
+      :validation="manageStore.required"
       placeholder="Please select"
       :options="skillsCategory"
     />
-    <FormKit type="file" name="image" accept=".jpg,.png" validation="required" label="icon" />
+    <FormKit
+      type="file"
+      name="image"
+      accept=".jpg,.png"
+      :validation="manageStore.required"
+      label="icon"
+    />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>
 </template>
