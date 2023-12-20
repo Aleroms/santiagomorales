@@ -29,6 +29,15 @@
       placeholder="Please Select"
       :options="skillsCategory"
     />
+    <FormKit
+      type="select"
+      name="frameworkUsed"
+      label="framework"
+      validation="required"
+      placeholder="Please Select"
+      hint="which framework did you use"
+      :options="framework"
+    />
 
     <FormKit type="group" name="start">
       <div class="form-date-wrapper">
@@ -103,13 +112,35 @@
         />
       </FormKit>
     </div>
-    <FormKit
-      type="textarea"
-      name="my_process"
-      label="my process"
-      validation="required"
-      :placeholder="placeholder.my_process"
-    />
+    <div class="dynam-list" v-auto-animate>
+      <h3>my process</h3>
+      <FormKit
+        type="list"
+        :value="['']"
+        dynamic
+        #default="{ items }"
+        name="my_process"
+        v-model="placeholder.my_process"
+      >
+        <FormKit
+          v-for="(item, index) in items"
+          :key="item"
+          :index="index"
+          :label="`process #${index + 1}`"
+          type="textarea"
+          validation="required"
+          suffix-icon="trash"
+          @suffix-icon-click="
+            placeholder.my_process = placeholder.my_process.filter((_, i) => i !== index)
+          "
+        />
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.my_process.push('')"
+        />
+      </FormKit>
+    </div>
     <div class="dynam-list" v-auto-animate>
       <h3>issues encountered</h3>
       <FormKit
@@ -141,13 +172,35 @@
         />
       </FormKit>
     </div>
-    <FormKit
-      type="textarea"
-      name="what_i_learned"
-      label="what i learned"
-      validation="required"
-      :placeholder="placeholder.what_i_learned"
-    />
+    <div class="dynam-list" v-auto-animate>
+      <h3>what I learned</h3>
+      <FormKit
+        type="list"
+        :value="['']"
+        dynamic
+        #default="{ items }"
+        name="what_i_learned"
+        v-model="placeholder.what_i_learned"
+      >
+        <FormKit
+          v-for="(item, index) in items"
+          :key="item"
+          :index="index"
+          label="learned item"
+          type="textarea"
+          validation="required"
+          suffix-icon="trash"
+          @suffix-icon-click="
+            placeholder.what_i_learned = placeholder.what_i_learned.filter((_, i) => i !== index)
+          "
+        />
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.what_i_learned.push('')"
+        />
+      </FormKit>
+    </div>
     <FormKit type="checkbox" name="isPrivate" label="Private Repository" :value="false" />
     <div class="dynam-list" v-auto-animate>
       <h3>useful links</h3>
@@ -170,9 +223,9 @@
           />
           <FormKit
             label="link"
-            type="url"
+            type="text"
             :placeholder="placeholder.usefulLinks.link"
-            validation="required|url"
+            validation="required"
             name="link"
           />
           <FormKit
@@ -198,19 +251,19 @@
       </FormKit>
     </div>
     <FormKit
-      type="url"
+      type="text"
       label="github link"
       name="githubLink"
       help="github repo"
-      validation="required|url"
+      validation="required"
       :placeholder="placeholder.githubLink"
     />
     <FormKit
-      type="url"
+      type="text"
       label="live site link"
       name="liveSiteLink"
       help="live site"
-      validation="required|url"
+      validation="required"
       :placeholder="placeholder.liveSiteLink"
     />
   </FormKit>
@@ -220,7 +273,7 @@
 <script setup>
 import { vAutoAnimate } from '@formkit/auto-animate'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
-import { months, skillsCategory } from '@/utils/formOptions'
+import { months, skillsCategory, framework } from '@/utils/formOptions'
 import { useManageStore } from '@/stores/manage'
 import { useFormPlaceholder } from '@/composables/formPlaceholder.js'
 import { useManageForm } from '@/composables/manageForm.js'
@@ -233,9 +286,8 @@ const { displayMessage, disable, display, submitManageForm } = useManageForm()
 const toolsOptions = ref({})
 
 const submit = async (values) => {
-  values.id = manageStore.isEdit
-    ? placeholder.value.id
-    : placeholder.value.name + '-' + placeholder.value.category
+  values.id = manageStore.isEdit ? placeholder.value.id : values.name + '-' + values.category
+
   const filteredTools = values.toolsUsed.filter((value) => value !== '')
   values.toolsUsed = filteredTools
 
@@ -244,7 +296,6 @@ const submit = async (values) => {
   } catch (error) {
     console.log(error.code, error)
   }
-
 }
 
 onBeforeMount(async () => {

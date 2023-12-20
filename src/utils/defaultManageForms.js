@@ -39,7 +39,7 @@ const activeLearningPlaceholder = {
   name: 'name...'
 }
 const toolsPlaceholder = {
-  name: ''
+  name: 'tool name...'
 }
 const projectsPlaceholder = {
   category: 'Full Stack',
@@ -48,7 +48,7 @@ const projectsPlaceholder = {
   isPrivate: false,
   issues_encountered: ['issues encountered...'],
   liveSiteLink: 'https://google.com',
-  my_process: 'my process...',
+  my_process: ['my process...'],
   name: 'pinia tasks',
   start: {
     month: 'October',
@@ -62,7 +62,7 @@ const projectsPlaceholder = {
       desc: 'description'
     }
   ],
-  what_i_learned: 'what I learned...'
+  what_i_learned: ['what I learned...']
 }
 export {
   educationPlaceholder,

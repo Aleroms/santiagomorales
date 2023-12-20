@@ -5,7 +5,7 @@
         <div class="proj-container">
           <div class="main">
             <h3>{{ data.name }}</h3>
-            <h4 class="subtitle">{{ data.category }}</h4>
+            <h4 class="subtitle">{{ data.category }} {{ data.frameworkUsed }}</h4>
             <p class="subtitle" v-if="data.end !== undefined">
               {{ startMonth }} {{ start.year }} - {{ endMonth }} {{ end.year }}
             </p>
@@ -30,20 +30,20 @@
             </div>
           </div>
           <div class="secondary">
-            <p>
-              my process: <span class="subtitle">{{ cutText(data.my_process) }}</span>
+            <h4>My Process:</h4>
+            <p v-for="process in data.my_process" :key="process" class="subtitle">
+              {{ cutText(process) }}
             </p>
-            <p>
-              what I learned: <span class="subtitle">{{ cutText(data.what_i_learned) }}</span>
+            <h4>What I Learned:</h4>
+            <p v-for="learned in data.what_i_learned" :key="learned" class="subtitle">
+              {{ cutText(learned) }}
             </p>
             <h4>Issues Encountered:</h4>
             <p v-for="issue in data.issues_encountered" :key="issue" class="subtitle">
               {{ cutText(issue) }}
             </p>
-            <p>
-              Description:
-              <span class="subtitle">{{ cutText(data.desc) }}</span>
-            </p>
+            <h4>Description:</h4>
+            <p class="subtitle">{{ cutText(data.desc) }}</p>
           </div>
         </div>
       </template>
@@ -72,12 +72,7 @@ const cutText = (str) => {
 <style lang="scss" scoped>
 .tools {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  .tool {
-    flex: 1;
-  }
+  flex-direction: column;
 }
 .proj-container {
   display: flex;

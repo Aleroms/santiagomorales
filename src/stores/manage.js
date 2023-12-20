@@ -12,6 +12,7 @@ export const useManageStore = defineStore('manageStore', {
     editId: '',
     deleteId: '',
     displayMessage: '',
+    required: 'required',
     listDocuments: [],
     isList: false,
     isEdit: false,
@@ -45,17 +46,14 @@ export const useManageStore = defineStore('manageStore', {
         //did user successfully edit form?
         if (this.isEdit) {
           this.displayMessage = 'successfully modified entry...'
-          this.editId = false
+          this.editResolution()
         } else {
           this.displayMessage = 'successfully created new entry...'
         }
       } else if (code === 'delete') {
         this.displayMessage = 'Item successfully deleted from Firebase...'
-      } else if (typeof code === 'object') {
-        console.log(code)
-        this.displayMessage = 'handle error codes here'
       } else {
-        this.displayMessage = 'error on server side. Please check manage.js...'
+        this.displayMessage = 'handle error codes here'
       }
     },
     addMore() {
@@ -73,6 +71,7 @@ export const useManageStore = defineStore('manageStore', {
       this.editId = itemId
       this.activeId = getEditId(this.activeId)
       this.isEdit = true
+      this.required = ''
     },
     deleteItem(deleteId) {
       //console.log('deleting', deleteId)
@@ -87,6 +86,11 @@ export const useManageStore = defineStore('manageStore', {
       this.setMessage('delete')
       this.setActive('ManageAlert', 'Successfully deleted!', false)
       this.isDelete = false
+    },
+    editResolution() {
+      this.isEdit = false
+      this.editId = ''
+      this.required = 'required'
     },
     result(status) {
       if (status === 'success') {

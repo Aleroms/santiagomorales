@@ -6,10 +6,12 @@ import {
   getDoc,
   getDocs,
   deleteDoc,
-  collection
+  collection,
+  updateDoc
 } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { getAuth, signOut, signInWithEmailAndPassword } from 'firebase/auth'
+import { useManageStore } from '../stores/manage'
 
 // My portfolio web app's Firebase configuration
 const firebaseConfig = {
@@ -97,6 +99,26 @@ const uploadFile3 = async (file, storageId) => {
     url: fileURL
   }
 }
+const updateFile = async (file, storageId, editId) => {
+  //check to see if the file already exists
+  const prevFileDoc = await getDocument(storageId, editId)
+  if (Object.keys(prevFileDoc.image).length !== 0 && prevFileDoc.image.path !== '') {
+    await deleteFile(prevFileDoc.image.path)
+  }
+  
+  const fileName = file[0].name
+  const filePath = `${storageId}/${fileName}`
+  const fileRef = ref(storage, filePath)
+  console.log('storage path', fileRef.fullPath)
+
+  await uploadBytes(fileRef, file[0].file)
+  const fileURL = await getDownloadURL(fileRef)
+  return {
+    name: fileName,
+    path: filePath,
+    url: fileURL
+  }
+}
 
 //deletes image from storage
 const deleteFile = async (path) => {
@@ -110,8 +132,15 @@ const deleteFile = async (path) => {
 }
 
 const submitForm = async (form, collectionId, docId) => {
+  const manageStore = useManageStore()
   const docRef = doc(db, collectionId, docId)
-  await setDoc(docRef, form, { merge: true })
+
+  //update document or creates new document
+  if (manageStore.isEdit) {
+    await updateDoc(docRef, form)
+  } else {
+    await setDoc(docRef, form)
+  }
 }
 
 const getDocument = async (collectionId, docId) => {
@@ -138,6 +167,7 @@ export {
   uploadFile,
   uploadFile2,
   uploadFile3,
+  updateFile,
   submitForm,
   deleteDocument,
   deleteFile,

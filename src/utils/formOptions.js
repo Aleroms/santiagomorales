@@ -32,4 +32,6 @@ const skillsCategory = ['Frontend', 'Backend', 'Full Stack', 'Programming Langua
 
 const educationOptions = ['Associate degree', 'B.A', 'B.S', 'M.S', 'Doctoral degree']
 
-export { employment_type, location_type, months, educationOptions, skillsCategory }
+const framework = ['HTML/CSS', 'Vue', 'React', 'Laravel', 'WordPress']
+
+export { employment_type, location_type, months, educationOptions, skillsCategory, framework }
