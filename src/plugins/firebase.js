@@ -138,8 +138,7 @@ const uploadFile3 = async (file, storageId) => {
     console.log(`File ${fileName} uploaded successfully`)
   }
 
-  // await uploadBytes(fileRef, file[0].file)
-  // const fileURL = await getDownloadURL(fileRef)
+
   return {
     name: fileName,
     path: filePath,

@@ -47,6 +47,8 @@ npm install @formkit/addons
 
 - I was receiving `undefined` values for my component after the pinia store fetched the data in an api call. I was stuck cause I didn't know how to handle this but I reached out for help and I created a `isLoading` boolean that was used when fetching data and updated after receiving data. Now, the data would only be rendered when data was received.
 
+- files were uploading the same fileName for images used in projects. Whenever I would retreive files from Firebase, it would display, the same image. For example, `burrito.png` would display for 6+ projects, since when I uploaded the file its file name was `burrito.png`. Duplicates were not created which led to overwritten images in multiple projects referencing the same image url, `tools/burrito.png`. To resolve this, before uploading the file I checked if the file already existed and would modify the file name to `burrito2.png` instead, so that each image uploaded with the same name would not overwrite and reference the same image. If the file did not exist, simply upload it as is.
+
 ## Useful Links
 
 - [Vue Composables](https://vuejs.org/guide/reusability/composables) - encapsulates and reuses stateful logic
@@ -61,6 +63,6 @@ npm install @formkit/addons
 ## Reminder
 
 [ ] - lowercase on folders and fix the paths that break
-[ ] - do date validation for forms
+[x] - do date validation for forms
 
 ## What I learned
