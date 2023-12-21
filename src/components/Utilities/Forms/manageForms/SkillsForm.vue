@@ -6,7 +6,7 @@
       label="how I approach a problem"
       name="approach_problem"
       validation="required"
-      :placeholder="placeholder.approach_problem"
+      v-model="placeholder.approach_problem"
     />
     <FormKit
       type="textarea"
@@ -14,7 +14,7 @@
       label="how I program"
       name="how_i_program"
       validation="required"
-      :placeholder="placeholder.how_i_program"
+      v-model="placeholder.how_i_program"
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>

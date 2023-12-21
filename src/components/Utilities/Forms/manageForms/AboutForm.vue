@@ -42,13 +42,13 @@ onMounted(async () => {
 <template>
   <FormKit type="form" id="about-form" @submit="submit" :disabled="disable">
     <h4>Hero</h4>
-    <FormKit type="text" label="title" name="title" :placeholder="placeholder.title" />
+    <FormKit type="text" label="title" name="title" v-model="placeholder.title" />
     <FormKit
       type="textarea"
       auto-height
       label="content"
       name="content"
-      :placeholder="placeholder.content"
+      v-model="placeholder.content"
     />
     <!-- my values  -->
     <div v-auto-animate class="fk-wrapper">
@@ -122,14 +122,14 @@ onMounted(async () => {
       auto-height
       label="how I learn"
       name="how_i_learn"
-      :placeholder="placeholder.how_i_learn"
+      v-model="placeholder.how_i_learn"
     />
     <FormKit
       type="textarea"
       auto-height
       label="how I develop"
       name="how_i_develop"
-      :placeholder="placeholder.how_i_develop"
+      v-model="placeholder.how_i_develop"
     />
   </FormKit>
 </template>

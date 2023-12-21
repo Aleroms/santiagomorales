@@ -36,7 +36,7 @@ const db = getFirestore(app)
 const storage = getStorage(app)
 
 //resume
-const resumeRef = ref(storage, 'resume.pdf')
+let resumeRef = ref(storage, 'resume.pdf')
 const resumeURL = async () => {
   try {
     const url = await getDownloadURL(resumeRef)
@@ -45,6 +45,9 @@ const resumeURL = async () => {
     console.log(error)
     throw error
   }
+}
+const setResumePath = (path) => {
+  resumeRef = ref(storage, path)
 }
 
 const signInUserWithEmailAndPassword = async (values) => {
@@ -57,33 +60,7 @@ const logoutUser = async () => {
     console.log(error)
   }
 }
-//depricate
-const uploadFile = async (file, path) => {
-  const fileRef = ref(storage, path)
-  console.log('storage path', fileRef.fullPath)
 
-  try {
-    await uploadBytes(fileRef, file[0].file)
-    const url = await getDownloadURL(fileRef)
-    return url
-  } catch (error) {
-    console.log(error)
-  }
-}
-//depricate
-//uploads and returns imgURL . add to document before uploading
-const uploadFile2 = async (file, path) => {
-  const fileRef = ref(storage, path)
-  console.log('storage path', fileRef.fullPath)
-
-  try {
-    await uploadBytes(fileRef, file[0].file)
-    const url = await getDownloadURL(fileRef)
-    return url
-  } catch (error) {
-    console.log(error)
-  }
-}
 const modifyFileName = async (originalFileName, folderPath) => {
   let modifiedFileName = originalFileName
   let counter = 1
@@ -137,7 +114,6 @@ const uploadFile3 = async (file, storageId) => {
     fileURL = await getDownloadURL(fileRef)
     console.log(`File ${fileName} uploaded successfully`)
   }
-
 
   return {
     name: fileName,
@@ -210,8 +186,6 @@ const deleteDocument = async (collectionId, docId) => {
 
 export {
   resumeURL,
-  uploadFile,
-  uploadFile2,
   uploadFile3,
   updateFile,
   submitForm,
@@ -219,6 +193,7 @@ export {
   deleteFile,
   getDocument,
   getDocuments,
+  setResumePath,
   logoutUser,
   signInUserWithEmailAndPassword
 }

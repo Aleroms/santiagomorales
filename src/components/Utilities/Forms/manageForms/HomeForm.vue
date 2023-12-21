@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
-import { submitForm, getDocument, uploadFile } from '@/plugins/firebase.js'
-import { filterForm } from '@/utils/filterForm.js'
+import { submitForm, getDocument, uploadFile3, setResumePath } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
+import { filterForm } from '@/utils/filterForm.js'
 
 const placeholder = ref({})
 const displayMessage = ref('')
@@ -19,13 +19,21 @@ const submit = async (values) => {
   console.log(values)
 
   try {
-    await uploadFile(values.resume, 'resume.pdf')
-    await uploadFile(values.avatar, 'misc/avatar.jpg')
+    let resFile = undefined
+    let avatarImage = undefined
+    if (values.resume.length !== 0) {
+      resFile = await uploadFile3(values.resume, 'resume')
+      setResumePath(values.resume.path)
+    }
+    if (values.avatar.length !== 0) {
+      avatarImage = await uploadFile3(values.avatar, 'misc')
+    }
 
-    //submit filtered form
-    let filteredForm = filterForm(values)
+    values.resume = resFile
+    values.avatar = avatarImage
 
-    // await submitPageContentForm(values, 'homePage')
+    const filteredForm = filterForm(values)
+
     await submitForm(filteredForm, 'pageContent', 'homePage')
   } catch (error) {
     console.log(error.code, error)
@@ -47,34 +55,20 @@ onMounted(async () => {
 
 <template>
   <FormKit type="form" id="home-form" @submit="submit" :disabled="disable">
-    <FormKit
-      type="file"
-      label="resume"
-      accept=".pdf"
-      multiple="false"
-      name="resume"
-      validation="required"
-    />
-    <FormKit
-      type="file"
-      label="avatar"
-      accept=".jpg,.png"
-      multiple="false"
-      name="avatar"
-      validation="required"
-    />
+    <FormKit type="file" label="resume" accept=".pdf" multiple="false" name="resume" />
+    <FormKit type="file" label="avatar" accept=".jpg,.png" multiple="false" name="avatar" />
     <FormKit
       type="text"
       label="title"
       name="title"
-      :placeholder="placeholder.title"
+      v-model="placeholder.title"
       validation="required"
     />
     <FormKit
       type="text"
       label="subtitle"
       name="subtitle"
-      :placeholder="placeholder.subtitle"
+      v-model="placeholder.subtitle"
       validation="required"
     />
     <!-- Form Kit List  for slug-->
@@ -120,7 +114,7 @@ onMounted(async () => {
       auto-height
       label="keywords"
       name="keywords"
-      :placeholder="placeholder.keywords"
+      v-model="placeholder.keywords"
       validation="required"
     />
 
@@ -203,21 +197,21 @@ onMounted(async () => {
       type="text"
       label="skills tagline"
       name="skills"
-      :placeholder="placeholder.skills"
+      v-model="placeholder.skills"
       validation="required"
     />
     <FormKit
       type="text"
       label="projects tagline"
       name="projects"
-      :placeholder="placeholder.projects"
+      v-model="placeholder.projects"
       validation="required"
     />
     <FormKit
       type="text"
       label="contact tagline"
       name="contact"
-      :placeholder="placeholder.contact"
+      v-model="placeholder.contact"
       validation="required"
     />
   </FormKit>

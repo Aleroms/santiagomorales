@@ -6,7 +6,7 @@
       help="hero section title"
       name="title"
       validation="required"
-      :placeholder="placeholder.title"
+      v-model="placeholder.title"
     />
     <FormKit
       type="textarea"
@@ -15,7 +15,7 @@
       name="content"
       help="main paragraph users see"
       validation="required"
-      :placeholder="placeholder.content"
+      v-model="placeholder.content"
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>
