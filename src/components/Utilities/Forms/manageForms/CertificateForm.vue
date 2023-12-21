@@ -4,16 +4,18 @@
       type="text"
       label="certificate name"
       name="name"
-      validation="required"
-      :placeholder="placeholder.name"
+      placeholder="certificate name"
+      :validation="manageStore.required"
+      v-model="placeholder.name"
     />
     <FormKit
       type="text"
       label="issuer"
       help="where did you get certificate from"
       name="issuer"
-      validation="required"
-      :placeholder="placeholder.issuer"
+      placeholder="udemy..."
+      :validation="manageStore.required"
+      v-model="placeholder.issuer"
     />
     <FormKit
       type="file"
@@ -21,9 +23,9 @@
       label="company logo"
       help="this is used as a thumbnail for displaying the certificate"
       accept=".jpg,.png"
-      validation="required"
+      :validation="manageStore.required"
     />
-    <FormKit type="group" name="issue_date" validation="required">
+    <FormKit type="group" name="issue_date" v-model="placeholder.issue_date">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
@@ -31,13 +33,13 @@
           label="month"
           name="month"
           placeholder="Please Select"
-          validation="required"
+          :validation="manageStore.required"
         />
         <FormKit
           type="number"
           label="year"
           name="year"
-          validation="required|min:1997"
+          :validation="`${manageStore.required}|min:1997`"
           :value="current_year"
         />
       </div>
@@ -46,15 +48,17 @@
       type="text"
       label="certificate ID"
       name="cNum"
-      validation="required"
-      :placeholder="placeholder.cNum"
+      :validation="manageStore.required"
+      v-model="placeholder.cNum"
+      placeholder="certificate number"
     />
     <FormKit
       type="text"
       label="certificate url"
       name="certUrl"
-      validation="required"
-      :placeholder="placeholder.certUrl"
+      :validation="`${manageStore.required}|url`"
+      v-model="placeholder.certUrl"
+      placeholder="https://www.go..."
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>

@@ -4,14 +4,15 @@
       type="text"
       label="school"
       name="school"
-      validation="required"
-      :placeholder="placeholder.school"
+      placeholder="Ex: UC Irvine"
+      :validation="manageStore.required"
+      v-model="placeholder.school"
     />
     <FormKit
       type="file"
       label="school logo"
       name="image"
-      validation="required"
+      :validation="manageStore.required"
       accept=".jpg,.png"
     />
     <FormKit
@@ -19,45 +20,47 @@
       :options="educationOptions"
       label="degree"
       name="degree"
-      validation="required"
+      :validation="manageStore.required"
       placeholder="Please Select"
+      v-model="placeholder.degree"
     />
     <FormKit
       type="text"
       label="field of study"
       name="field_of_study"
-      :placeholder="placeholder.field_of_study"
-      validation="required"
+      v-model="placeholder.field_of_study"
+      :validation="manageStore.required"
+      placeholder="Ex: Computer Science"
     />
-    <FormKit type="group" name="start">
+    <FormKit type="group" name="start" v-model="placeholder.start">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           label="start date"
           name="month"
-          validation="required|date_val"
+          :validation="`${manageStore.required}|date_val`"
           placeholder="Please Select "
         />
         <div class="number-pad">
           <FormKit
             type="number"
             name="year"
-            validation="required|min:1997"
+            :validation="`${manageStore.required}|min:1997`"
             :value="new Date().getFullYear()"
             step="1"
           />
         </div>
       </div>
     </FormKit>
-    <FormKit type="group" name="end">
+    <FormKit type="group" name="end" v-model="placeholder.end">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           label="end date"
           name="month"
-          validation="required|date_val"
+          :validation="`${manageStore.required}|date_val`"
           placeholder="Please Select "
         />
         <div class="number-pad">
@@ -76,15 +79,17 @@
       type="textarea"
       name="activities"
       label="activities and societies"
-      :placeholder="placeholder.activities"
-      validation="required"
+      v-model="placeholder.activities"
+      :validation="manageStore.required"
+      placeholder="Ex: VGDC"
     />
     <FormKit
       type="textarea"
       name="description"
       label="description"
-      :placeholder="placeholder.description"
-      validation="required"
+      placeholder="description..."
+      v-model="placeholder.description"
+      :validation="manageStore.required"
     />
   </FormKit>
   <div v-if="display">

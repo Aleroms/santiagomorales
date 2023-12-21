@@ -1,20 +1,28 @@
 <template>
   <FormKit type="form" id="skills-category-form" @submit="submit" :disable="disable">
-    <FormKit type="file" accept=".jpg,.png" name="image" label="image" validation="required" />
+    <FormKit
+      type="file"
+      accept=".jpg,.png"
+      name="image"
+      label="image"
+      :validation="manageStore.required"
+    />
     <FormKit
       type="text"
       label="name"
       name="name"
       hint="skills category name"
-      validation="required"
-      :placeholder="placeholder.name"
+      :validation="manageStore.required"
+      placeholder="frontend"
+      v-model="placeholder.name"
     />
     <FormKit
       type="textarea"
       label="description"
       name="desc"
-      validation="required"
-      :placeholder="placeholder.desc"
+      placeholder="frontend is awesome bcz backend bad! Stinky!!"
+      :validation="manageStore.required"
+      v-model="placeholder.desc"
     />
   </FormKit>
   <p v-if="display">{{ displayMessage }}</p>

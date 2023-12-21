@@ -5,8 +5,9 @@
       label="title"
       name="title"
       hint="job title"
-      validation="required"
-      :placeholder="placeholder.title"
+      placeholder="job title"
+      :validation="manageStore.required"
+      v-model="placeholder.title"
     />
     <FormKit
       type="select"
@@ -14,28 +15,31 @@
       label="employment type"
       placeholder="Please Select"
       name="emp_type"
-      validation="required"
+      :validation="manageStore.required"
+      v-model="placeholder.emp_type"
     />
     <FormKit
       type="text"
       label="company name"
       name="company"
-      validation="required"
-      :placeholder="placeholder.company"
+      placeholder="company"
+      :validation="manageStore.required"
+      v-model="placeholder.company"
     />
     <FormKit
       type="file"
       label="comapny logo"
       name="image"
-      validation="required"
+      :validation="manageStore.required"
       accept=".jpg,.png"
     />
     <FormKit
       type="text"
       label="location"
       name="location"
-      validation="required"
-      :placeholder="placeholder.location"
+      :validation="manageStore.required"
+      v-model="placeholder.location"
+      placeholder="Irvine, California"
     />
     <FormKit
       type="select"
@@ -43,8 +47,9 @@
       label="location type"
       name="loc_type"
       help="pick a location type (ex: remote)"
-      validation="required"
+      :validation="manageStore.required"
       placeholder="Please Select"
+      v-model="placeholder.loc_type"
     />
     <FormKit
       type="checkbox"
@@ -52,15 +57,16 @@
       name="current_job"
       :value="current_role"
       @click="current_role = !current_role"
+      v-model="placeholder.current_job"
     />
-    <FormKit type="group" name="start">
+    <FormKit type="group" name="start" v-model="placeholder.start">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           name="month"
           label="start date"
-          validation="required|date_val"
+          :validation="`${manageStore.required}|date_val`"
           placeholder="Please Select"
         />
         <div class="number-pad">
@@ -69,24 +75,30 @@
             name="year"
             step="1"
             class="number-pad"
-            validation="required|min:1997"
+            :validation="`${manageStore.required}|min:1997`"
             :value="current_year"
           />
         </div>
       </div>
     </FormKit>
-    <FormKit type="group" name="end" :disabled="current_role">
+    <FormKit type="group" name="end" :disabled="current_role" v-model="placeholder.end">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
           :options="months"
           name="month"
           label="end date"
-          validation="date_val"
+          :validation="`${manageStore.required}date_val`"
           placeholder="Please Select"
         />
         <div class="number-pad">
-          <FormKit type="number" name="year" :value="current_year" step="1" validation="min:1997" />
+          <FormKit
+            type="number"
+            name="year"
+            :value="current_year"
+            step="1"
+            :validation="`${manageStore.required}min:1997`"
+          />
         </div>
       </div>
     </FormKit>

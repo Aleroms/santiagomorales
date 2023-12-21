@@ -5,8 +5,9 @@
       label="name"
       help="skill name"
       name="name"
+      placeholder="pinia"
       :validation="manageStore.required"
-      :placeholder="placeholder.name"
+      v-model="placeholder.name"
     />
     <FormKit
       type="select"
@@ -15,6 +16,7 @@
       name="category"
       :validation="manageStore.required"
       placeholder="Please select"
+      v-model="placeholder.category"
       :options="skillsCategory"
     />
     <FormKit

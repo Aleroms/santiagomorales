@@ -1,38 +1,51 @@
 const educationPlaceholder = {
-  school: 'Ex: UC Irvine',
-  field_of_study: 'Ex: Computer Science',
-  activities: 'Ex: VGDC',
-  description: 'description...'
+  school: '',
+  degree: '',
+  field_of_study: '',
+  start: {
+    month: '',
+    year: 2023
+  },
+  end: {
+    month: '',
+    year: 2023
+  },
+  activities: '',
+  description: ''
 }
 const workExpPlaceholder = {
-  company: 'company',
+  company: '',
   current_job: false,
-  emp_type: 'Please Select',
+  emp_type: '',
   end: {
-    month: 'January',
+    month: '',
     year: 2023
   },
-  loc_type: 'Please Select',
-  location: 'Irvine, California',
+  loc_type: '',
+  location: '',
   start: {
-    month: 'January',
+    month: '',
     year: 2023
   },
-  title: 'Job Title'
+  title: ''
 }
 const certificatePlaceholder = {
-  name: 'certificate name',
-  issuer: 'udemy...',
-  cNum: 'certificate number',
-  certUrl: 'https://www.go...'
+  name: '',
+  issuer: '',
+  issue_date: {
+    month: '',
+    year: 2023
+  },
+  cNum: '',
+  certUrl: ''
 }
 const skillsPlaceholder = {
-  category: 'frontend',
-  name: 'pinia'
+  category: '',
+  name: ''
 }
 const skillsCategoryPlaceholder = {
-  name: 'frontend',
-  desc: 'frontend is awesome bcz backend bad! Sticky!!'
+  name: '',
+  desc: ''
 }
 const activeLearningPlaceholder = {
   body: ['', '', ''],
