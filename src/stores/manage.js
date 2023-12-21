@@ -53,7 +53,7 @@ export const useManageStore = defineStore('manageStore', {
       } else if (code === 'delete') {
         this.displayMessage = 'Item successfully deleted from Firebase...'
       } else {
-        this.displayMessage = 'handle error codes here'
+        this.displayMessage = code.message
       }
     },
     addMore() {

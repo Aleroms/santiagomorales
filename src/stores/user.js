@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia'
-import { signInUserWithEmailAndPassword, logoutUser } from '../plugins/firebase'
+import {
+  signInUserWithEmailAndPassword,
+  logoutUser,
+  signInUserAnonymously
+} from '../plugins/firebase'
 import { useStorage } from '@vueuse/core'
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -8,6 +12,10 @@ export const useUserStore = defineStore('userStore', {
   actions: {
     async login(values) {
       await signInUserWithEmailAndPassword(values)
+      this.userLoggedIn = true
+    },
+    async loginAnonymously() {
+      await signInUserAnonymously()
       this.userLoggedIn = true
     },
     async logout() {

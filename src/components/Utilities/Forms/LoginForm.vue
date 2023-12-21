@@ -10,6 +10,7 @@
       <label for="password">Password</label>
       <Field type="password" name="password" autocomplete="on" />
       <button type="submit" class="btn" :disabled="login_in_submission">Login</button>
+      <p class="subtitle guest" @click="loginAnon">continue as guest</p>
     </Form>
   </div>
 </template>
@@ -53,6 +54,25 @@ const login = async (values) => {
   router.push('/manage')
 }
 
+const loginAnon = async () => {
+  login_alert_display.value = true
+  login_alert_msg.value = 'Logging in...'
+  login_in_submission.value = true
+
+  try {
+    await userStore.loginAnonymously()
+  } catch (error) {
+    console.log(error)
+    login_alert_msg.value = 'An error has occured...'
+    login_in_submission.value = false
+    return
+  }
+  login_alert_msg.value = 'Success'
+  login_in_submission.value = false
+  //everything OK - redirect
+  router.push('/manage')
+}
+
 //Form Validation
 const validateEmail = (value) => {
   // if the field is empty
@@ -70,6 +90,14 @@ const validateEmail = (value) => {
 </script>
 
 <style lang="scss" scoped>
+.guest {
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-light-1);
+  }
+}
 .login-alert {
   margin-bottom: 1rem;
   text-align: center;

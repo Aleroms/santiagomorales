@@ -36,7 +36,8 @@ const submit = async (values) => {
 
     await submitForm(filteredForm, 'pageContent', 'homePage')
   } catch (error) {
-    console.log(error.code, error)
+    console.log(error)
+    console.log(error.code)
     manageStore.result(error)
     return
   }

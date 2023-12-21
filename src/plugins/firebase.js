@@ -10,7 +10,7 @@ import {
   updateDoc
 } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-import { getAuth, signOut, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signOut, signInWithEmailAndPassword, signInAnonymously } from 'firebase/auth'
 import { useManageStore } from '../stores/manage'
 
 // My portfolio web app's Firebase configuration
@@ -52,6 +52,9 @@ const setResumePath = (path) => {
 
 const signInUserWithEmailAndPassword = async (values) => {
   await signInWithEmailAndPassword(auth, values.email, values.password)
+}
+const signInUserAnonymously = async () => {
+  await signInAnonymously(auth)
 }
 const logoutUser = async () => {
   try {
@@ -195,5 +198,6 @@ export {
   getDocuments,
   setResumePath,
   logoutUser,
-  signInUserWithEmailAndPassword
+  signInUserWithEmailAndPassword,
+  signInUserAnonymously
 }

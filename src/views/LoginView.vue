@@ -2,7 +2,6 @@
   <section class="login-container">
     <LoginForm />
     <div class="go-home">
-      <!-- <font-awesome-icon icon="fa-solid fa-chevron-left" color="var(--heading-color)" /> -->
       <RouterLink to="/">Go Home</RouterLink>
     </div>
   </section>

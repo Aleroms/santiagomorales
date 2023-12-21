@@ -26,6 +26,7 @@ const props = defineProps({
   text-align: center;
   transition: 0.3s ease-in-out;
   color: var(--text-light-1);
+  cursor: pointer;
 }
 .filled {
   background-color: var(--primary);
