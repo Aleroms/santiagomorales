@@ -1,11 +1,12 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin, faThreads } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowDown,
   faArrowUp,
   faArrowUpRightFromSquare,
   faChevronLeft,
+  faChevronRight,
   faCodeBranch,
   faEnvelope,
   faFile,
@@ -38,7 +39,9 @@ library.add(
   faPlus,
   faPen,
   faTrash,
-  faArrowUpRightFromSquare
+  faArrowUpRightFromSquare,
+  faChevronRight,
+  faThreads
 )
 
 export { FontAwesomeIcon }

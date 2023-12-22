@@ -38,6 +38,10 @@ onMounted(async () => {
     } catch (error) {
       console.log(error)
     }
+  } else if (props.social === 'threads') {
+    link.value = 'https://www.threads.net/@just.santi_'
+    icon.value = 'fa-brands fa-threads'
+    name.value = '@just.santi_'
   }
 })
 </script>

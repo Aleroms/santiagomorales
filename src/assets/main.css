@@ -1,5 +1,9 @@
 :root {
   --primary: #42b983;
+  --primary-green: #006837;
+  --secondary-green: #39B54A;
+  --primary-blue: #1E53DB;
+  --secondary-blue: #119DEA;
   --secondary: #1a1a1a;
   --secondary-soft: #242424;
   --tertiary: #ccc;

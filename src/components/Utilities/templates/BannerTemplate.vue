@@ -1,8 +1,11 @@
 <template>
   <div class="banner-template">
-    <div class="img-wrapper">
+    <!-- <div class="img-wrapper">
       <img :src="props.image.url" :alt="image.name" />
-    </div>
+    </div> -->
+    <slot name="card">
+      <p>no card provided</p>
+    </slot>
     <div class="info">
       <div class="primary">
         <slot name="primary">
@@ -29,12 +32,12 @@ console.log(props)
 </script>
 
 <style lang="scss" scoped>
-.info{
+.info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.primary{
+.primary {
   max-width: 500px;
 }
 
@@ -46,15 +49,14 @@ console.log(props)
   flex-direction: row-reverse;
   margin: 3rem;
   justify-content: space-evenly;
+  gap: 10px;
 }
-.img-wrapper {
-  max-height: 500px;
-  max-width: 500px;
 
-  img {
-    width: 100%;
-    // padding: 0.625rem;
-    box-sizing: border-box;
+
+@media (max-width: 845px) {
+  .banner-template {
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>
