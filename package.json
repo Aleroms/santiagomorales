@@ -19,6 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.0",
     "@fortawesome/vue-fontawesome": "^3.0.5",
     "@vueuse/core": "^10.6.1",
+    "@vueuse/motion": "^2.0.0",
     "firebase": "^10.7.0",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.2",

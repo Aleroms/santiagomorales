@@ -1,8 +1,5 @@
 <template>
   <div class="banner-template">
-    <!-- <div class="img-wrapper">
-      <img :src="props.image.url" :alt="image.name" />
-    </div> -->
     <slot name="card">
       <p>no card provided</p>
     </slot>
@@ -22,13 +19,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  image: {
-    type: Object,
-    required: true
-  }
-})
-console.log(props)
+
 </script>
 
 <style lang="scss" scoped>

@@ -2,11 +2,11 @@
   <div class="home">
     <BannerTemplate>
       <template #card>
-        <ImageCard :image="data.avatar" />
+        <ImageCard :image="data.avatar" v-motion="motionFloat" />
       </template>
       <template #primary>
-        <h1 class="title">{{ data.title }}</h1>
-        <h2 class="subtitle">{{ data.subtitle }}</h2>
+        <h1 class="title">{{ props.data.title }}</h1>
+        <h2 class="gradient-text">{{ data.subtitle }}</h2>
         <Typewriter :data="data.slug" />
       </template>
       <template #secondary>
@@ -14,13 +14,13 @@
           <p>{{ data.keywords }}</p>
         </div>
         <div class="socials">
-          <SocialMedia social="github" size="lg" />
-          <SocialMedia social="linkedin" size="lg" />
-          <SocialMedia social="threads" size="lg" />
+          <SocialMedia social="github" size="xl" />
+          <SocialMedia social="linkedin" size="xl" />
+          <SocialMedia social="threads" size="xl" />
         </div>
         <div class="resume-wrapper">
-          <font-awesome-icon icon="fa-solid fa-chevron-right" color="#39B54A" />
-          <a :href="data.resume.url">view resume</a>
+          <font-awesome-icon icon="fa-solid fa-chevron-right" color="#39B54A" class="anim-icon" />
+          <a :href="data.resume.url" class="anim-text">view resume</a>
         </div>
       </template>
     </BannerTemplate>
@@ -32,6 +32,7 @@ import Typewriter from '../Utilities/Typewriter.vue'
 import BannerTemplate from '../Utilities/templates/BannerTemplate.vue'
 import ImageCard from '../card/ImageCard.vue'
 import SocialMedia from '../socials/SocialMedia.vue'
+import { motionFloat } from '@/plugins/motion'
 
 const props = defineProps({
   data: {
@@ -39,8 +40,6 @@ const props = defineProps({
     required: true
   }
 })
-
-console.log(props.data)
 </script>
 
 <style lang="scss" scoped>
@@ -53,6 +52,23 @@ console.log(props.data)
 .resume-wrapper {
   a {
     margin-left: 10px;
+  }
+  .anim-icon {
+    margin-right: 15px;
+    transition: 0.7s ease-in-out;
+  }
+
+  .anim-text {
+    transition: 0.7s ease-in-out;
+  }
+
+  &:hover {
+    .anim-icon {
+      transform: rotate(360deg);
+    }
+    .anim-text {
+      transform: translateX(15px);
+    }
   }
 }
 .secondary {

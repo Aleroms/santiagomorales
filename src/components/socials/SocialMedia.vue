@@ -51,4 +51,10 @@ span {
   margin-left: 0.625rem;
   font-weight: 400;
 }
+svg {
+  transition: 0.3s ease-in;
+  &:hover {
+    color: var(--fa-light);
+  }
+}
 </style>

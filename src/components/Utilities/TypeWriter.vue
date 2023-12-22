@@ -1,6 +1,6 @@
 <template>
   <div class="type-writer">
-    <h3 class="text">{{ state.text }}</h3>
+    <h3 class="text subtitle">{{ state.text }}</h3>
   </div>
 </template>
 
@@ -59,6 +59,7 @@ function removeText() {
   display: flex;
   align-items: center;
   height: 1.25rem;
+  letter-spacing: 0.125rem;
 
   .text {
     animation: blink 1s infinite;
@@ -66,7 +67,7 @@ function removeText() {
     border-right: 2px solid var(--divider-dark-1);
     border-style: solid;
     border-color: transparent;
-    font-weight: bold;
+
   }
 }
 

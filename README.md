@@ -15,7 +15,13 @@ Afterwards, I architected the structure of data I would store in Firebase. My ma
 - Firebase `npm install firebase`
 - Firestore `npm install firebase@10.7.0 --save`
 - Sass `npm install -D sass`
-- VueUse `npm install @vueuse/core`
+- VueUse
+
+```shell
+npm install @vueuse/core
+npm install @vueuse/motion
+```
+
 - Fontawesome
 
 ```shell
