@@ -1,7 +1,13 @@
 <template>
   <div class="skills-tab-view-wrapper">
     <div class="heading">
-      <div class="heading-item" v-for="cat in category" :key="cat.id" @click="test(cat.name)">
+      <div
+        class="heading-item"
+        v-for="cat in category"
+        :key="cat.id"
+        @click="test(cat.name)"
+        :class="{ active: cat.name === selectedCategory }"
+      >
         <h2>{{ cat.name }}</h2>
         <div class="line g-rad-1"></div>
       </div>
@@ -22,9 +28,10 @@ import { ref, onMounted } from 'vue'
 import { getDocuments } from '@/plugins/firebase.js'
 const category = ref([])
 const skills = ref([])
+const selectedCategory = ref(null)
 
 const test = (category) => {
-  console.log(category)
+  selectedCategory.value = category
 }
 onMounted(async () => {
   try {
@@ -59,15 +66,37 @@ onMounted(async () => {
   cursor: pointer;
 
   .heading-item {
+    position: relative;
+
+    h2 {
+      color: var(--text-hover-1);
+    }
     .line {
-      width: 100%;
-      height: 3px;
-      border-radius: 15px;
-      margin: 0.425rem 0;
+      transform: scale(0);
+      height: 2px;
+      border-radius: 10px;
+      margin: 0.425rem auto;
+      background-color: var(--primary);
+      transition:
+        transform 0.3s,
+        margin 0.3s;
     }
     &:hover {
       h2 {
-        color: var(--primary);
+        color: var(--text-light-1);
+      }
+      .line {
+        transform: scale(1);
+        margin: 0.425rem 0;
+      }
+    }
+    &.active {
+      h2 {
+        color: var(--text-light-1);
+      }
+      .line {
+        transform: scale(1);
+        margin: 0.425rem 0;
       }
     }
   }
