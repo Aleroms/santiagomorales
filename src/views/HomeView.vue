@@ -2,6 +2,7 @@
 import HomeBanner from '../components/banners/HomeBanner.vue'
 import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
+import SectionHeader from '@/components/Utilities/SectionHeader.vue'
 const homePage = ref({})
 const isDataReady = ref(false)
 
@@ -30,5 +31,16 @@ onBeforeMount(async () => {
         title: homePage.title
       }"
     />
+    <section class="about-me container">
+      <SectionHeader title="About Me" id="about-me" />
+    </section>
   </div>
 </template>
+
+<style>
+.container {
+  max-width: 1280px;
+  margin: 1rem auto;
+  padding: 0 1.625rem;
+}
+</style>

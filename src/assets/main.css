@@ -17,8 +17,29 @@
   --toggle-collapse: #ccc;
   --slider-1: #2f2f2f;
   --slider-2: #fff;
+  --slider-3: #39b54a;
+  --slider-4: #006837;
   --divider-dark-1: rgba(84, 84, 84, 0.65);
   --fa-light: #838383;
+}
+
+/* scrollbar stuff  */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: var(--slider-1);
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--slider-3);
+}
+:webkit-scroll-thumb:hover {
+  background: var(--slider-4);
 }
 
 h1,
@@ -104,8 +125,6 @@ body {
   /* Fallback: Set a background color. */
   background-color: var(--primary-blue);
 
-  /* Create the gradient. */
-  background-image: linear-gradient(45deg, var(--secondary-blue), var(--secondary-green));
   /* background-image: linear-gradient(45deg, #f3ec78, #af4261); */
 
   /* Set the background size and repeat properties. */
@@ -120,6 +139,13 @@ body {
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
+.g-text-1 {
+  /* Create the gradient. */
+  background-image: linear-gradient(45deg, var(--secondary-blue), var(--secondary-green));
+}
+.g-text-2 {
+  background-image: linear-gradient(45deg, #f3ec78, #af4261);
+}
 
 [color-scheme='light'] {
   background-color: #fff;
@@ -130,4 +156,6 @@ body {
   --divider-dark-1: rgba(60, 60, 60, 0.29);
   --slider-1: #f1f1f1;
   --slider-2: #8e8e8e;
+  --slider-3: var(--primary-blue);
+  --slider-4: var(--secondary-green);
 }

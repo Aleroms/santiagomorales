@@ -6,7 +6,7 @@
       </template>
       <template #primary>
         <h1 class="title">{{ props.data.title }}</h1>
-        <h2 class="gradient-text">{{ data.subtitle }}</h2>
+        <h2 class="gradient-text g-text-1">{{ data.subtitle }}</h2>
         <Typewriter :data="data.slug" />
       </template>
       <template #secondary>
@@ -19,8 +19,8 @@
           <SocialMedia social="threads" size="xl" />
         </div>
         <div class="resume-wrapper">
-          <font-awesome-icon icon="fa-solid fa-chevron-right" color="#39B54A" class="anim-icon" />
-          <a :href="data.resume.url" class="anim-text">view resume</a>
+          <font-awesome-icon icon="fa-solid fa-chevron-right" color="yellow" class="anim-icon" />
+          <a :href="data.resume.url" class="anim-text gradient-text g-text-2">view resume</a>
         </div>
       </template>
     </BannerTemplate>
@@ -50,9 +50,7 @@ const props = defineProps({
   margin: 1rem 0;
 }
 .resume-wrapper {
-  a {
-    margin-left: 10px;
-  }
+
   .anim-icon {
     margin-right: 15px;
     transition: 0.7s ease-in-out;
@@ -60,6 +58,7 @@ const props = defineProps({
 
   .anim-text {
     transition: 0.7s ease-in-out;
+    margin-left: 10px;
   }
 
   &:hover {
@@ -68,6 +67,7 @@ const props = defineProps({
     }
     .anim-text {
       transform: translateX(15px);
+      letter-spacing: 0.1rem;
     }
   }
 }
