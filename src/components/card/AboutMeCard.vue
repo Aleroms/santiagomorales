@@ -13,6 +13,7 @@
 
 <script setup>
 import CardTemplate from '../Utilities/templates/CardTemplate.vue'
+
 const props = defineProps({
   data: {
     type: Array,
@@ -31,7 +32,7 @@ const props = defineProps({
   align-items: center;
   justify-content: space-evenly;
 
-  p{
+  p {
     margin: 0.625rem;
   }
 }

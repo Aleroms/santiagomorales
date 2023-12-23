@@ -25,3 +25,16 @@ export const motionFloat = {
     }
   }
 }
+export const motionFadeSlideUp = {
+  initial: {
+    y: 7,
+    opacity: 0
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1000
+    }
+  }
+}

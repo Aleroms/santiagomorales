@@ -40,6 +40,7 @@ const props = defineProps({
     required: true
   }
 })
+console.log(props.data.avatar.url)
 </script>
 
 <style lang="scss" scoped>
@@ -50,7 +51,6 @@ const props = defineProps({
   margin: 1rem 0;
 }
 .resume-wrapper {
-
   .anim-icon {
     margin-right: 15px;
     transition: 0.7s ease-in-out;

@@ -18,6 +18,8 @@ const submit = async (values) => {
   display.value = true
   console.log(values)
 
+  manageStore.isEdit = true
+
   try {
     let resFile = undefined
     let avatarImage = undefined
