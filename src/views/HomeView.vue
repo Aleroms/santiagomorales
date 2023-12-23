@@ -4,6 +4,7 @@ import AboutMeCard from '@/components/card/AboutMeCard.vue'
 import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
 import SectionHeader from '@/components/Utilities/SectionHeader.vue'
+import SkillsTabView from '@/components/tabview/SkillsTabView.vue'
 const homePage = ref({})
 const isDataReady = ref(false)
 
@@ -36,6 +37,13 @@ onBeforeMount(async () => {
       <SectionHeader title="About Me" id="about-me" />
       <AboutMeCard :data="homePage.introduction" v-if="isDataReady" />
     </section>
+    <section class="skills container">
+      <SectionHeader title="My Skills" id="skills" />
+      <div class="skills-tagline">
+        <p>{{ homePage.skills }}</p>
+      </div>
+      <SkillsTabView />
+    </section>
   </div>
 </template>
 
@@ -44,5 +52,12 @@ onBeforeMount(async () => {
   max-width: 1280px;
   margin: 1rem auto;
   padding: 0 1.625rem;
+}
+.skills-tagline {
+  text-align: center;
+  max-width: 550px;
+  margin: 8rem auto;
+  line-height: 3rem;
+  font-size: 20px;
 }
 </style>

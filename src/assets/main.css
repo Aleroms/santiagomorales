@@ -93,6 +93,12 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.custom-hr-1 {
+  height: 1px;
+  border: none;
+  margin: 1rem;
+  background-color: var(--divider-dark-1);
+}
 .fk-input-global {
   color: var(--text-light-1) !important;
 }
@@ -144,6 +150,9 @@ body {
 }
 .g-text-2 {
   background-image: linear-gradient(45deg, #f3ec78, #af4261);
+}
+.g-rad-1 {
+  background-image: radial-gradient( var(--secondary-green),var(--secondary-blue));
 }
 
 [color-scheme='light'] {
