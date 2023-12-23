@@ -1,5 +1,6 @@
 <script setup>
-import HomeBanner from '../components/banners/HomeBanner.vue'
+import HomeBanner from '@/components/banners/HomeBanner.vue'
+import AboutMeCard from '@/components/card/AboutMeCard.vue'
 import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
 import SectionHeader from '@/components/Utilities/SectionHeader.vue'
@@ -33,6 +34,7 @@ onBeforeMount(async () => {
     />
     <section class="about-me container">
       <SectionHeader title="About Me" id="about-me" />
+      <AboutMeCard :data="homePage.introduction" v-if="isDataReady" />
     </section>
   </div>
 </template>

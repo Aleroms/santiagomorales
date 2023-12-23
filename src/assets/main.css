@@ -21,6 +21,8 @@
   --slider-4: #006837;
   --divider-dark-1: rgba(84, 84, 84, 0.65);
   --fa-light: #838383;
+  --box-shadow-bg: hsl(232, 11%, 15%);
+  --box-shadow-bg-light: hsl(233, 8%, 19%);
 }
 
 /* scrollbar stuff  */
@@ -37,9 +39,6 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: var(--slider-3);
-}
-:webkit-scroll-thumb:hover {
-  background: var(--slider-4);
 }
 
 h1,
@@ -158,4 +157,7 @@ body {
   --slider-2: #8e8e8e;
   --slider-3: var(--primary-blue);
   --slider-4: var(--secondary-green);
+
+  --box-shadow-bg: hsl(0, 0%, 100%);
+  --box-shadow-bg-light: hsl(0, 0%, 100%);
 }

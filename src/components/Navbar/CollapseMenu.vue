@@ -13,8 +13,8 @@
         <ToggleSwitch />
       </div>
       <div class="contact">
-        <SocialMedia social="github" size="2xl"/>
-        <SocialMedia social="linkedin" size="2xl"/>
+        <SocialMedia social="github" size="2xl" />
+        <SocialMedia social="linkedin" size="2xl" />
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
 <script setup>
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import { useCollapsedMenuStore } from '@/stores/collapsedMenu'
-import SocialMedia from '../socials/socialmedia.vue'
+import SocialMedia from '@/components/socials/socialmedia.vue'
 
 const collapsedMenu = useCollapsedMenuStore()
 

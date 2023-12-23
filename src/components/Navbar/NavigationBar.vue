@@ -29,8 +29,8 @@
       <div class="nav-links-secondary">
         <!-- toggles dark/light mode -->
         <ToggleSwitch />
-        <SocialMedia social="github" size="2xl"/>
-        <SocialMedia social="linkedin" size="2xl"/>
+        <SocialMedia social="github" size="2xl" />
+        <SocialMedia social="linkedin" size="2xl" />
       </div>
     </div>
     <!-- Hamburger menu  -->
@@ -42,8 +42,8 @@
 import { RouterLink } from 'vue-router'
 import { useWindowWidth } from '@/composables/windowWidth.js'
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
-import HamburgerMenu from '../Utilities/HamburgerMenu.vue'
-import SocialMedia from '../socials/SocialMedia.vue'
+import HamburgerMenu from '@/components/Utilities/HamburgerMenu.vue'
+import SocialMedia from '@/components/socials/SocialMedia.vue'
 
 const { windowWidth } = useWindowWidth()
 </script>
