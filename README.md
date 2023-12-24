@@ -65,6 +65,7 @@ npm install @formkit/addons
 - [Simple Local Storage implementation using Vue 3, Vueuse and Pinia with zero extra lines of code.](https://stephanlangeveld.medium.com/simple-local-storage-implementation-using-vue-3-vueuse-and-pinia-with-zero-extra-lines-of-code-cb9ed2cce42a) - fun and easy way to persist the user's authentication pinia state without any extra code. Kinda like magic tbh.
 - [Ux Confirm Delete](https://medium.com/@joaopegb/ux-writing-an-effective-cancel-dialog-confirmation-on-web-539b73a39929) - best practices on user experience for confirming deletion of a file.
 - [Vue <slot></slot](https://vuejs.org/guide/components/slots.html) - vue slot documentation i used for `ListItemTemplate.vue`
+- [useMouseInElement](https://vueuse.org/core/useMouseInElement/#usemouseinelement) - the demo is really helpful to understand how it could be used
 
 ## Reminder
 
