@@ -62,7 +62,7 @@ onMounted(async () => {
 }
 .skills-tab-view-wrapper {
   max-width: 900px;
-  min-height: 350px;
+  min-height: 426px;
   margin: 1rem auto;
 }
 .heading {

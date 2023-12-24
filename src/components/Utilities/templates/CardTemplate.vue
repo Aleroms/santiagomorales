@@ -19,21 +19,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useMouseInElement } from '@vueuse/core'
-import { computed } from 'vue'
+import { useCardTransformation } from '@/composables/cardTransformation'
 const target = ref(null)
+const { cardTransformation } = useCardTransformation(target)
 
-const { elementX, elementY, isOutside, elementHeight, elementWidth } = useMouseInElement(target)
-
-const cardTransformation = computed(() => {
-  const MAX_ROTATION = 12
-  const rX = (MAX_ROTATION / 2 - (elementY.value / elementHeight.value) * MAX_ROTATION).toFixed(2)
-  const rY = ((elementX.value / elementWidth.value) * MAX_ROTATION - MAX_ROTATION / 2).toFixed(2)
-
-  return isOutside.value
-    ? ''
-    : `perspective(${elementWidth.value}px) rotateX(${rX}deg) rotateY(${rY}deg)`
-})
 </script>
 
 <style lang="scss" scoped>
