@@ -36,7 +36,7 @@ onBeforeMount(async () => {
     />
     <section class="about-me container">
       <SectionHeader title="About Me" id="about-me" />
-      <AboutMeCard :data="homePage.introduction" v-if="isDataReady" />
+      <AboutMeCard :data="homePage.introduction" v-if="isDataReady" class="about-cards" />
     </section>
     <section class="skills container">
       <SectionHeader title="My Skills" id="skills" />
@@ -50,6 +50,9 @@ onBeforeMount(async () => {
 </template>
 
 <style>
+.about-cards {
+  margin-top: 8rem;
+}
 .container {
   max-width: 1280px;
   margin: 1rem auto;
