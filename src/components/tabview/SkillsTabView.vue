@@ -14,11 +14,12 @@
     </div>
     <hr class="custom-hr-1" />
     <div class="content">
-      <div class="item" v-for="skill in skills" :key="skill.id">
+      <div class="item" v-for="skill in selectedSkills" :key="skill.id">
         <div class="img-wrapper">
           <img :src="skill.image.url" :alt="skill.image.name" />
         </div>
       </div>
+      <p class="subtitle" v-if="noItem">no items 😔</p>
     </div>
   </div>
 </template>
@@ -29,14 +30,20 @@ import { getDocuments } from '@/plugins/firebase.js'
 const category = ref([])
 const skills = ref([])
 const selectedCategory = ref(null)
+const selectedSkills = ref(null)
+const noItem = ref(false)
 
 const test = (category) => {
   selectedCategory.value = category
+  selectedSkills.value = skills.value.filter((item) => item.category === selectedCategory.value)
+  noItem.value = selectedSkills.value.length === 0 ? true : false
 }
 onMounted(async () => {
   try {
     category.value = await getDocuments('skillsCategory')
     skills.value = await getDocuments('skills')
+    console.log(skills.value)
+    test(category.value[3].name)
   } catch (error) {
     console.log(error)
   }
@@ -55,6 +62,7 @@ onMounted(async () => {
 }
 .skills-tab-view-wrapper {
   max-width: 900px;
+  min-height: 350px;
   margin: 1rem auto;
 }
 .heading {
@@ -105,7 +113,8 @@ onMounted(async () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  margin-top: 2rem;
   flex-wrap: wrap;
   gap: 100px;
 }

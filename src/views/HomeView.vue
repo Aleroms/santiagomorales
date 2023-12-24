@@ -5,6 +5,7 @@ import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
 import SectionHeader from '@/components/Utilities/SectionHeader.vue'
 import SkillsTabView from '@/components/tabview/SkillsTabView.vue'
+import GithubStats from '../components/GithubStats.vue'
 const homePage = ref({})
 const isDataReady = ref(false)
 
@@ -41,6 +42,7 @@ onBeforeMount(async () => {
       <SectionHeader title="My Skills" id="skills" />
       <div class="skills-tagline">
         <p>{{ homePage.skills }}</p>
+        <GithubStats />
       </div>
       <SkillsTabView />
     </section>
