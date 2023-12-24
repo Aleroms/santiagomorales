@@ -40,16 +40,24 @@ onBeforeMount(async () => {
     </section>
     <section class="skills container">
       <SectionHeader title="My Skills" id="skills" />
-      <div class="skills-tagline">
-        <p>{{ homePage.skills }}</p>
+      <div class="github">
         <GithubStats />
       </div>
+      <div class="skills-tagline">
+        <p>{{ homePage.skills }}</p>
+      </div>
+
       <SkillsTabView />
     </section>
   </div>
 </template>
 
 <style>
+.github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .container {
   max-width: 1280px;
   margin: 1rem auto;
@@ -58,7 +66,7 @@ onBeforeMount(async () => {
 .skills-tagline {
   text-align: center;
   max-width: 550px;
-  margin: 8rem auto;
+  margin: 4rem auto;
   line-height: 3rem;
   font-size: 20px;
 }
