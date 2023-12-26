@@ -44,6 +44,7 @@ import SkillsCategoryList from '@/components/lists/SkillsCategoryList.vue'
 import SkillsDataList from '@/components/lists/SkillsDataList.vue'
 import ToolsList from '@/components/lists/ToolsList.vue'
 import WorkExperienceList from '@/components/lists/WorkExperienceList.vue'
+import FrameworkList from '@/components/lists/FrameworkList.vue'
 
 export default {
   components: {
@@ -54,7 +55,8 @@ export default {
     SkillsCategoryList,
     SkillsDataList,
     ToolsList,
-    WorkExperienceList
+    WorkExperienceList,
+    FrameworkList
   },
   setup() {
     const manageStore = useManageStore()

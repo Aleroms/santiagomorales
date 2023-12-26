@@ -51,6 +51,13 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.item {
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
 .img-wrapper {
   aspect-ratio: 1/1;
   object-fit: contain;

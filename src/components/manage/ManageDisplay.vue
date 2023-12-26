@@ -38,6 +38,7 @@ import SkillsDataForm from '@/components/Utilities/Forms/manageForms/SkillsDataF
 import SkillsForm from '@/components/Utilities/Forms/manageForms/SkillsForm.vue'
 import ToolsForm from '@/components/Utilities/Forms/manageForms/ToolsForm.vue'
 import WorkExpForm from '@/components/Utilities/Forms/manageForms/WorkExpForm.vue'
+import FrameworkForm from '@/components/Utilities/Forms/manageForms/FrameworkForm.vue'
 
 export default {
   components: {
@@ -54,6 +55,7 @@ export default {
     SkillsForm,
     ToolsForm,
     WorkExpForm,
+    FrameworkForm,
     ManageList,
     ManageDelete,
     ManageAlert
@@ -67,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.go-back-wrapper{
+.go-back-wrapper {
   display: flex;
 }
 .go-back {

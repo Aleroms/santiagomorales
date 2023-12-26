@@ -6,6 +6,7 @@ import { getDocument } from '@/plugins/firebase.js'
 import SectionHeader from '@/components/Utilities/SectionHeader.vue'
 import SkillsTabView from '@/components/tabview/SkillsTabView.vue'
 import GithubStats from '../components/GithubStats.vue'
+import ButtonLink from '@/components/Utilities/buttons/ButtonLinks.vue'
 const homePage = ref({})
 const isDataReady = ref(false)
 
@@ -45,6 +46,11 @@ onBeforeMount(async () => {
       </div>
       <SkillsTabView />
       <GithubStats />
+      <ButtonLink type="filled" to="/skills" text="view my skills" />
+    </section>
+    <section class="projects container">
+      <SectionHeader title="My Projects" id="Projects" />
+      <p>{{ homePage.projects }}</p>
     </section>
   </div>
 </template>

@@ -77,6 +77,13 @@ const selector = {
       title: 'Tools',
       collection: 'tools',
       isList: true
+    },
+    {
+      id: 'FrameworkList',
+      editId: 'FrameworkForm',
+      title: 'Frameworks',
+      collection: 'frameworks',
+      isList: true
     }
   ]
 }
