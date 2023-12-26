@@ -45,7 +45,7 @@ const toggle = () => {
   bottom: 0;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  border: 1px solid var(--divider-dark-1);
+  border: 1px solid var(--slider-3);
 
   // when in dark mode slider background
   background-color: var(--slider-one);
@@ -58,7 +58,7 @@ const toggle = () => {
   left: 4px;
   top: 4px;
   //the slider ball
-  background-color: var(--slider-2);
+  background-color: var(--slider-3);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }

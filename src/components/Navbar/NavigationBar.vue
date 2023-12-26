@@ -90,7 +90,9 @@ const { windowWidth } = useWindowWidth()
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--divider-dark-1);
-  background-color: var(--secondary);
+  background-color: var(--nav-bg);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .logo-wrapper {

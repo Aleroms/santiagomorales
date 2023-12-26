@@ -1,6 +1,6 @@
 <template>
   <div class="about-me-cards">
-    <CardTemplate v-for="card in data" :key="card.title">
+    <CardTemplate v-for="card in props.data" :key="card.title">
       <template #title>
         <h3>{{ card.title }}</h3>
       </template>

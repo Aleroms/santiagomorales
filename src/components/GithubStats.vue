@@ -6,7 +6,7 @@
           :src="`https://github-readme-stats.vercel.app/api?username=aleroms&hide=issues&show_icons=true&theme=${themeStore.githubStatsTheme}`"
           alt="top languages on github"
           draggable="false"
-          loading="eager"
+          loading="lazy"
         />
       </div>
       <div class="img-wrapper">
@@ -14,7 +14,7 @@
           :src="`https://github-readme-stats.vercel.app/api/top-langs/?username=aleroms&layout=compact&theme=${themeStore.githubStatsTheme}&hide=shaderlab&exclude_repo=GGJ2023,ButtonGame,Unity_Tutorials,HotJam2021,GlobalGameJam2021,RedSparrow-Capstone169,169a-b-F20-W21-Red-Sparrow,VideoPoker,RainbowTennisUSA,Space-Trucker`"
           alt="top languages on github"
           draggable="false"
-          loading="eager"
+          loading="lazy"
         />
       </div>
     </div>
@@ -42,17 +42,16 @@ const themeStore = useThemeStore()
     height: 100%;
   }
 }
-@media(max-width: 900px){
-  .stats{
+@media (max-width: 900px) {
+  .stats {
     flex-direction: column;
   }
-  .img-wrapper{
+  .img-wrapper {
     max-width: 400px;
 
-    img{
+    img {
       width: 100%;
     }
   }
 }
-
 </style>

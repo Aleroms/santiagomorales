@@ -16,7 +16,7 @@
         <p>no content provided</p>
       </slot>
     </article>
-    <div
+    <!-- <div
       ref="nuxtTarget"
       class="nuxtHover"
       :style="{
@@ -24,7 +24,7 @@
         transition: 'all 0.25s ease-out',
         background: nuxtHoverEffect
       }"
-    ></div>
+    ></div> -->
   </div>
 </template>
 
@@ -44,11 +44,11 @@ const { nuxtHoverEffect } = useNuxtHoverEffect(nuxtTarget)
 }
 .nuxtHover {
   position: absolute;
-  top: -5px;
-  left: -5px;
+  top: -3px;
+  left: -3px;
   padding: 0.325rem;
-  width: 100%;
-  height: 100%;
+  width: 99%;
+  height: 99%;
   border-radius: 15px;
   z-index: -1;
 }
