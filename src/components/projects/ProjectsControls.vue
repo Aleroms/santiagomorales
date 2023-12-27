@@ -27,7 +27,6 @@ onMounted(async () => {
   try {
     frameworksDocs.value = await getDocuments('frameworks')
     frameworks.value = frameworksDocs.value.map((item) => item.name)
-    console.log(frameworks.value)
   } catch (error) {
     console.log(error)
   }

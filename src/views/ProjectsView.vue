@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <ProjectsBanner />
-    <SectionHeader title="Filter by Framework" id="framework" />
     <section class="projects-container">
       <ProjectsPreview />
     </section>
@@ -11,7 +10,10 @@
 <script setup>
 import ProjectsBanner from '@/components/banners/ProjectsBanner.vue'
 import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
-import SectionHeader from '@/components/Utilities/SectionHeader.vue'
+import { useProjectStore } from '../stores/projects'
+const projectStore = useProjectStore()
+projectStore.showComplete()
+// projectStore.showPreview()
 </script>
 
 <style lang="scss" scoped></style>
