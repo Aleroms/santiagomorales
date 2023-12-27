@@ -1,19 +1,28 @@
 <script setup>
+//components
 import HomeBanner from '@/components/banners/HomeBanner.vue'
 import AboutMeCard from '@/components/card/AboutMeCard.vue'
-import { ref, onBeforeMount } from 'vue'
-import { getDocument } from '@/plugins/firebase.js'
 import SectionHeader from '@/components/Utilities/SectionHeader.vue'
 import SkillsTabView from '@/components/tabview/SkillsTabView.vue'
 import GithubStats from '../components/GithubStats.vue'
 import ButtonLink from '@/components/Utilities/buttons/ButtonLinks.vue'
+import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
+//utils
+import { ref, onBeforeMount } from 'vue'
+import { getDocument } from '@/plugins/firebase.js'
+import { useProjectStore } from '@/stores/projects.js'
+
+const projectStore = useProjectStore()
 const homePage = ref({})
 const isDataReady = ref(false)
 
 onBeforeMount(async () => {
   try {
     homePage.value = await getDocument('pageContent', 'homePage')
-    console.log(homePage.value)
+
+    //projects set to preview by default
+    projectStore.initialize()
+    projectStore.showPreview()
   } catch (error) {
     console.log(error)
   } finally {
@@ -51,6 +60,7 @@ onBeforeMount(async () => {
     <section class="projects container">
       <SectionHeader title="My Projects" id="Projects" />
       <p>{{ homePage.projects }}</p>
+      <ProjectsPreview />
     </section>
   </div>
 </template>

@@ -1,13 +1,20 @@
 <template>
   <div class="project-display-wrapper">
     <div class="project-display">
+      <!-- displays all or preview items  -->
       <div class="item" v-for="proj in props.data" :key="proj.id">
         <div class="item-img">
           <div class="img-wrapper">
             <img :src="proj.image.url" :alt="proj.image.name" />
           </div>
         </div>
-
+        <NuxtHoverEffect />
+      </div>
+      <!-- if preview is enabled -->
+      <div class="item" v-if="projectStore.isPreview">
+        <div class="preview" :class="{ dark: !themeStore.isDark, light: themeStore.isDark }">
+          <routerLink to="/projects" class="link">view more projects</routerLink>
+        </div>
         <NuxtHoverEffect />
       </div>
     </div>
@@ -16,6 +23,11 @@
 
 <script setup>
 import NuxtHoverEffect from '@/components/Utilities/NuxtHoverEffect.vue'
+import { useProjectStore } from '@/stores/projects'
+import { useThemeStore } from '@/stores/theme.js'
+
+const themeStore = useThemeStore()
+const projectStore = useProjectStore()
 const props = defineProps({
   data: {
     type: Array,
@@ -25,6 +37,40 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+.dark {
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
+    radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.4) 120%) #989898;
+}
+.light {
+  background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+}
+.preview {
+  width: 375px;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    a {
+      transform: scale(1.1);
+      color: var(--text-dark-3);
+    }
+  }
+  a {
+    font-size: 45px;
+    text-transform: capitalize;
+    color: var(--text-dark-2);
+    text-shadow: -2px 2px rgba(0, 0, 0, 0.172);
+  }
+}
 .project-display {
   max-width: 1200px;
   display: flex;
@@ -35,15 +81,17 @@ const props = defineProps({
   gap: 15px;
 }
 .item {
-  // overflow: hidden;
   border: 1px solid var(--divider-dark-1);
   border-radius: 15px;
   position: relative;
   z-index: 0;
+  
 
   .item-img {
     overflow: hidden;
     border-radius: 15px;
+    filter: grayscale(0.8);
+    transition: filter 0.3s ease;
   }
 
   .img-wrapper {
@@ -59,6 +107,9 @@ const props = defineProps({
   &:hover {
     .img-wrapper {
       transform: scale(1.1);
+    }
+    .item-img{
+      filter: grayscale(0);
     }
   }
 }
