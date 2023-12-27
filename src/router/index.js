@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { useUserStore } from '@/stores/user.js'
 import { useRouter } from 'vue-router'
-
+import { useProjectStore } from '@/stores/projects.js'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -10,6 +10,9 @@ const router = createRouter({
       path: '/',
       name: 'home',
       alias: '/home',
+      meta: {
+        title: 'Santiago Morales | Portfolio'
+      },
       component: HomeView
     },
     {
@@ -42,6 +45,32 @@ const router = createRouter({
         title: 'Santiago Morales | Projects'
       },
       component: () => import('@/views/ProjectsView.vue')
+    },
+    {
+      path: '/projects/:id',
+      name: 'projectDetails',
+      meta: {
+        title: 'Santiago Morales | Project Details'
+      },
+      component: () => import('@/views/ProjectDetails.vue'),
+      beforeEnter: (to, from, next) => {
+        const project = useProjectStore()
+        const param_id = to.params.id
+        console.log(to)
+
+        //checks if param id exists
+        if (project.navGuard(param_id)) {
+          next()
+        } else {
+          //redirect to catch false id
+          next({
+            name: 'NotFound',
+            params: { pathMatch: to.path.split('/').slice(1) },
+            query: to.query,
+            hash: to.hash
+          })
+        }
+      }
     },
     {
       path: '/skills',

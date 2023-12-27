@@ -3,6 +3,7 @@
     <div class="project-display">
       <!-- displays all or preview items  -->
       <div class="item" v-for="proj in props.data" :key="proj.id">
+        <RouterLink :to="`/projects/${proj.id}`" />
         <div class="item-img">
           <div class="img-wrapper">
             <img :src="proj.image.url" :alt="proj.image.name" />
@@ -85,7 +86,15 @@ const props = defineProps({
   border-radius: 15px;
   position: relative;
   z-index: 0;
-  
+
+  a {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
 
   .item-img {
     overflow: hidden;
@@ -108,7 +117,7 @@ const props = defineProps({
     .img-wrapper {
       transform: scale(1.1);
     }
-    .item-img{
+    .item-img {
       filter: grayscale(0);
     }
   }

@@ -8,7 +8,7 @@
         <div class="text">
           <h1>Page Not Found</h1>
           <p>
-            the resource <code>{{ currentRoute.path }}</code> requested was not found.
+            the resource <code>{{ codeText }}</code> requested was not found.
           </p>
         </div>
         <div class="buttons-wrapper">
@@ -21,9 +21,13 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import ButtonLinks from '../components/Utilities/buttons/ButtonLinks.vue'
 import { useRoute } from 'vue-router'
 const currentRoute = useRoute()
+const codeText = ref('')
+codeText.value = currentRoute.path.slice(0, 37)
+codeText.value += '...'
 </script>
 
 <style lang="scss" scoped>
@@ -46,9 +50,13 @@ const currentRoute = useRoute()
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .text h1 {
-    border-bottom: 1px solid var(--divider-dark-1);
-    margin-bottom: 1rem;
+  .text {
+    h1 {
+      border-bottom: 1px solid var(--divider-dark-1);
+      margin-bottom: 1rem;
+    }
+    code {
+    }
   }
   .buttons-wrapper {
     display: flex;
@@ -64,7 +72,7 @@ const currentRoute = useRoute()
   }
 }
 @media (max-width: 690px) {
-  .page-not-found{
+  .page-not-found {
     display: flex;
     align-items: center;
     justify-content: center;

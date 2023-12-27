@@ -2,9 +2,9 @@
   <nav class="nav">
     <div class="logo-wrapper">
       <RouterLink to="/">
-        <img src="logo.png" alt="logo" />
+        <img src="/logo.png" alt="logo" />
       </RouterLink>
-      <h2 v-if="windowWidth > 446">Santiago Morales | Portfolio</h2>
+      <h2 v-if="windowWidth > 446">{{ pageTitle }}</h2>
     </div>
     <div class="nav-links" v-if="windowWidth > 1026">
       <div class="nav-links-primary">
@@ -39,11 +39,20 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { useWindowWidth } from '@/composables/windowWidth.js'
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
+import { ref, watchEffect } from 'vue'
 import HamburgerMenu from '@/components/Utilities/HamburgerMenu.vue'
 import SocialMedia from '@/components/socials/SocialMedia.vue'
+
+const route = useRoute()
+const pageTitle = ref('')
+
+watchEffect(() => {
+  pageTitle.value = route.meta.title || 'Santiago Morales | Portfolio' // Use a default value if title is undefined
+})
+
 
 const { windowWidth } = useWindowWidth()
 </script>

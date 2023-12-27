@@ -31,6 +31,7 @@ const props = defineProps({
   row-gap: 40px;
   align-items: center;
   justify-content: space-evenly;
+  cursor: pointer;
 
   p {
     margin: 0.625rem;

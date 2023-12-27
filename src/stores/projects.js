@@ -27,6 +27,11 @@ export const useProjectStore = defineStore('projectStore', {
       } finally {
         this.isLoading = false
       }
+    },
+    navGuard(param_id) {
+      if (this.projects.length < 1) return false
+      console.log('proj len > 0')
+      return this.projects.some((item) => item.id === param_id)
     }
   },
   getters: {
