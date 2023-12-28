@@ -45,6 +45,10 @@
       Designed by <span>Santiago Morales</span> | All rights reserved
       <font-awesome-icon icon="fa-regular fa-copyright" />
     </h4>
+    <p class="subtitle">
+      Made with Vue + Firebase | source code on
+      <a class="subtitle" href="https://github.com/Aleroms/santiagomorales">github</a>
+    </p>
   </footer>
 </template>
 
