@@ -1,10 +1,33 @@
 <template>
-  <div>
-    <h1>contact page</h1>
-    <p>contact page</p>
+  <div class="contact-page container">
+    <ContactMeCard :contact="contact.contact" v-if="isDataReady" />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onBeforeMount, ref } from 'vue'
+import { getDocument } from '@/plugins/firebase.js'
+import ContactMeCard from '@/components/card/ContactMeCard.vue'
+const contact = ref('')
+const isDataReady = ref(false)
+onBeforeMount(async () => {
+  try {
+    contact.value = await getDocument('pageContent', 'homePage')
+  } catch (error) {
+    console.log(error)
+  } finally {
+    isDataReady.value = true
+  }
+})
+</script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.contact-page {
+  margin: 10rem auto;
+}
+@media(max-width: 900px){
+  .contact-page{
+    margin: 2rem 1rem;
+  }
+}
+</style>
