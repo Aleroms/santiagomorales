@@ -11,6 +11,7 @@ import {
   faEnvelope,
   faFile,
   faLocationDot,
+  faLock,
   faMoon,
   faPen,
   faPlus,
@@ -43,7 +44,8 @@ library.add(
   faArrowUpRightFromSquare,
   faChevronRight,
   faThreads,
-  faLocationDot
+  faLocationDot,
+  faLock
 )
 
 export { FontAwesomeIcon }

@@ -46,6 +46,7 @@ const endYear = props.data.end.year
 }
 .text {
   max-width: 500px;
+  line-height: 1.7rem;
 }
 h1 {
   font-size: 55px;
