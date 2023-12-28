@@ -125,5 +125,12 @@ const props = defineProps({
     }
   }
 }
-
+@media (max-width: 440px) {
+  .item{
+    .img-wrapper{
+      width: 300px;
+      height: 200px;
+    }
+  }
+}
 </style>
