@@ -47,8 +47,8 @@ const props = defineProps({
   background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
 }
 .preview {
-  width: 375px;
-  height: 200px;
+  min-width: 375px;
+  min-height: 200px;
 
   display: flex;
   align-items: center;
@@ -125,4 +125,5 @@ const props = defineProps({
     }
   }
 }
+
 </style>

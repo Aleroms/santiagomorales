@@ -11,6 +11,7 @@ import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
 import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
 import { useProjectStore } from '@/stores/projects.js'
+import ContactMeCard from '../components/card/ContactMeCard.vue'
 
 const projectStore = useProjectStore()
 const homePage = ref({})
@@ -47,6 +48,7 @@ onBeforeMount(async () => {
     <section class="about-me container">
       <SectionHeader title="About Me" id="about-me" />
       <AboutMeCard :data="homePage.introduction" v-if="isDataReady" class="about-cards" />
+      <ButtonLink type="filled" to="/about" text="about me" />
     </section>
     <section class="skills container">
       <SectionHeader title="My Skills" id="skills" />
@@ -61,6 +63,10 @@ onBeforeMount(async () => {
       <SectionHeader title="My Projects" id="Projects" />
       <p>{{ homePage.projects }}</p>
       <ProjectsPreview />
+    </section>
+    <section class="contact container">
+      <SectionHeader title="Contact Me" id="Contact" />
+      <ContactMeCard :contact="homePage.contact" />
     </section>
   </div>
 </template>
