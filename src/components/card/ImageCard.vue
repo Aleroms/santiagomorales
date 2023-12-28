@@ -20,6 +20,7 @@ const props = defineProps({
 
   img {
     width: 100%;
+    border-radius: 10px;
     // padding: 0.625rem;
     box-sizing: border-box;
   }

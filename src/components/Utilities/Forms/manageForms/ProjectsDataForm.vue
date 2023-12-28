@@ -7,7 +7,7 @@
       help="github repo"
       :validation="manageStore.required"
       placeholder="https://github.com/Aleroms"
-      v-model="p.githubLink"
+      v-model="placeholder.githubLink"
     />
     <FormKit
       type="text"
@@ -16,7 +16,7 @@
       help="live site"
       :validation="manageStore.required"
       placeholder="https://goo..."
-      v-model="p.liveSiteLink"
+      v-model="placeholder.liveSiteLink"
     />
     <FormKit
       type="text"
@@ -24,7 +24,7 @@
       label="project name"
       :validation="manageStore.required"
       placeholder="project name..."
-      v-model="p.name"
+      v-model="placeholder.name"
     />
     <FormKit
       type="textarea"
@@ -32,7 +32,7 @@
       label="description"
       :validation="manageStore.required"
       placeholder="description..."
-      v-model="p.desc"
+      v-model="placeholder.desc"
     />
     <FormKit
       type="file"
@@ -41,7 +41,7 @@
       help="used to describe the project"
       :validation="manageStore.required"
     />
-    <FormKit type="group" name="start" v-model="p.start">
+    <FormKit type="group" name="start" v-model="placeholder.start">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
@@ -62,7 +62,7 @@
         </div>
       </div>
     </FormKit>
-    <FormKit type="group" name="end" v-model="p.end">
+    <FormKit type="group" name="end" v-model="placeholder.end">
       <div class="form-date-wrapper">
         <FormKit
           type="select"
@@ -90,7 +90,7 @@
       :validation="manageStore.required"
       placeholder="Please Select"
       :options="skillsCategory"
-      v-model="p.category"
+      v-model="placeholder.category"
     />
     <FormKit
       type="select"
@@ -100,7 +100,7 @@
       placeholder="Please Select"
       hint="which framework did you use"
       :options="framework"
-      v-model="p.frameworkUsed"
+      v-model="placeholder.frameworkUsed"
     />
     <div class="dynam-list" v-auto-animate>
       <h3>tools used</h3>
@@ -110,7 +110,7 @@
         dynamic
         #default="{ items }"
         name="toolsUsed"
-        v-model="p.toolsUsed"
+        v-model="placeholder.toolsUsed"
       >
         <FormKit
           v-for="(item, index) in items"
@@ -122,9 +122,15 @@
           placeholder="Please select"
           validation="required"
           suffix-icon="trash"
-          @suffix-icon-click="p.toolsUsed = p.toolsUsed.filter((_, i) => i !== index)"
+          @suffix-icon-click="
+            placeholder.toolsUsed = placeholder.toolsUsed.filter((_, i) => i !== index)
+          "
         />
-        <ButtonComponent type="outline" text="+ Add another" @click="p.toolsUsed.push('')" />
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.toolsUsed.push('')"
+        />
       </FormKit>
     </div>
     <div class="dynam-list" v-auto-animate>
@@ -135,7 +141,7 @@
         dynamic
         #default="{ items }"
         name="my_process"
-        v-model="p.my_process"
+        v-model="placeholder.my_process"
       >
         <FormKit
           v-for="(item, index) in items"
@@ -146,9 +152,15 @@
           validation="required"
           suffix-icon="trash"
           placeholder="my process..."
-          @suffix-icon-click="p.my_process = p.my_process.filter((_, i) => i !== index)"
+          @suffix-icon-click="
+            placeholder.my_process = placeholder.my_process.filter((_, i) => i !== index)
+          "
         />
-        <ButtonComponent type="outline" text="+ Add another" @click="p.my_process.push('')" />
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.my_process.push('')"
+        />
       </FormKit>
     </div>
     <div class="dynam-list" v-auto-animate>
@@ -159,7 +171,7 @@
         dynamic
         #default="{ items }"
         name="issues_encountered"
-        v-model="p.issues_encountered"
+        v-model="placeholder.issues_encountered"
       >
         <FormKit
           v-for="(item, index) in items"
@@ -171,7 +183,9 @@
           suffix-icon="trash"
           placeholder="issues encountered..."
           @suffix-icon-click="
-            p.issues_encountered = p.issues_encountered.filter((_, i) => i !== index)
+            placeholder.issues_encountered = placeholder.issues_encountered.filter(
+              (_, i) => i !== index
+            )
           "
         />
         <ButtonComponent
@@ -189,7 +203,7 @@
         dynamic
         #default="{ items }"
         name="what_i_learned"
-        v-model="p.what_i_learned"
+        v-model="placeholder.what_i_learned"
       >
         <FormKit
           v-for="(item, index) in items"
@@ -200,9 +214,15 @@
           validation="required"
           placeholder="what I learned..."
           suffix-icon="trash"
-          @suffix-icon-click="p.what_i_learned = p.what_i_learned.filter((_, i) => i !== index)"
+          @suffix-icon-click="
+            placeholder.what_i_learned = placeholder.what_i_learned.filter((_, i) => i !== index)
+          "
         />
-        <ButtonComponent type="outline" text="+ Add another" @click="p.what_i_learned.push('')" />
+        <ButtonComponent
+          type="outline"
+          text="+ Add another"
+          @click="placeholder.what_i_learned.push('')"
+        />
       </FormKit>
     </div>
     <FormKit
@@ -210,7 +230,7 @@
       name="isPrivate"
       label="Private Repository"
       :value="false"
-      v-model="p.isPrivate"
+      v-model="placeholder.isPrivate"
     />
     <div class="dynam-list" v-auto-animate>
       <h3>useful links</h3>
@@ -220,7 +240,7 @@
         dynamic
         #default="{ items }"
         name="usefulLinks"
-        v-model="p.usefulLinks"
+        v-model="placeholder.usefulLinks"
       >
         <FormKit type="group" v-for="(item, index) in items" :key="item" :index="index">
           <FormKit
@@ -249,14 +269,14 @@
             type="outline"
             text="Remove"
             class="btn-remove"
-            @click="p.usefulLinks = placeholder.usefulLinks.filter((_, i) => i !== index)"
+            @click="placeholder.usefulLinks = placeholder.usefulLinks.filter((_, i) => i !== index)"
           />
         </FormKit>
 
         <ButtonComponent
           type="outline"
           text="+ Add another"
-          @click="p.usefulLinks.push({ name: '', desc: '', link: '' })"
+          @click="placeholder.usefulLinks.push({ name: '', desc: '', link: '' })"
         />
       </FormKit>
     </div>
@@ -277,7 +297,6 @@ import { getDocuments } from '@/plugins/firebase.js'
 const manageStore = useManageStore()
 const { placeholder } = useFormPlaceholder()
 console.log('placeholder', placeholder.value)
-let p = placeholder.value
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
 const toolsOptions = ref({})
 

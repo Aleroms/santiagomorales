@@ -42,7 +42,6 @@ onMounted(async () => {
   try {
     category.value = await getDocuments('skillsCategory')
     skills.value = await getDocuments('skills')
-    console.log(skills.value)
     test(category.value[3].name)
   } catch (error) {
     console.log(error)

@@ -1,12 +1,12 @@
 <template>
   <div class="project-display-wrapper">
-    <div class="project-display">
+    <div class="project-display" v-if="!projectStore.isSwap">
       <!-- displays all or preview items  -->
       <div class="item" v-for="proj in props.data" :key="proj.id">
         <RouterLink :to="`/projects/${proj.id}`" />
         <div class="item-img">
           <div class="img-wrapper">
-            <img :src="proj.image.url" :alt="proj.image.name" />
+            <div class="bg-img" :style="{ backgroundImage: `url(${proj.image.url})` }"></div>
           </div>
         </div>
         <NuxtHoverEffect />
@@ -61,7 +61,7 @@ const props = defineProps({
 
   &:hover {
     a {
-      transform: scale(1.1);
+      transform: scale(1.2);
       color: var(--text-dark-3);
     }
   }
@@ -69,11 +69,15 @@ const props = defineProps({
     font-size: 45px;
     text-transform: capitalize;
     color: var(--text-dark-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-shadow: -2px 2px rgba(0, 0, 0, 0.172);
   }
 }
 .project-display {
   max-width: 1200px;
+  min-height: 420px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -99,26 +103,25 @@ const props = defineProps({
   .item-img {
     overflow: hidden;
     border-radius: 15px;
-    filter: grayscale(0.8);
     transition: filter 0.3s ease;
   }
 
   .img-wrapper {
-    max-width: 375px;
+    width: 375px;
     height: 200px;
     transition: transform 0.3s ease;
 
-    img {
+    .bg-img {
       width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: contain;
     }
   }
 
   &:hover {
     .img-wrapper {
-      transform: scale(1.1);
-    }
-    .item-img {
-      filter: grayscale(0);
+      transform: scale(1.2);
     }
   }
 }

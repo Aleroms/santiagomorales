@@ -56,13 +56,13 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const project = useProjectStore()
         const param_id = to.params.id
-        console.log(to)
 
         //checks if param id exists
         if (project.navGuard(param_id)) {
+          project.setActiveId(param_id)
           next()
         } else {
-          //redirect to catch false id
+          //redirect to catch if dne
           next({
             name: 'NotFound',
             params: { pathMatch: to.path.split('/').slice(1) },

@@ -1,16 +1,22 @@
 import { defineStore } from 'pinia'
 import { getDocuments } from '@/plugins/firebase'
+import { useStorage } from '@vueuse/core'
 
 export const useProjectStore = defineStore('projectStore', {
   state: () => ({
     activeFramework: 'HTML/CSS',
-    projects: [],
+    activeId: useStorage('activeId', ''),
+    projects: useStorage('projects', []),
     isLoading: false,
-    isPreview: true
+    isPreview: true,
+    isSwap: false
   }),
   actions: {
-    setActive(id) {
-      this.activeFramework = id
+    setActive(framework) {
+      this.activeFramework = framework
+    },
+    setActiveId(id) {
+      this.activeId = id
     },
     showComplete() {
       this.isPreview = false
@@ -30,7 +36,6 @@ export const useProjectStore = defineStore('projectStore', {
     },
     navGuard(param_id) {
       if (this.projects.length < 1) return false
-      console.log('proj len > 0')
       return this.projects.some((item) => item.id === param_id)
     }
   },
@@ -38,6 +43,9 @@ export const useProjectStore = defineStore('projectStore', {
     activeProjects: (state) => {
       const projs = state.projects.filter((item) => item.frameworkUsed === state.activeFramework)
       return state.isPreview ? projs.slice(0, 5) : projs
+    },
+    getProjectDetails: (state) => {
+      return state.projects.find((project) => project.id === state.activeId) || null
     }
   }
 })

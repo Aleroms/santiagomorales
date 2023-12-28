@@ -1,5 +1,6 @@
 <template>
   <div class="banner-template">
+    <!-- mainly the image slot  -->
     <slot name="card">
       <p>no card provided</p>
     </slot>

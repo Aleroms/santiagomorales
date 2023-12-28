@@ -26,7 +26,9 @@ const calculateDuration = (start, end) => {
   const remainingMonths = totalMonths % 12
 
   // Format the output
-  if (totalMonths <= 11) {
+  if (totalMonths === 0) {
+    return '1 mos'
+  } else if (totalMonths <= 11) {
     return `${totalMonths} mos`
   } else if (remainingMonths === 0) {
     return `${years} yr`

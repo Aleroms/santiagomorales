@@ -55,6 +55,8 @@ npm install @formkit/addons
 
 - files were uploading the same fileName for images used in projects. Whenever I would retreive files from Firebase, it would display, the same image. For example, `burrito.png` would display for 6+ projects, since when I uploaded the file its file name was `burrito.png`. Duplicates were not created which led to overwritten images in multiple projects referencing the same image url, `tools/burrito.png`. To resolve this, before uploading the file I checked if the file already existed and would modify the file name to `burrito2.png` instead, so that each image uploaded with the same name would not overwrite and reference the same image. If the file did not exist, simply upload it as is.
 
+- retrieving image url and name from my pinia store would break my app. `project.image.url | reading url undefined`. I was retrieving it on my `Mounted` lifecycle hook. When I switched to `BeforeMounted` lifecycle hook, the problem was solved. I am assuming I need to have the data ready before the component mounts to the DOM and not when the component mounts to he DOM. Only strange thing is the data was locally stored and not fetched asynchronously.
+
 ## Useful Links
 
 - [Vue Composables](https://vuejs.org/guide/reusability/composables) - encapsulates and reuses stateful logic
