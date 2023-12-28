@@ -7,11 +7,13 @@ import SkillsTabView from '@/components/tabview/SkillsTabView.vue'
 import GithubStats from '../components/GithubStats.vue'
 import ButtonLink from '@/components/Utilities/buttons/ButtonLinks.vue'
 import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
+import CenteredMessage from '@/components/Utilities/messages/CenteredMessage.vue'
+import CenteredLink from '@/components/Utilities/messages/CenteredLink.vue'
 //utils
 import { ref, onBeforeMount } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
 import { useProjectStore } from '@/stores/projects.js'
-import ContactMeCard from '../components/card/ContactMeCard.vue'
+import ContactMeCard from '@/components/card/ContactMeCard.vue'
 
 const projectStore = useProjectStore()
 const homePage = ref({})
@@ -48,25 +50,25 @@ onBeforeMount(async () => {
     <section class="about-me container">
       <SectionHeader title="About Me" id="about-me" />
       <AboutMeCard :data="homePage.introduction" v-if="isDataReady" class="about-cards" />
-      <ButtonLink type="filled" to="/about" text="about me" />
+      <CenteredLink :nav="{ id: '/about', text: 'about me' }" />
     </section>
     <section class="skills container">
       <SectionHeader title="My Skills" id="skills" />
-      <div class="skills-tagline">
-        <p>{{ homePage.skills }}</p>
-      </div>
+      <CenteredMessage :text="homePage.skills" v-if="isDataReady" />
       <SkillsTabView />
       <GithubStats />
-      <ButtonLink type="filled" to="/skills" text="view my skills" />
+      <CenteredLink :nav="{ id: '/skills', text: 'skills' }" />
     </section>
     <section class="projects container">
       <SectionHeader title="My Projects" id="Projects" />
-      <p>{{ homePage.projects }}</p>
+      <CenteredMessage :text="homePage.projects" v-if="isDataReady" />
+
       <ProjectsPreview />
+      <CenteredLink :nav="{ id: '/projects', text: 'projects' }" />
     </section>
     <section class="contact container">
       <SectionHeader title="Contact Me" id="Contact" />
-      <ContactMeCard :contact="homePage.contact" />
+      <ContactMeCard :contact="homePage.contact" v-if="isDataReady" />
     </section>
   </div>
 </template>
@@ -79,12 +81,5 @@ onBeforeMount(async () => {
   max-width: 1280px;
   margin: 1rem auto;
   padding: 0 1.625rem;
-}
-.skills-tagline {
-  text-align: center;
-  max-width: 550px;
-  margin: 4rem auto;
-  line-height: 3rem;
-  font-size: 20px;
 }
 </style>
