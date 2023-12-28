@@ -18,7 +18,12 @@ import {
   faSun,
   faTrash,
   faTurnUp,
-  faXmark
+  faXmark,
+  faScissors,
+  faHandHoldingHeart,
+  faBomb,
+  faSeedling,
+  faShirt
 } from '@fortawesome/free-solid-svg-icons'
 import { faCopyright } from '@fortawesome/free-regular-svg-icons'
 
@@ -45,7 +50,12 @@ library.add(
   faChevronRight,
   faThreads,
   faLocationDot,
-  faLock
+  faLock,
+  faScissors,
+  faHandHoldingHeart,
+  faBomb,
+  faSeedling,
+  faShirt
 )
 
 export { FontAwesomeIcon }

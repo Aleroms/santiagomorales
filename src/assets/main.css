@@ -76,7 +76,6 @@ p {
 body {
   background-color: var(--secondary);
   scroll-behavior: smooth;
-  /* transition: 0.3s ease-in-out; */
 }
 .fade-enter-active,
 .fade-leave-active {

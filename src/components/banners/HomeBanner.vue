@@ -31,7 +31,7 @@
 import Typewriter from '../Utilities/Typewriter.vue'
 import BannerTemplate from '@/components/Utilities/templates/BannerTemplate.vue'
 import ImageCard from '@/components/card/ImageCard.vue'
-import SocialMedia from '../socials/SocialMedia.vue'
+import SocialMedia from '@/components/socials/SocialMedia.vue'
 import { motionFloat } from '@/plugins/motion'
 
 const props = defineProps({

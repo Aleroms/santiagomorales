@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { vAutoAnimate } from '@formkit/auto-animate'
-import { submitForm, getDocument } from '@/plugins/firebase.js'
+import { submitForm, getDocument, uploadFile3 } from '@/plugins/firebase.js'
 import { useManageStore } from '@/stores/manage'
 import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
+import { filterForm } from '@/utils/filterForm.js'
 
 const manageStore = useManageStore()
 
@@ -19,7 +20,13 @@ const submit = async (form) => {
   console.log(form)
 
   try {
-    await submitForm(form, 'pageContent', 'aboutPage')
+    let avatarImage = undefined
+    if (form.image.length !== 0) {
+      avatarImage = await uploadFile3(form.image, 'misc')
+    }
+    form.image = avatarImage
+    const filteredForm = filterForm(form)
+    await submitForm(filteredForm, 'pageContent', 'aboutPage')
   } catch (error) {
     console.log(error.code, error)
     manageStore.result(error)
@@ -41,6 +48,7 @@ onMounted(async () => {
 
 <template>
   <FormKit type="form" id="about-form" @submit="submit" :disabled="disable">
+    <FormKit type="file" name="image" label="avatar" accept=".jpg,.png" multiple="false" />
     <h4>Hero</h4>
     <FormKit type="text" label="title" name="title" v-model="placeholder.title" />
     <FormKit

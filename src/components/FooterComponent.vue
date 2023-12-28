@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import SocialMedia from './socials/SocialMedia.vue'
+import SocialMedia from '@/components/socials/SocialMedia.vue'
 import { useUserStore } from '@/stores/user.js'
 const userStore = useUserStore()
 </script>
