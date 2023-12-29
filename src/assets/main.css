@@ -96,6 +96,14 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.container-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+}
 .custom-hr-1 {
   height: 1px;
   border: none;
@@ -157,7 +165,7 @@ body {
 .g-rad-1 {
   background-image: radial-gradient(var(--secondary-green), var(--secondary-blue));
 }
-.text-block{
+.text-block {
   max-width: 900px;
   line-height: 1.8rem;
   margin: 10px auto;

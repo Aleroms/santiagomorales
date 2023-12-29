@@ -6,13 +6,13 @@
     />
     <section class="container">
       <SectionHeader title="Education" id="education" />
-      <section class="container2" id="edu" v-if="!educationStore.isLoading">
+      <section class="container-2" id="edu" v-if="!educationStore.isLoading">
         <EducationList :data="edu" v-for="edu in education" :key="edu.id" />
       </section>
       <SectionHeader title="My Values" id="my_values" />
       <MyValuesCard v-if="isReady" :data="aboutPage.values" />
       <SectionHeader title="Work Experience" id="work-exp" />
-      <section class="container2" id="work" v-if="isReady">
+      <section class="container-2" id="work" v-if="isReady">
         <WorkExperienceList :data="work" v-for="work in workExp" :key="work.id" />
       </section>
       <SectionHeader title="How I Learn" id="how_i_learn" />
@@ -59,9 +59,5 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss">
-.container2 {
-  display: flex;
-  justify-content: center;
-  margin: 10px auto;
-}
+
 </style>
