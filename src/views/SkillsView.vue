@@ -1,5 +1,6 @@
 <template>
   <div class="skills container">
+    <SkillsCategoryDisplay />
     <SectionHeader title="How I Approach A Problem" id="approaching-problems" />
     <p class="text-block">{{ skillsPage.approach_problem }}</p>
     <SectionHeader title="My Certificates" id="certificates" />
@@ -13,6 +14,7 @@
 
 <script setup>
 import SectionHeader from '@/components/Utilities/SectionHeader.vue'
+import SkillsCategoryDisplay from '@/components/SkillsCategoryDisplay.vue'
 import CertificateList from '@/components/lists/CertificateList.vue'
 import { getDocuments, getDocument } from '@/plugins/firebase.js'
 import { ref, onBeforeMount } from 'vue'
