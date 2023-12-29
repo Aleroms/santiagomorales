@@ -18,21 +18,20 @@
       </div>
       <SectionHeader title="My Process" id="my-process" />
       <article class="my-process">
-        <p v-for="process in project.my_process" :key="process" class="text">
+        <p v-for="process in project.my_process" :key="process" class="text-block">
           {{ process }}
         </p>
       </article>
       <SectionHeader title="Issues Encountered" id="issues-encountered" />
       <ul class="issues-encountered">
         <li v-for="issue in project.issues_encountered" :key="issue">
-          <p class="text">{{ issue }}</p>
+          <p class="text-block">{{ issue }}</p>
         </li>
       </ul>
       <SectionHeader title="What I Learned" id="what-i-learned" />
-      <p v-for="learn in project.what_i_learned" :key="learn" class="text">
+      <p v-for="learn in project.what_i_learned" :key="learn" class="text-block">
         {{ learn }}
       </p>
-      <p>{{}}</p>
       <SectionHeader title="Useful Links" id="useful-links" />
       <article class="useful-links" v-for="link in project.usefulLinks" :key="link.link">
         <p class="text">

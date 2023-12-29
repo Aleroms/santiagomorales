@@ -34,6 +34,7 @@
 
 <script>
 import { useManageStore } from '@/stores/manage'
+import { useEducationStore } from '@/stores/education'
 
 //Lists
 import ActiveLearningList from '@/components/lists/ActiveLearningList.vue'
@@ -60,6 +61,8 @@ export default {
   },
   setup() {
     const manageStore = useManageStore()
+    const eduStore = useEducationStore()
+    eduStore.setManagePage()
     return { manageStore }
   }
 }

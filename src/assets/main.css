@@ -157,6 +157,11 @@ body {
 .g-rad-1 {
   background-image: radial-gradient(var(--secondary-green), var(--secondary-blue));
 }
+.text-block{
+  max-width: 900px;
+  line-height: 1.8rem;
+  margin: 10px auto;
+}
 
 [color-scheme='light'] {
   background-color: #fff;

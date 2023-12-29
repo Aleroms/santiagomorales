@@ -1,6 +1,6 @@
 <template>
   <div class="item-wrapper">
-    <div class="img-wrapper">
+    <div class="img-wrapper" :class="{ manage: eduStore.isManage, about: !eduStore.isManage }">
       <img :src="props.image.url" :alt="image.name" />
     </div>
     <div class="info-wrapper">
@@ -12,6 +12,8 @@
 </template>
 
 <script setup>
+import { useEducationStore } from '@/stores/education'
+const eduStore = useEducationStore()
 const props = defineProps({
   image: {
     type: Object,
@@ -32,11 +34,15 @@ const props = defineProps({
     text-transform: capitalize;
   }
 }
-.img-wrapper {
+.manage {
   max-height: 50px;
   max-width: 50px;
-  
-
+}
+.about {
+  max-height: 100px;
+  max-width: 100px;
+}
+.img-wrapper {
   img {
     width: 100%;
     // padding: 0.625rem;
