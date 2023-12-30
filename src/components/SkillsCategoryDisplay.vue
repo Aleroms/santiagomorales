@@ -1,7 +1,7 @@
 <template>
   <div class="skills-display-wrapper" v-if="isReady">
     <article class="skill-info">
-      <h1>{{ activeSkill.name }}</h1>
+      <h1 class="category-title">{{ activeSkill.name }}</h1>
       <hr class="custom-hr-1" />
       <p class="desc">
         {{ activeSkill.desc }}
@@ -9,9 +9,8 @@
     </article>
     <div class="controls-wrapper">
       <div class="control" v-for="skill in skillCat" :key="skill.id">
-        <div class="img-wrapper" @click="selectSkill(skill.id)">
-          <img :src="skill.image.url" :alt="skill.image.name" />
-        </div>
+        <img :src="skill.image.url" :alt="skill.image.name" @click="selectSkill(skill.id)" />
+        <!-- <p>{{ skill.name }}</p> -->
       </div>
     </div>
   </div>
@@ -39,61 +38,94 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
-.skills-display-wrapper {
-  max-width: 600px;
-  background-color: var(--secondary-soft);
-  border: 1px solid var(--divider-dark-1);
+.desc {
+  margin: 1rem;
+  border: 1px solid green;
   border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  padding: 0.625rem;
+  background-color: var(--secondary);
+}
+.category-title {
+  margin: 1rem;
+  border: 1px solid green;
+}
+.skills-display-wrapper {
+  margin: 3rem auto 1rem;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--divider-dark-1);
+  border-radius: 15px;
 }
 .skill-info {
   padding: 1rem;
+  border-right: 1px solid var(--divider-dark-1);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: var(--secondary-soft);
 }
-.desc {
-  max-width: 300px;
-  overflow-y: scroll;
-}
-
 .controls-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 1rem auto;
-  align-items: center;
-  justify-content: center;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.control {
+  border: 1px solid var(--divider-dark-1);
+  width: 50%;
+  height: 50%;
+  float: left;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
 
-  .control {
-    max-width: 150px;
-    border: 1px solid red;
-
-    &:first-child{
-      border-top-left-radius: 15px;
+  &:hover {
+    img {
+      transform: scale(1.05);
     }
   }
-}
-.img-wrapper {
-  max-width: 150px;
-  max-height: 150px;
-  cursor: pointer;
 
-  overflow: hidden;
+  &:nth-child(2) {
+    border-top-right-radius: 15px;
+  }
+  &:nth-child(4) {
+    border-bottom-right-radius: 15px;
+  }
 
   img {
     width: 100%;
     height: 100%;
     transition: all 0.3s ease;
-    &:hover {
-      transform: scale(1.1);
-    }
   }
-
-  
 }
-@media(max-width: 550px){
-  .skills-display-wrapper{
-    flex-direction: column;
+@media (max-width: 900px) {
+  .skills-display-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    max-width: 500px;
+  }
+  .skill-info {
+    border-top: 1px solid var(--divider-dark-1);
+    border-right: none;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 15px;
+  }
+  .controls-wrapper {
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 0;
+  }
+  .control {
+    border: 1px solid var(--divider-dark-1);
+
+    img{
+      margin-bottom: -5px;
+    }
+
+    &:nth-child(1) {
+      border-top-left-radius: 15px;
+    }
+    &:nth-child(4) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
 }
 </style>
