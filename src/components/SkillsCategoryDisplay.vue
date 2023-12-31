@@ -29,6 +29,7 @@ const selectSkill = (id) => {
 onBeforeMount(async () => {
   try {
     skillCat.value = await getDocuments('skillsCategory')
+    activeSkill.value = skillCat.value[0]
   } catch (error) {
     console.log(error)
   } finally {
@@ -40,14 +41,13 @@ onBeforeMount(async () => {
 <style lang="scss" scoped>
 .desc {
   margin: 1rem;
-  border: 1px solid green;
   border-radius: 5px;
   padding: 0.625rem;
   background-color: var(--secondary);
 }
 .category-title {
   margin: 1rem;
-  border: 1px solid green;
+  font-size: 35px;
 }
 .skills-display-wrapper {
   margin: 3rem auto 1rem;
@@ -115,7 +115,7 @@ onBeforeMount(async () => {
   .control {
     border: 1px solid var(--divider-dark-1);
 
-    img{
+    img {
       margin-bottom: -5px;
     }
 

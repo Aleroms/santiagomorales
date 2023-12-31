@@ -5,7 +5,13 @@
     <p class="text-block">{{ skillsPage.approach_problem }}</p>
     <SectionHeader title="My Certificates" id="certificates" />
     <div v-if="isReady">
-      <CertificateList :data="cert" v-for="cert in certificates" :key="cert.id" />
+      <CertificateList
+        :data="cert"
+        v-for="cert in certificates"
+        :key="cert.id"
+        class="certificate"
+        :dontShowIcon="true"
+      />
     </div>
     <SectionHeader title="How I Program" id="how_i_program" />
     <p class="text-block">{{ skillsPage.how_i_program }}</p>
@@ -34,4 +40,8 @@ onBeforeMount(async () => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.certificate {
+  margin: 3rem 0;
+}
+</style>

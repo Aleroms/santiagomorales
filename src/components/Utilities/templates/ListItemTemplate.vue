@@ -1,6 +1,10 @@
 <template>
   <div class="item-wrapper">
-    <div class="img-wrapper" :class="{ manage: eduStore.isManage, about: !eduStore.isManage }">
+    <div
+      class="img-wrapper"
+      v-if="image"
+      :class="{ manage: eduStore.isManage, about: !eduStore.isManage }"
+    >
       <img :src="props.image.url" :alt="image.name" />
     </div>
     <div class="info-wrapper">
@@ -16,8 +20,7 @@ import { useEducationStore } from '@/stores/education'
 const eduStore = useEducationStore()
 const props = defineProps({
   image: {
-    type: Object,
-    required: true
+    type: Object
   }
 })
 </script>

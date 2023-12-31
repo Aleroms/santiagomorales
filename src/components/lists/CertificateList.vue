@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ListItemTemplate :image="data.image">
+    <ListItemTemplate :image="props.dontShowIcon ? undefined : data.image">
       <template #info>
         <h3>{{ data.name }}</h3>
         <h4>{{ data.issuer }}</h4>
@@ -8,7 +8,11 @@
         <p>Credential ID {{ data.cNum }}</p>
         <a :href="data.certUrl" target="_blank"
           >show credential
-          <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" size="sm" color="#ccc"
+          <font-awesome-icon
+            class="icon"
+            icon="fa-solid fa-arrow-up-right-from-square"
+            size="sm"
+            color="#ccc"
         /></a>
       </template>
     </ListItemTemplate>
@@ -21,9 +25,26 @@ const props = defineProps({
   data: {
     type: Object,
     required: true
+  },
+  dontShowIcon: {
+    type: Boolean,
+    required: false
   }
 })
 const month = props.data.issue_date.month.slice(0, 3)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.icon {
+  margin-left: 15px;
+}
+a {
+  &:hover {
+    color: var(--primary);
+
+    .icon {
+      color: var(--primary);
+    }
+  }
+}
+</style>
