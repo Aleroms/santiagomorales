@@ -15,6 +15,7 @@ Afterwards, I architected the structure of data I would store in Firebase. My ma
 - Firebase `npm install firebase`
 - Firestore `npm install firebase@10.7.0 --save`
 - Sass `npm install -D sass`
+
 - VueUse
 
 ```shell
@@ -40,6 +41,8 @@ npm install @formkit/vue
 npm install @formkit/themes
 npm install @formkit/addons
 ```
+
+- SwiperJs `npm install swiper`
 
 ## Issues Encountered
 
