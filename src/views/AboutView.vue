@@ -24,6 +24,7 @@
         <p class="text-block">{{ aboutPage.how_i_develop }}</p>
       </article>
       <SectionHeader title="What I am Currently Learning" id="currently-learning" />
+      <LearningComponent />
     </section>
   </div>
 </template>
@@ -37,6 +38,8 @@ import MyValuesCard from '@/components/card/MyValuesCard.vue'
 import EducationList from '@/components/lists/EducationList.vue'
 import WorkExperienceList from '@/components/lists/WorkExperienceList.vue'
 import { useEducationStore } from '@/stores/education.js'
+import LearningComponent from '@/components/learning/LearningComponent.vue'
+
 const aboutPage = ref({})
 const education = ref([])
 const workExp = ref([])
@@ -49,7 +52,6 @@ onBeforeMount(async () => {
     aboutPage.value = await getDocument('pageContent', 'aboutPage')
     education.value = await getDocuments('education')
     workExp.value = await getDocuments('workExperience')
-    console.log(education.value)
   } catch (error) {
     console.log(error)
   } finally {
@@ -58,6 +60,4 @@ onBeforeMount(async () => {
 })
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

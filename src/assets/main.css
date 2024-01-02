@@ -171,6 +171,30 @@ body {
   margin: 10px auto;
 }
 
+/* swiperJs  */
+.swiper-slide-active {
+  border: 1px solid var(--primary);
+}
+.swiper-slide {
+  cursor: pointer;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  width: 80px;
+  height: 80px;
+  padding: 0.525rem;
+  object-fit: contain;
+}
+
+.swiper {
+  background-color: var(--secondary-soft);
+}
+
 [color-scheme='light'] {
   background-color: #fff;
   --text-light-1: var(--text-dark-1);
