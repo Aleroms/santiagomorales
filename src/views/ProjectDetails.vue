@@ -85,14 +85,17 @@ onBeforeMount(async () => {
   gap: 55px;
 
   .img-wrapper {
-  aspect-ratio: 1/1;
-  object-fit: contain;
-  max-width: 43px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    max-width: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  img {
-    width: 100%;
+    img {
+      width: 100%;
+    }
   }
-}
 }
 .link {
   color: var(--primary);

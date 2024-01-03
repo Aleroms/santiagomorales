@@ -55,7 +55,9 @@ library.add(
   faHandHoldingHeart,
   faBomb,
   faSeedling,
-  faShirt
+  faShirt,
+  faMoon,
+  faSun
 )
 
 export { FontAwesomeIcon }

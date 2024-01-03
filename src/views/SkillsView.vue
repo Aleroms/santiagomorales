@@ -3,6 +3,8 @@
     <SkillsCategoryDisplay />
     <SectionHeader title="How I Approach A Problem" id="approaching-problems" />
     <p class="text-block">{{ skillsPage.approach_problem }}</p>
+    <SectionHeader title="How I Program" id="how_i_program" />
+    <p class="text-block">{{ skillsPage.how_i_program }}</p>
     <SectionHeader title="My Certificates" id="certificates" />
     <div v-if="isReady">
       <CertificateList
@@ -13,8 +15,6 @@
         :dontShowIcon="true"
       />
     </div>
-    <SectionHeader title="How I Program" id="how_i_program" />
-    <p class="text-block">{{ skillsPage.how_i_program }}</p>
   </div>
 </template>
 

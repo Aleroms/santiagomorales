@@ -13,7 +13,6 @@ import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
 import { useProjectStore } from '../stores/projects'
 const projectStore = useProjectStore()
 projectStore.showComplete()
-// projectStore.showPreview()
 </script>
 
 <style lang="scss" scoped></style>

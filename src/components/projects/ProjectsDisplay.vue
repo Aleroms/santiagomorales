@@ -88,6 +88,7 @@ const props = defineProps({
 .item {
   border: 1px solid var(--divider-dark-1);
   border-radius: 15px;
+ 
   position: relative;
   z-index: 0;
 
@@ -103,6 +104,7 @@ const props = defineProps({
   .item-img {
     overflow: hidden;
     border-radius: 15px;
+
     transition: filter 0.3s ease;
   }
 
@@ -126,8 +128,8 @@ const props = defineProps({
   }
 }
 @media (max-width: 440px) {
-  .item{
-    .img-wrapper{
+  .item {
+    .img-wrapper {
       width: 300px;
       height: 200px;
     }

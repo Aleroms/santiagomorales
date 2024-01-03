@@ -2,7 +2,11 @@
   <div class="projects-preview">
     <ProjectsControls />
     <Transition name="fade" mode="out-in">
-      <ProjectsDisplay v-if="!projectStore.isLoading" :data="projectStore.activeProjects" />
+      <ProjectsDisplay
+        v-if="!projectStore.isLoading"
+        :data="projectStore.activeProjects"
+        :key="projectStore.activeFramework"
+      />
     </Transition>
   </div>
 </template>
