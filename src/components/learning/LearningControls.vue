@@ -54,5 +54,6 @@ const modules = [Pagination, Navigation]
 <style lang="scss" scoped>
 .mySwiper {
   border-radius: 15px;
+  border: 1px solid var(--divider-dark-1);
 }
 </style>

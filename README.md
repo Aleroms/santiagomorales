@@ -60,6 +60,13 @@ npm install @formkit/addons
 
 - retrieving image url and name from my pinia store would break my app. `project.image.url | reading url undefined`. I was retrieving it on my `Mounted` lifecycle hook. When I switched to `BeforeMounted` lifecycle hook, the problem was solved. I am assuming I need to have the data ready before the component mounts to the DOM and not when the component mounts to he DOM. Only strange thing is the data was locally stored and not fetched asynchronously.
 
+- Key attribute should be on the component that is being transitioned. I.E
+```vue
+<Transition name="fade" mode="out-in">
+      <LearningDisplay v-if="!learningStore.isLoading" :key="learningStore.activeItem.id" />
+    </Transition>
+```
+
 ## Useful Links
 
 - [Vue Composables](https://vuejs.org/guide/reusability/composables) - encapsulates and reuses stateful logic

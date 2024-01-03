@@ -20,7 +20,6 @@ export const useLearningStore = defineStore('learningStore', {
     },
     setActive(id) {
       this.activeItem = this.activeItem = this.learning.find((item) => item.id === id)
-      console.log('active', id)
     }
   }
 })
