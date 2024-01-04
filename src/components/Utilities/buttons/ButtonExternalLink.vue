@@ -12,10 +12,11 @@ const props = defineProps(['text', 'path', 'type'])
   border-radius: 30px;
   text-align: center;
   transition: 0.3s ease-in-out;
+  color: white;
 }
 .filled {
-  background-color: var(--primary);
-  border: 2px solid var(--primary);
+  background-color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
 }
 .outline {
   border: 2px solid var(--primary);

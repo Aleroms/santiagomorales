@@ -42,16 +42,16 @@ const themeStore = useThemeStore()
 //     height: 100%;
 //   }
 // }
-// @media (max-width: 900px) {
-//   .stats {
-//     flex-direction: column;
-//   }
-//   .img-wrapper {
-//     max-width: 400px;
+@media (max-width: 900px) {
+  .stats {
+    flex-direction: column;
+  }
+  .img-wrapper {
+    max-width: 400px;
 
-//     img {
-//       width: 100%;
-//     }
-//   }
-// }
+    img {
+      width: 100%;
+    }
+  }
+}
 </style>

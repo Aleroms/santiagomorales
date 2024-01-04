@@ -68,7 +68,7 @@ onBeforeMount(async () => {
   } catch (error) {
     console.log(error)
   }
-  console.log(project.value.tools)
+  // console.log(project.value.tools)
 })
 </script>
 

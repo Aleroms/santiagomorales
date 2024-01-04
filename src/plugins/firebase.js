@@ -7,7 +7,7 @@ import {
   getDocs,
   deleteDoc,
   collection,
-  updateDoc,
+  updateDoc
 } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { getAuth, signOut, signInWithEmailAndPassword, signInAnonymously } from 'firebase/auth'
@@ -78,7 +78,7 @@ const modifyFileName = async (originalFileName, folderPath) => {
 
 const checkFileExists = async (filePath) => {
   try {
-    console.log(filePath, 'checkfileexist')
+    // console.log(filePath, 'checkfileexist')
     const storageRef = ref(storage, filePath)
     await getDownloadURL(storageRef)
     return true // File exists
@@ -95,7 +95,7 @@ const uploadFile3 = async (file, storageId) => {
   let filePath = `${storageId}/${fileName}`
   let fileRef = ref(storage, filePath)
   let fileURL
-  console.log(file, fileName, filePath, fileRef)
+  // console.log(file, fileName, filePath, fileRef)
 
   try {
     //if no error is thrown then file exists
@@ -109,12 +109,12 @@ const uploadFile3 = async (file, storageId) => {
     //upload modified file
     await uploadBytes(fileRef, file[0].file)
     fileURL = await getDownloadURL(fileRef)
-    console.log(`File ${file[0].name} already exists. Uploaded as ${fileName}`)
+    // console.log(`File ${file[0].name} already exists. Uploaded as ${fileName}`)
   } catch (error) {
     // upload new file - file DNE
     await uploadBytes(fileRef, file[0].file)
     fileURL = await getDownloadURL(fileRef)
-    console.log(`File ${fileName} uploaded successfully`)
+    // console.log(`File ${fileName} uploaded successfully`)
   }
 
   return {
@@ -133,7 +133,7 @@ const updateFile = async (file, storageId, editId) => {
   const fileName = file[0].name
   const filePath = `${storageId}/${fileName}`
   const fileRef = ref(storage, filePath)
-  console.log('storage path', fileRef.fullPath)
+  // console.log('storage path', fileRef.fullPath)
 
   await uploadBytes(fileRef, file[0].file)
   const fileURL = await getDownloadURL(fileRef)
@@ -147,7 +147,7 @@ const updateFile = async (file, storageId, editId) => {
 //deletes image from storage
 const deleteFile = async (path) => {
   const fileRef = ref(storage, path)
-  console.log('deleting file', fileRef.fullPath)
+  // console.log('deleting file', fileRef.fullPath)
   try {
     await deleteObject(fileRef)
   } catch (error) {
