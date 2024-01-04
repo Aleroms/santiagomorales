@@ -1,7 +1,7 @@
 <template>
   <div class="learning-display">
     <div class="img-wrapper">
-      <img :src="active.image.url" :alt="active.image.name" />
+      <img :src="active.image.url" :alt="active.image.name" loading="lazy" />
     </div>
     <article class="content">
       <h2 class="primary-title">{{ active.name }}</h2>

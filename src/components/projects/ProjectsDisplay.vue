@@ -118,6 +118,7 @@ const props = defineProps({
       height: 100%;
       background-position: center;
       background-size: contain;
+      
     }
   }
 

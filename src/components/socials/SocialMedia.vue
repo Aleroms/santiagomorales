@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" target="_blank">
+  <a :href="link" target="_blank" :aria-label="name">
     <font-awesome-icon :icon="icon" :size="size" />
     <span v-if="displayName" :style="{ fontSize: `${fsize}px` }">{{ name }}</span>
   </a>
@@ -62,12 +62,11 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-a{
+a {
   display: inline-block;
   align-items: center;
 }
 span {
-  
   margin-left: 0.625rem;
   font-weight: 400;
 }

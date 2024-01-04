@@ -1,6 +1,6 @@
 <template>
   <div class="type-writer">
-    <h3 class="text subtitle">{{ state.text }}</h3>
+    <p class="text subtitle">{{ state.text }}</p>
   </div>
 </template>
 
@@ -67,7 +67,8 @@ function removeText() {
     border-right: 2px solid var(--divider-dark-1);
     border-style: solid;
     border-color: transparent;
-
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
   }
 }
 

@@ -35,23 +35,23 @@ const themeStore = useThemeStore()
   gap: 20px;
   margin: 8rem 1rem;
 }
-.img-wrapper {
-  height: 174px;
+// .img-wrapper {
+//   height: 174px;
 
-  img {
-    height: 100%;
-  }
-}
-@media (max-width: 900px) {
-  .stats {
-    flex-direction: column;
-  }
-  .img-wrapper {
-    max-width: 400px;
+//   img {
+//     height: 100%;
+//   }
+// }
+// @media (max-width: 900px) {
+//   .stats {
+//     flex-direction: column;
+//   }
+//   .img-wrapper {
+//     max-width: 400px;
 
-    img {
-      width: 100%;
-    }
-  }
-}
+//     img {
+//       width: 100%;
+//     }
+//   }
+// }
 </style>

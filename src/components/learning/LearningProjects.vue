@@ -3,7 +3,7 @@
     <div class="projects-container">
       <RouterLink class="item" v-for="proj in projects" :key="proj.id" :to="`projects/${proj.id}`">
         <div class="img-wrapper">
-          <img :src="proj.image.url" :alt="proj.image.name" />
+          <img :src="proj.image.url" :alt="proj.image.name" loading="lazy"/>
         </div>
         <p>{{ proj.name }}</p>
       </RouterLink>

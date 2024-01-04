@@ -7,7 +7,7 @@ import {
   getDocs,
   deleteDoc,
   collection,
-  updateDoc
+  updateDoc,
 } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { getAuth, signOut, signInWithEmailAndPassword, signInAnonymously } from 'firebase/auth'
@@ -31,7 +31,6 @@ const auth = getAuth(app)
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app)
-
 // Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(app)
 

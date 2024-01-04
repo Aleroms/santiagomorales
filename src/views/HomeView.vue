@@ -38,7 +38,6 @@ onBeforeMount(async () => {
     <HomeBanner
       v-if="isDataReady"
       :data="{
-        avatar: homePage.avatar,
         keywords: homePage.keywords,
         resume: homePage.resume,
         slug: homePage.slug,

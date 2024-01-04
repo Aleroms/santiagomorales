@@ -5,7 +5,7 @@
       v-if="image"
       :class="{ manage: eduStore.isManage, about: !eduStore.isManage }"
     >
-      <img :src="props.image.url" :alt="image.name" />
+      <img :src="props.image.url" :alt="image.name" loading="lazy"/>
     </div>
     <div class="info-wrapper">
       <slot name="info">
