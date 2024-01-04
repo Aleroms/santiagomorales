@@ -37,6 +37,7 @@ const submit = async (values) => {
   display.value = true
   displayMessage.value = 'submitting...'
   console.log(values)
+  manageStore.setEdit()
 
   //do not need to filter form for files - this form never has files
   try {

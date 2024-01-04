@@ -15,4 +15,8 @@ const projectStore = useProjectStore()
 projectStore.showComplete()
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.projects-container{
+  margin: 0 auto 4rem;
+}
+</style>

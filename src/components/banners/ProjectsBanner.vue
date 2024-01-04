@@ -2,25 +2,34 @@
   <div>
     <div class="projects-banner">
       <div class="title">
-        <h1>My Projects so far ...</h1>
+        <h1 class="gradient-text g-text-1">{{ projects.title }}</h1>
       </div>
       <p class="text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, dolor quas, placeat
-        debitis consequuntur quia error necessitatibus voluptatum sequi itaque modi quos sunt
-        reprehenderit. Voluptate quibusdam cupiditate cumque aut illum expedita a aspernatur ducimus
-        ipsum commodi laboriosam repellendus
+        {{ projects.content }}
       </p>
       <h2>view my <a href="https://github.com/Aleroms">Github</a> repository</h2>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { getDocument } from '@/plugins/firebase.js'
+import { ref, onBeforeMount } from 'vue'
+const projects = ref({})
+
+onBeforeMount(async () => {
+  try {
+    projects.value = await getDocument('pageContent', 'projectsPage')
+  } catch (error) {
+    console.log(error)
+  }
+})
+</script>
 
 <style lang="scss" scoped>
 .projects-banner {
-  max-width: 450px;
-  margin: 3rem auto;
+  max-width: 750px;
+  margin: 8rem auto;
 
   a {
     color: var(--primary);

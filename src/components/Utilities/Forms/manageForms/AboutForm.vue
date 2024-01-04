@@ -17,6 +17,7 @@ const submit = async (form) => {
   disable.value = true
   displayMessage.value = 'submitting...'
   display.value = true
+  manageStore.setEdit()
   console.log(form)
 
   try {
@@ -131,13 +132,6 @@ onMounted(async () => {
       label="how I learn"
       name="how_i_learn"
       v-model="placeholder.how_i_learn"
-    />
-    <FormKit
-      type="textarea"
-      auto-height
-      label="how I develop"
-      name="how_i_develop"
-      v-model="placeholder.how_i_develop"
     />
   </FormKit>
 </template>

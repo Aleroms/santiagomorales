@@ -4,7 +4,10 @@
       <RouterLink to="/">
         <img src="/logo.png" alt="logo" />
       </RouterLink>
-      <h2 v-if="windowWidth > 446">{{ pageTitle }}</h2>
+      <RouterLink to="/" v-if="windowWidth > 446">
+        <h2>{{ pageTitle }}</h2>
+      </RouterLink>
+      <!-- <h2 v-if="windowWidth > 446">{{ pageTitle }}</h2> -->
     </div>
     <div class="nav-links" v-if="windowWidth > 1026">
       <div class="nav-links-primary">
@@ -52,7 +55,6 @@ const pageTitle = ref('')
 watchEffect(() => {
   pageTitle.value = route.meta.title || 'Santiago Morales | Portfolio' // Use a default value if title is undefined
 })
-
 
 const { windowWidth } = useWindowWidth()
 </script>

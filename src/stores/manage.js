@@ -41,6 +41,9 @@ export const useManageStore = defineStore('manageStore', {
         }
       }
     },
+    setEdit() {
+      this.isEdit = true
+    },
     setMessage(code) {
       if (code === 'success') {
         //did user successfully edit form?

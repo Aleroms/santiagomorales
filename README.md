@@ -87,3 +87,5 @@ npm install @formkit/addons
 ## What I learned
 
 In the past, I have created components that were similar and I thought I learned that I could follow the DRY principal by creating one that alternates. Recently, I learned how to use `<template>` to my advantage and implemented some in this project. But, what I am now thinking is not every shoe fits. Even though, the structure of some, for example my listTemplate, are extremely similar, the use-case when it is rendered in template may be distinct enough to warrent a new component altogether.
+
+I poured my heart and soul into this project. Every little detail is under my scrutiny and customized into my liking. This project is a reflection of me. And what I can create with scratch paper and my determination to complete something.

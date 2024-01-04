@@ -18,7 +18,7 @@ const submit = async (values) => {
   display.value = true
   console.log(values)
 
-  manageStore.isEdit = true
+  manageStore.setEdit()
 
   try {
     let resFile = undefined
