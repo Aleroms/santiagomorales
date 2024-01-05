@@ -1,22 +1,28 @@
 <script setup>
 //components
-import HomeBanner from '@/components/banners/HomeBanner.vue'
-import AboutMeCard from '@/components/card/AboutMeCard.vue'
-import SectionHeader from '@/components/Utilities/SectionHeader.vue'
-import SkillsTabView from '@/components/tabview/SkillsTabView.vue'
-import GithubStats from '../components/GithubStats.vue'
-import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
-import CenteredMessage from '@/components/Utilities/messages/CenteredMessage.vue'
-import CenteredLink from '@/components/Utilities/messages/CenteredLink.vue'
+const HomeBanner = defineAsyncComponent(() => import('@/components/banners/HomeBanner.vue'))
+const AboutMeCard = defineAsyncComponent(() => import('@/components/card/AboutMeCard.vue'))
+const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
+const SkillsTabView = defineAsyncComponent(() => import('@/components/tabview/SkillsTabView.vue'))
+const GithubStats = defineAsyncComponent(() => import('@/components/GithubStats.vue'))
+const ProjectsPreview = defineAsyncComponent(
+  () => import('@/components/projects/ProjectsPreview.vue')
+)
+const CenteredMessage = defineAsyncComponent(
+  () => import('@/components/Utilities/messages/CenteredMessage.vue')
+)
+const CenteredLink = defineAsyncComponent(
+  () => import('@/components/Utilities/messages/CenteredLink.vue')
+)
+
 //utils
-import { onBeforeMount } from 'vue'
+import { defineAsyncComponent, onBeforeMount } from 'vue'
 import { useProjectStore } from '@/stores/projects.js'
 import { useHomeStore } from '@/stores/home.js'
 import ContactMeCard from '@/components/card/ContactMeCard.vue'
 
 const projectStore = useProjectStore()
 const homeStore = useHomeStore()
-
 
 onBeforeMount(async () => {
   try {
@@ -28,7 +34,6 @@ onBeforeMount(async () => {
   } catch (error) {
     console.log(error)
   }
-
 })
 </script>
 
@@ -46,7 +51,11 @@ onBeforeMount(async () => {
     />
     <section class="about-me container">
       <SectionHeader title="About Me" id="about-me" />
-      <AboutMeCard :data="homeStore.data.introduction" v-if="homeStore.isReady" class="about-cards" />
+      <AboutMeCard
+        :data="homeStore.data.introduction"
+        v-if="homeStore.isReady"
+        class="about-cards"
+      />
       <CenteredLink :nav="{ id: '/about', text: 'about me' }" />
     </section>
     <section class="skills container">

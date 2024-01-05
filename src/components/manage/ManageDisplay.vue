@@ -18,27 +18,54 @@
 <script>
 //no script setup :,( bcz stupid eslint </3
 import { useManageStore } from '@/stores/manage'
-import SectionHeader from '@/components//Utilities/SectionHeader.vue'
+import { defineAsyncComponent } from 'vue'
+const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
 
 //Manage
-import ManageList from './ManageList.vue'
-import ManageDelete from './ManageDelete.vue'
-import ManageAlert from './ManageAlert.vue'
+const ManageList = defineAsyncComponent(() => import('./ManageList.vue'))
+const ManageDelete = defineAsyncComponent(() => import('./ManageDelete.vue'))
+const ManageAlert = defineAsyncComponent(() => import('./ManageAlert.vue'))
 
 //Forms
-import AboutForm from '@/components/Utilities/Forms/manageForms/AboutForm.vue'
-import ActiveLearningForm from '@/components/Utilities/Forms/manageForms/ActiveLearningForm.vue'
-import CertificateForm from '@/components/Utilities/Forms/manageForms/CertificateForm.vue'
-import EducationForm from '@/components/Utilities/Forms/manageForms/EducationForm.vue'
-import HomeForm from '@/components/Utilities/Forms/manageForms/HomeForm.vue'
-import ProjectsDataForm from '@/components/Utilities/Forms/manageForms/ProjectsDataForm.vue'
-import ProjectsForm from '@/components/Utilities/Forms/manageForms/ProjectsForm.vue'
-import SkillsCategoryForm from '@/components/Utilities/Forms/manageForms/SkillsCategoryForm.vue'
-import SkillsDataForm from '@/components/Utilities/Forms/manageForms/SkillsDataForm.vue'
-import SkillsForm from '@/components/Utilities/Forms/manageForms/SkillsForm.vue'
-import ToolsForm from '@/components/Utilities/Forms/manageForms/ToolsForm.vue'
-import WorkExpForm from '@/components/Utilities/Forms/manageForms/WorkExpForm.vue'
-import FrameworkForm from '@/components/Utilities/Forms/manageForms/FrameworkForm.vue'
+const AboutForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/AboutForm.vue')
+)
+const ActiveLearningForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/ActiveLearningForm.vue')
+)
+const CertificateForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/CertificateForm.vue')
+)
+const EducationForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/EducationForm.vue')
+)
+const HomeForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/HomeForm.vue')
+)
+const ProjectsDataForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/ProjectsDataForm.vue')
+)
+const ProjectsForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/ProjectsForm.vue')
+)
+const SkillsCategoryForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/SkillsCategoryForm.vue')
+)
+const SkillsDataForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/SkillsDataForm.vue')
+)
+const SkillsForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/SkillsForm.vue')
+)
+const ToolsForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/ToolsForm.vue')
+)
+const WorkExpForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/WorkExpForm.vue')
+)
+const FrameworkForm = defineAsyncComponent(
+  () => import('@/components/Utilities/Forms/manageForms/FrameworkForm.vue')
+)
 
 export default {
   components: {

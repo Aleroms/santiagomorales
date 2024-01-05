@@ -61,6 +61,7 @@ npm install @formkit/addons
 - retrieving image url and name from my pinia store would break my app. `project.image.url | reading url undefined`. I was retrieving it on my `Mounted` lifecycle hook. When I switched to `BeforeMounted` lifecycle hook, the problem was solved. I am assuming I need to have the data ready before the component mounts to the DOM and not when the component mounts to he DOM. Only strange thing is the data was locally stored and not fetched asynchronously.
 
 - Key attribute should be on the component that is being transitioned. I.E
+
 ```vue
 <Transition name="fade" mode="out-in">
       <LearningDisplay v-if="!learningStore.isLoading" :key="learningStore.activeItem.id" />
@@ -78,6 +79,7 @@ npm install @formkit/addons
 - [Ux Confirm Delete](https://medium.com/@joaopegb/ux-writing-an-effective-cancel-dialog-confirmation-on-web-539b73a39929) - best practices on user experience for confirming deletion of a file.
 - [Vue <slot></slot](https://vuejs.org/guide/components/slots.html) - vue slot documentation i used for `ListItemTemplate.vue`
 - [useMouseInElement](https://vueuse.org/core/useMouseInElement/#usemouseinelement) - the demo is really helpful to understand how it could be used
+- [defineAsyncComponent](https://vuejs.org/guide/components/async) - reducing bundle size by dynamically importing modules `code-splitting`
 
 ## Reminder
 

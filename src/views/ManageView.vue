@@ -12,11 +12,14 @@
 </template>
 
 <script setup>
-import ManageControls from '@/components/manage/ManageControls.vue'
-import ManageDisplay from '@/components/manage/ManageDisplay.vue'
-import ButtonComponent from '@/components/Utilities/buttons/ButtonComponent.vue'
+const ManageControls = defineAsyncComponent(() => import('@/components/manage/ManageControls.vue'))
+const ManageDisplay = defineAsyncComponent(() => import('@/components/manage/ManageDisplay.vue'))
+const ButtonComponent = defineAsyncComponent(
+  () => import('@/components/Utilities/buttons/ButtonComponent.vue')
+)
 
 import { useUserStore } from '@/stores/user.js'
+import { defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()

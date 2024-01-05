@@ -8,7 +8,8 @@
 </template>
 
 <script setup>
-import LoginForm from '../components/Utilities/Forms/LoginForm.vue'
+import { defineAsyncComponent } from 'vue'
+const LoginForm = defineAsyncComponent(() => import('@/components/Utilities/Forms/LoginForm.vue'))
 </script>
 
 <style lang="scss" scoped>

@@ -21,9 +21,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import ButtonLinks from '../components/Utilities/buttons/ButtonLinks.vue'
+import { defineAsyncComponent, ref } from 'vue'
 import { useRoute } from 'vue-router'
+const ButtonLinks = defineAsyncComponent(
+  () => import('@/components/Utilities/buttons/ButtonLinks.vue')
+)
 const currentRoute = useRoute()
 const codeText = ref('')
 codeText.value = currentRoute.path.slice(0, 37)
@@ -54,8 +56,6 @@ codeText.value += '...'
     h1 {
       border-bottom: 1px solid var(--divider-dark-1);
       margin-bottom: 1rem;
-    }
-    code {
     }
   }
   .buttons-wrapper {

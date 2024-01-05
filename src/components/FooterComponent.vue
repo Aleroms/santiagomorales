@@ -87,6 +87,8 @@ const userStore = useUserStore()
 .footer-inner {
   display: flex;
   flex-direction: row;
+  // align-items: center;
+  // justify-content: center;
   gap: 60px;
 
   .title {
@@ -127,7 +129,7 @@ footer {
     border-top: 1px solid var(--divider-dark-1);
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 555px) {
   footer {
     display: flex;
     align-items: center;

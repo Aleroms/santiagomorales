@@ -3,10 +3,10 @@
     <div class="project-display" v-if="!projectStore.isSwap">
       <!-- displays all or preview items  -->
       <div class="item" v-for="proj in props.data" :key="proj.id">
-        <RouterLink :to="`/projects/${proj.id}`" />
+        <RouterLink :to="`/projects/${proj.id}`" :aria-label="proj.id" />
         <div class="item-img">
           <div class="img-wrapper">
-            <div class="bg-img" :style="{ backgroundImage: `url(${proj.image.url})` }"></div>
+            <img :src="proj.image.url" :alt="proj.image.name" loading="lazy" />
           </div>
         </div>
         <NuxtHoverEffect />
@@ -88,7 +88,7 @@ const props = defineProps({
 .item {
   border: 1px solid var(--divider-dark-1);
   border-radius: 15px;
- 
+
   position: relative;
   z-index: 0;
 
@@ -113,12 +113,10 @@ const props = defineProps({
     height: 200px;
     transition: transform 0.3s ease;
 
-    .bg-img {
+    img {
       width: 100%;
       height: 100%;
-      background-position: center;
-      background-size: contain;
-      
+      object-fit: cover;
     }
   }
 

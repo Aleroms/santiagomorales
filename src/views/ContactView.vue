@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from 'vue'
+import { defineAsyncComponent, onBeforeMount, ref } from 'vue'
 import { getDocument } from '@/plugins/firebase.js'
-import ContactMeCard from '@/components/card/ContactMeCard.vue'
+const ContactMeCard = defineAsyncComponent(() => import('@/components/card/ContactMeCard.vue'))
 const contact = ref('')
 const isDataReady = ref(false)
 onBeforeMount(async () => {
@@ -25,8 +25,8 @@ onBeforeMount(async () => {
 .contact-page {
   margin: 10rem auto;
 }
-@media(max-width: 900px){
-  .contact-page{
+@media (max-width: 900px) {
+  .contact-page {
     margin: 2rem 1rem;
   }
 }

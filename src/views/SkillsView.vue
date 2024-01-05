@@ -19,11 +19,14 @@
 </template>
 
 <script setup>
-import SectionHeader from '@/components/Utilities/SectionHeader.vue'
-import SkillsCategoryDisplay from '@/components/SkillsCategoryDisplay.vue'
-import CertificateList from '@/components/lists/CertificateList.vue'
+
+const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
+const SkillsCategoryDisplay = defineAsyncComponent(
+  () => import('@/components/SkillsCategoryDisplay.vue')
+)
+const CertificateList = defineAsyncComponent(() => import('@/components/lists/CertificateList.vue'))
 import { getDocuments, getDocument } from '@/plugins/firebase.js'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, defineAsyncComponent } from 'vue'
 const skillsPage = ref({})
 const certificates = ref({})
 const isReady = ref(false)

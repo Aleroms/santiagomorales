@@ -26,15 +26,19 @@
 </template>
 
 <script setup>
-import AboutBanner from '@/components/banners/AboutBanner.vue'
-import SectionHeader from '@/components/Utilities/SectionHeader.vue'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, defineAsyncComponent } from 'vue'
 import { getDocument, getDocuments } from '@/plugins/firebase.js'
-import MyValuesCard from '@/components/card/MyValuesCard.vue'
-import EducationList from '@/components/lists/EducationList.vue'
-import WorkExperienceList from '@/components/lists/WorkExperienceList.vue'
 import { useEducationStore } from '@/stores/education.js'
-import LearningComponent from '@/components/learning/LearningComponent.vue'
+const AboutBanner = defineAsyncComponent(() => import('@/components/banners/AboutBanner.vue'))
+const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
+const MyValuesCard = defineAsyncComponent(() => import('@/components/card/MyValuesCard.vue'))
+const EducationList = defineAsyncComponent(() => import('@/components/lists/EducationList.vue'))
+const WorkExperienceList = defineAsyncComponent(
+  () => import('@/components/lists/WorkExperienceList.vue')
+)
+const LearningComponent = defineAsyncComponent(
+  () => import('@/components/learning/LearningComponent.vue')
+)
 
 const aboutPage = ref({})
 const education = ref([])

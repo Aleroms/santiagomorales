@@ -35,17 +35,26 @@
 <script>
 import { useManageStore } from '@/stores/manage'
 import { useEducationStore } from '@/stores/education'
+import { defineAsyncComponent } from 'vue'
 
 //Lists
-import ActiveLearningList from '@/components/lists/ActiveLearningList.vue'
-import CertificateList from '@/components/lists/CertificateList.vue'
-import EducationList from '@/components/lists/EducationList.vue'
-import ProjectsDataList from '@/components/lists/ProjectsDataList.vue'
-import SkillsCategoryList from '@/components/lists/SkillsCategoryList.vue'
-import SkillsDataList from '@/components/lists/SkillsDataList.vue'
-import ToolsList from '@/components/lists/ToolsList.vue'
-import WorkExperienceList from '@/components/lists/WorkExperienceList.vue'
-import FrameworkList from '@/components/lists/FrameworkList.vue'
+const ActiveLearningList = defineAsyncComponent(
+  () => import('@/components/lists/ActiveLearningList.vue')
+)
+const CertificateList = defineAsyncComponent(() => import('@/components/lists/CertificateList.vue'))
+const EducationList = defineAsyncComponent(() => import('@/components/lists/EducationList.vue'))
+const ProjectsDataList = defineAsyncComponent(
+  () => import('@/components/lists/ProjectsDataList.vue')
+)
+const SkillsCategoryList = defineAsyncComponent(
+  () => import('@/components/lists/SkillsCategoryList.vue')
+)
+const SkillsDataList = defineAsyncComponent(() => import('@/components/lists/SkillsDataList.vue'))
+const ToolsList = defineAsyncComponent(() => import('@/components/lists/ToolsList.vue'))
+const WorkExperienceList = defineAsyncComponent(
+  () => import('@/components/lists/WorkExperienceList.vue')
+)
+const FrameworkList = defineAsyncComponent(() => import('@/components/lists/FrameworkList.vue'))
 
 export default {
   components: {

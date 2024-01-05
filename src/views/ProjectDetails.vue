@@ -51,10 +51,12 @@
 
 <script setup>
 import { useProjectStore } from '@/stores/projects.js'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, defineAsyncComponent } from 'vue'
 import { getDocuments } from '@/plugins/firebase.js'
-import ProjectDetailsBanner from '@/components/banners/ProjectDetailsBanner.vue'
-import SectionHeader from '@/components/Utilities/SectionHeader.vue'
+const ProjectDetailsBanner = defineAsyncComponent(
+  () => import('@/components/banners/ProjectDetailsBanner.vue')
+)
+const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
 const projectStore = useProjectStore()
 const project = ref({})
 const toolsUsed = ref([])
