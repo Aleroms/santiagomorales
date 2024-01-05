@@ -7,6 +7,8 @@
           alt="top languages on github"
           draggable="false"
           loading="lazy"
+          width="467"
+          height="170"
         />
       </div>
       <div class="img-wrapper">
@@ -15,6 +17,8 @@
           alt="top languages on github"
           draggable="false"
           loading="lazy"
+          width="300"
+          height="170"
         />
       </div>
     </div>
@@ -35,13 +39,7 @@ const themeStore = useThemeStore()
   gap: 20px;
   margin: 8rem 1rem;
 }
-// .img-wrapper {
-//   height: 174px;
 
-//   img {
-//     height: 100%;
-//   }
-// }
 @media (max-width: 900px) {
   .stats {
     flex-direction: column;

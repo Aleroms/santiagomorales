@@ -1,18 +1,23 @@
 <template>
   <div class="about-me-cards">
-    <CardTemplate v-for="card in props.data" :key="card.title">
-      <template #title>
-        <h3>{{ card.title }}</h3>
+    <HorizontalScrollTemplate>
+      <template #horizontal-item>
+        <CardTemplate v-for="card in props.data" :key="card.title" class="card-template">
+          <template #title>
+            <h3>{{ card.title }}</h3>
+          </template>
+          <template #content>
+            <p class="subtitle">{{ card.content }}</p>
+          </template>
+        </CardTemplate>
       </template>
-      <template #content>
-        <p class="subtitle">{{ card.content }}</p>
-      </template>
-    </CardTemplate>
+    </HorizontalScrollTemplate>
   </div>
 </template>
 
 <script setup>
 import CardTemplate from '../Utilities/templates/CardTemplate.vue'
+import HorizontalScrollTemplate from '../Utilities/templates/HorizontalScrollTemplate.vue'
 
 const props = defineProps({
   data: {
@@ -24,17 +29,12 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .about-me-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 40px;
-  align-items: center;
-  justify-content: space-evenly;
-  cursor: pointer;
 
   p {
     margin: 0.625rem;
   }
+}
+.card-template{
+  padding-bottom: 1rem;
 }
 </style>

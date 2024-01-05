@@ -4,7 +4,6 @@ const HomeBanner = defineAsyncComponent(() => import('@/components/banners/HomeB
 const AboutMeCard = defineAsyncComponent(() => import('@/components/card/AboutMeCard.vue'))
 const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
 const SkillsTabView = defineAsyncComponent(() => import('@/components/tabview/SkillsTabView.vue'))
-const GithubStats = defineAsyncComponent(() => import('@/components/GithubStats.vue'))
 const ProjectsPreview = defineAsyncComponent(
   () => import('@/components/projects/ProjectsPreview.vue')
 )
@@ -62,7 +61,6 @@ onBeforeMount(async () => {
       <SectionHeader title="My Skills" id="skills" />
       <CenteredMessage :text="homeStore.data.skills" v-if="homeStore.isReady" />
       <SkillsTabView />
-      <GithubStats />
       <CenteredLink :nav="{ id: '/skills', text: 'skills' }" />
     </section>
     <section class="projects container">
@@ -87,5 +85,10 @@ onBeforeMount(async () => {
   max-width: 1280px;
   margin: 1rem auto;
   padding: 0 1.625rem;
+}
+@media(max-width: 720px){
+  .about-cards {
+  margin-top: 4rem;
+}
 }
 </style>

@@ -19,15 +19,14 @@
   </div>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  min-height: 400px;
 }
 .primary {
   max-width: 500px;
@@ -43,7 +42,6 @@
   justify-content: space-evenly;
   gap: 10px;
 }
-
 
 @media (max-width: 845px) {
   .banner-template {

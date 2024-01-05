@@ -6,7 +6,13 @@
         <RouterLink :to="`/projects/${proj.id}`" :aria-label="proj.id" />
         <div class="item-img">
           <div class="img-wrapper">
-            <img :src="proj.image.url" :alt="proj.image.name" loading="lazy" />
+            <img
+              width="375"
+              height="200"
+              :src="proj.image.url"
+              :alt="proj.image.name"
+              loading="lazy"
+            />
           </div>
         </div>
         <NuxtHoverEffect />
@@ -132,6 +138,11 @@ const props = defineProps({
       width: 300px;
       height: 200px;
     }
+  }
+  .preview {
+    width: 300px !important;
+    height: 200px !important;
+    min-width: 200px;
   }
 }
 </style>

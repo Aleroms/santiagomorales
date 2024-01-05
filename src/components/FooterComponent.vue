@@ -45,7 +45,7 @@
       Designed by <span>Santiago Morales</span> | All rights reserved
       <font-awesome-icon icon="fa-regular fa-copyright" />
     </h4>
-    <p class="subtitle">
+    <p class="subtitle made-with">
       Made with Vue + Firebase | source code on
       <a class="subtitle" href="https://github.com/Aleroms/santiagomorales">github</a>
     </p>
@@ -62,10 +62,14 @@ const userStore = useUserStore()
 .copyright {
   padding-right: 1rem;
   letter-spacing: 3px;
+  height: 60px;
 
   span {
     color: var(--primary);
   }
+}
+.made-with {
+  height: 60px;
 }
 .navigation,
 .socials {
@@ -87,8 +91,6 @@ const userStore = useUserStore()
 .footer-inner {
   display: flex;
   flex-direction: row;
-  // align-items: center;
-  // justify-content: center;
   gap: 60px;
 
   .title {
@@ -100,6 +102,7 @@ footer {
   border-top: 1px solid var(--divider-dark-1);
   padding: 1rem 1rem 0;
   margin: 1rem 0;
+  min-height: 500px;
 
   display: flex;
   flex-direction: column;

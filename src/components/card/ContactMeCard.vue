@@ -8,10 +8,10 @@
         <SocialMedia social="github" size="xl" :displayName="true" />
         <SocialMedia social="email" size="xl" :displayName="true" />
       </div>
-      <ButtonExternalLink type="filled" :path="resume" text="resume"/>
+      <ButtonExternalLink type="filled" :path="resume" text="resume" />
     </article>
     <div class="img-wrapper">
-      <img src="/logo.png" alt="logo" />
+      <img src="/logo.png" alt="logo" width="160" height="160" />
     </div>
   </div>
 </template>

@@ -14,7 +14,6 @@
       <template #secondary v-if="isReady">
         <div class="secondary">
           <p>{{ data.keywords }}</p>
-          
         </div>
         <div class="socials">
           <SocialMedia social="github" size="xl" />
@@ -78,13 +77,12 @@ h3 {
   letter-spacing: 0.1rem;
 }
 .img-wrapper {
-  max-height: 450px;
-  max-width: 450px;
+  height: 450px;
+  width: 450px;
 
   img {
     width: 100%;
     border-radius: 10px;
-    // padding: 0.625rem;
     box-sizing: border-box;
   }
 }
@@ -100,8 +98,8 @@ h3 {
     font-size: 16px;
   }
   .img-wrapper {
-    max-width: 400px;
-    max-height: 400px;
+    width: 400px;
+    height: 400px;
   }
 }
 @media (max-width: 440px) {
@@ -113,6 +111,10 @@ h3 {
   }
   h3 {
     font-size: 16px;
+  }
+  .img-wrapper {
+    width: 300px;
+    height: 300px;
   }
 }
 </style>

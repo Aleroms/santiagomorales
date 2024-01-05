@@ -2,7 +2,7 @@
   <nav class="nav">
     <div class="logo-wrapper">
       <RouterLink to="/">
-        <img src="/logo.png" alt="logo" />
+        <img src="/logo.png" alt="logo" width="55" height="55" />
       </RouterLink>
       <RouterLink to="/" v-if="windowWidth > 446">
         <h2>{{ pageTitle }}</h2>
@@ -97,6 +97,7 @@ const { windowWidth } = useWindowWidth()
 }
 .nav {
   padding: 0.725rem 2rem;
+  min-height: 83px;
   display: flex;
   align-items: center;
   justify-content: space-between;

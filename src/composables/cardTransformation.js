@@ -13,7 +13,7 @@ export function useCardTransformation(target) {
     const rX = (MAX_ROTATION / 2 - (elementY.value / elementHeight.value) * MAX_ROTATION).toFixed(2)
     const rY = ((elementX.value / elementWidth.value) * MAX_ROTATION - MAX_ROTATION / 2).toFixed(2)
 
-    return isOutside.value || windowWidth.value < 700
+    return isOutside.value || windowWidth.value < 720
       ? ''
       : `perspective(${elementWidth.value}px) rotateX(${rX}deg) rotateY(${rY}deg)`
   })

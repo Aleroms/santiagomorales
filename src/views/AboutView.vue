@@ -11,10 +11,12 @@
       </section>
       <SectionHeader title="My Values" id="my_values" />
       <MyValuesCard v-if="isReady" :data="aboutPage.values" />
+
       <SectionHeader title="Work Experience" id="work-exp" />
       <section class="container-2" id="work" v-if="isReady">
         <WorkExperienceList :data="work" v-for="work in workExp" :key="work.id" />
       </section>
+      
       <SectionHeader title="How I Learn" id="how_i_learn" />
       <article>
         <p class="text-block">{{ aboutPage.how_i_learn }}</p>
