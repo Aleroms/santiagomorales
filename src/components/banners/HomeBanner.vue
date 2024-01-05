@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import Typewriter from '../Utilities/Typewriter.vue'
+import Typewriter from '@/components/Utilities/Typewriter.vue'
 import BannerTemplate from '@/components/Utilities/templates/BannerTemplate.vue'
 import SocialMedia from '@/components/socials/SocialMedia.vue'
 import ButtonExternalLink from '@/components/Utilities/buttons/ButtonExternalLink.vue'
