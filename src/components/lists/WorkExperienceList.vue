@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import listitemtemplate from '../utilities/templates/listitemtemplate.vue'
+import listitemtemplate from '@/components/Utilities/templates/ListItemTemplate.vue'
 import { calculateDuration } from '@/utils/date.js'
 
 const props = defineProps({
