@@ -9,64 +9,63 @@ import ProjectsPreview from '@/components/projects/ProjectsPreview.vue'
 import CenteredMessage from '@/components/Utilities/messages/CenteredMessage.vue'
 import CenteredLink from '@/components/Utilities/messages/CenteredLink.vue'
 //utils
-import { ref, onBeforeMount } from 'vue'
-import { getDocument } from '@/plugins/firebase.js'
+import { onBeforeMount } from 'vue'
 import { useProjectStore } from '@/stores/projects.js'
+import { useHomeStore } from '@/stores/home.js'
 import ContactMeCard from '@/components/card/ContactMeCard.vue'
 
 const projectStore = useProjectStore()
-const homePage = ref({})
-const isDataReady = ref(false)
+const homeStore = useHomeStore()
+
 
 onBeforeMount(async () => {
   try {
-    homePage.value = await getDocument('pageContent', 'homePage')
+    homeStore.initialize()
 
     //projects set to preview by default
     projectStore.initialize()
     projectStore.showPreview()
   } catch (error) {
     console.log(error)
-  } finally {
-    isDataReady.value = true
   }
+
 })
 </script>
 
 <template>
   <div id="home-page">
     <HomeBanner
-      v-if="isDataReady"
       :data="{
-        keywords: homePage.keywords,
-        resume: homePage.resume,
-        slug: homePage.slug,
-        subtitle: homePage.subtitle,
-        title: homePage.title
+        keywords: homeStore.data.keywords,
+        resume: homeStore.data.resume,
+        slug: homeStore.data.slug,
+        subtitle: homeStore.data.subtitle,
+        title: homeStore.data.title
       }"
+      :isReady="homeStore.isReady"
     />
     <section class="about-me container">
       <SectionHeader title="About Me" id="about-me" />
-      <AboutMeCard :data="homePage.introduction" v-if="isDataReady" class="about-cards" />
+      <AboutMeCard :data="homeStore.data.introduction" v-if="homeStore.isReady" class="about-cards" />
       <CenteredLink :nav="{ id: '/about', text: 'about me' }" />
     </section>
     <section class="skills container">
       <SectionHeader title="My Skills" id="skills" />
-      <CenteredMessage :text="homePage.skills" v-if="isDataReady" />
+      <CenteredMessage :text="homeStore.data.skills" v-if="homeStore.isReady" />
       <SkillsTabView />
       <GithubStats />
       <CenteredLink :nav="{ id: '/skills', text: 'skills' }" />
     </section>
     <section class="projects container">
       <SectionHeader title="My Projects" id="Projects" />
-      <CenteredMessage :text="homePage.projects" v-if="isDataReady" />
+      <CenteredMessage :text="homeStore.data.projects" v-if="homeStore.isReady" />
 
       <ProjectsPreview />
       <CenteredLink :nav="{ id: '/projects', text: 'projects' }" />
     </section>
     <section class="contact container">
       <SectionHeader title="Contact Me" id="Contact" />
-      <ContactMeCard :contact="homePage.contact" v-if="isDataReady" />
+      <ContactMeCard :contact="homeStore.data.contact" v-if="homeStore.isReady" />
     </section>
   </div>
 </template>

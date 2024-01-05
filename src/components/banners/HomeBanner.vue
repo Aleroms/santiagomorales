@@ -3,17 +3,18 @@
     <BannerTemplate>
       <template #card>
         <div class="img-wrapper" v-motion="motionFloat">
-          <img src="/home-banner.png" alt="santiago morales" loading="eager" />
+          <img src="/home-banner.png" alt="santiago morales" fetchpriority="high" />
         </div>
       </template>
-      <template #primary>
+      <template #primary v-if="isReady">
         <h1 class="title">{{ props.data.title }}</h1>
         <h2 class="gradient-text g-text-1">{{ data.subtitle }}</h2>
         <Typewriter :data="data.slug" />
       </template>
-      <template #secondary>
+      <template #secondary v-if="isReady">
         <div class="secondary">
           <p>{{ data.keywords }}</p>
+          
         </div>
         <div class="socials">
           <SocialMedia social="github" size="xl" />
@@ -36,6 +37,10 @@ import { motionFloat } from '@/plugins/motion'
 const props = defineProps({
   data: {
     type: Object,
+    required: true
+  },
+  isReady: {
+    type: Boolean,
     required: true
   }
 })

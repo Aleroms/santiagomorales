@@ -2,17 +2,17 @@
   <div class="banner-template">
     <!-- mainly the image slot  -->
     <slot name="card">
-      <p>no card provided</p>
+      <p>Loading . . .</p>
     </slot>
     <div class="info">
       <div class="primary">
         <slot name="primary">
-          <p>no heading provided</p>
+          <p>Loading . . .</p>
         </slot>
       </div>
       <div class="secondary">
         <slot name="secondary">
-          <p>no content provided</p>
+          <p>Loading . . .</p>
         </slot>
       </div>
     </div>
