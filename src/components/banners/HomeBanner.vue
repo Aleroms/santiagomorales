@@ -20,14 +20,14 @@
           <SocialMedia social="linkedin" size="xl" />
           <SocialMedia social="threads" size="xl" />
         </div>
-        <ButtonExternalLink type="filled" :path="data.resume.url" text="resume" class="resume"/>
+        <ButtonExternalLink type="filled" :path="data.resume.url" text="resume" class="resume" />
       </template>
     </BannerTemplate>
   </div>
 </template>
 
 <script setup>
-import Typewriter from '@/components/Utilities/Typewriter.vue'
+import Typewriter from '@/components/Utilities/TypeWriter.vue'
 import BannerTemplate from '@/components/Utilities/templates/BannerTemplate.vue'
 import SocialMedia from '@/components/socials/SocialMedia.vue'
 import ButtonExternalLink from '@/components/Utilities/buttons/ButtonExternalLink.vue'
