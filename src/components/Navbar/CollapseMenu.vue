@@ -23,7 +23,7 @@
 <script setup>
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import { useCollapsedMenuStore } from '@/stores/collapsedMenu'
-import SocialMedia from '@/components/socials/socialmedia.vue'
+import SocialMedia from '@/components/socials/SocialMedia.vue'
 
 const collapsedMenu = useCollapsedMenuStore()
 
