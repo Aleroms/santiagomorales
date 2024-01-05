@@ -19,10 +19,6 @@
       <article>
         <p class="text-block">{{ aboutPage.how_i_learn }}</p>
       </article>
-      <!-- <SectionHeader title="How I Develop" id="how_i_develop" />
-      <article>
-        <p class="text-block">{{ aboutPage.how_i_develop }}</p>
-      </article> -->
       <SectionHeader title="What I am Currently Learning" id="currently-learning" />
       <LearningComponent />
     </section>

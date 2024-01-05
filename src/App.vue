@@ -5,7 +5,6 @@ import NavigationBar from './components/Navbar/NavigationBar.vue'
 import CollapsedMenu from '@/components/Navbar/CollapseMenu.vue'
 import { useWindowWidth } from './composables/windowWidth'
 import { useCollapsedMenuStore } from './stores/collapsedMenu'
-import SocialMedia from './components/socials/socialmedia.vue'
 import FooterComponent from './components/FooterComponent.vue'
 
 const navbarTop = ref('-100px')
