@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import ListItemTemplate from '../utilities/templates/ListItemTemplate.vue'
+import ListItemTemplate from '@/components/Utilities/templates/ListItemTemplate.vue'
 const props = defineProps({
   data: {
     type: Object,
