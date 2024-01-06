@@ -5,7 +5,11 @@
       v-if="image"
       :class="{ manage: eduStore.isManage, about: !eduStore.isManage }"
     >
-      <img :src="props.image.url" :alt="image.name" loading="lazy"/>
+      <!-- <img :src="props.image.url" :alt="image.name" loading="lazy"/> -->
+      <picture>
+        <source :srcset="image.url" type="image/webp" />
+        <img :src="props.fallback.url" :alt="fallback.name" loading="lazy" />
+      </picture>
     </div>
     <div class="info-wrapper">
       <slot name="info">
@@ -20,6 +24,9 @@ import { useEducationStore } from '@/stores/education'
 const eduStore = useEducationStore()
 const props = defineProps({
   image: {
+    type: Object
+  },
+  fallback: {
     type: Object
   }
 })

@@ -37,9 +37,26 @@
     <FormKit
       type="file"
       name="image"
-      label="project cover"
+      label="project webp cover"
       help="used to describe the project"
       :validation="manageStore.required"
+      accept=".webp"
+    />
+    <FormKit
+      type="file"
+      name="thumbnail"
+      label="project webp thumbnail"
+      help="size should be small"
+      :validation="manageStore.required"
+      accept=".webp"
+    />
+    <FormKit
+      type="file"
+      name="fallback"
+      label="project jpg or png fallback"
+      help="fallback in case browser does not support"
+      :validation="manageStore.required"
+      accept=".jpg,.png"
     />
     <FormKit type="group" name="start" v-model="placeholder.start">
       <div class="form-date-wrapper">
@@ -296,13 +313,14 @@ import { getDocuments } from '@/plugins/firebase.js'
 
 const manageStore = useManageStore()
 const { placeholder } = useFormPlaceholder()
-console.log('placeholder', placeholder.value)
+// console.log('placeholder', placeholder.value)
 const { displayMessage, disable, display, submitManageForm } = useManageForm()
 const toolsOptions = ref({})
 
 const submit = async (values) => {
   values.id = manageStore.isEdit ? placeholder.value.id : values.name + '-' + values.category
 
+  //removes empty tools submitted
   const filteredTools = values.toolsUsed.filter((value) => value !== '')
   values.toolsUsed = filteredTools
 

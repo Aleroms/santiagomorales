@@ -1,6 +1,6 @@
 <template>
   <div class="projects-data">
-    <ListItemTemplate :image="data.image">
+    <ListItemTemplate :image="data.thumbnail" :fallback="data.fallback">
       <template #info>
         <div class="proj-container">
           <div class="main">

@@ -6,13 +6,17 @@
         <RouterLink :to="`/projects/${proj.id}`" :aria-label="proj.id" />
         <div class="item-img">
           <div class="img-wrapper">
-            <img
+            <!-- <img
               width="375"
               height="200"
               :src="proj.image.url"
               :alt="proj.image.name"
               loading="lazy"
-            />
+            /> -->
+            <picture>
+              <source :srcset="proj.thumbnail.url" type="image/webp" />
+              <img :src="proj.fallback.url" :alt="proj.fallback.name" loading="lazy" />
+            </picture>
           </div>
         </div>
         <NuxtHoverEffect />

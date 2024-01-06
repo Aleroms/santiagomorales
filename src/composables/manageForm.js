@@ -20,6 +20,32 @@ export function useManageForm() {
       } else {
         delete values.image
       }
+      //upload thumbnail if it exists
+      if (
+        Object.keys(values.thumbnail).length !== 0 &&
+        Object.keys(values.thumbnail[0]).length > 0
+      ) {
+        const thumbnail = await updateFile(
+          values.thumbnail,
+          manageStore.collectionId,
+          manageStore.editId
+        )
+        values.thumbnail = thumbnail
+      } else {
+        delete values.thumbnail
+      }
+      //upload fallback if it exists
+      if (Object.keys(values.fallback).length !== 0 && Object.keys(values.fallback[0]).length > 0) {
+        const fallback = await updateFile(
+          values.fallback,
+          manageStore.collectionId,
+          manageStore.editId
+        )
+        values.fallback = fallback
+      } else {
+        delete values.fallback
+      }
+
       //if id is only thing in values, don't bother submitting form
       if (Object.keys(values).length > 1) {
         await submitForm(values, manageStore.collectionId, values.id)
@@ -34,6 +60,11 @@ export function useManageForm() {
   const submitCreate = async (values) => {
     const image = await uploadFile3(values.image, manageStore.collectionId)
     values.image = image
+    const thumbnail = await uploadFile3(values.thumbnail, manageStore.collectionId)
+    values.thumbnail = thumbnail
+    const fallback = await uploadFile3(values.fallback, manageStore.collectionId)
+    values.fallback = fallback
+    console.log(values.image, values.thumbnail, values.fallback)
     await submitForm(values, manageStore.collectionId, values.id)
   }
 
@@ -45,6 +76,7 @@ export function useManageForm() {
 
     try {
       if (manageStore.isEdit) {
+        //removes undefined values
         const filteredValues = filterForm(values)
         await submitUpdate(filteredValues)
       } else {

@@ -62,24 +62,32 @@ function removeText() {
   letter-spacing: 0.125rem;
 
   .text {
-    animation: blink 1s infinite;
+    // animation: blink 1s infinite;
     border-width: 0;
     border-right: 2px solid var(--divider-dark-1);
     border-style: solid;
     border-color: transparent;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
+    width: 400px;
+    height: 28px;
   }
 }
-
-@keyframes blink {
-  0%,
-  45% {
-    border-color: transparent;
-  }
-  50%,
-  100% {
-    border-color: var(--divider-dark-1);
+@media (max-width: 420px) {
+  .type-writer .text {
+    width: 280px;
+    height: 40px;
+    font-size: 12px;
   }
 }
+// @keyframes blink {
+//   0%,
+//   45% {
+//     border-color: transparent;
+//   }
+//   50%,
+//   100% {
+//     border-color: var(--divider-dark-1);
+//   }
+// }
 </style>

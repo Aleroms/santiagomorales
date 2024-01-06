@@ -16,7 +16,13 @@
     <div class="content">
       <div class="item" v-for="skill in selectedSkills" :key="skill.id">
         <div class="img-wrapper">
-          <img width="100" :src="skill.image.url" :alt="skill.image.name" loading="lazy"/>
+          <img
+            width="100"
+            height="100"
+            :src="skill.image.url"
+            :alt="skill.image.name"
+            loading="lazy"
+          />
         </div>
       </div>
       <p class="subtitle" v-if="noItem">no items 😔</p>
@@ -136,6 +142,11 @@ onMounted(async () => {
   .heading {
     flex-direction: column;
     justify-content: flex-start;
+  }
+}
+@media (max-width: 365px) {
+  .img-wrapper {
+    max-width: 61px;
   }
 }
 </style>

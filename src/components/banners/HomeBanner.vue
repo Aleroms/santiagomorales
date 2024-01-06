@@ -3,7 +3,10 @@
     <BannerTemplate>
       <template #card>
         <div class="img-wrapper" v-motion="motionFloat">
-          <img src="/home-banner.png" alt="santiago morales" fetchpriority="high" />
+          <picture>
+            <source srcset="/home-banner.webp" type="image/webp" />
+            <img src="/home-banner.png" alt="santiago morales" fetchpriority="high" />
+          </picture>
         </div>
       </template>
       <template #primary v-if="isReady">
@@ -115,6 +118,11 @@ h3 {
   .img-wrapper {
     width: 300px;
     height: 300px;
+  }
+}
+@media (max-width: 350px) {
+  h1 {
+    font-size: 28px;
   }
 }
 </style>
