@@ -55,7 +55,7 @@
 
 @media (max-width: 510px) {
   .scroll-container {
-    grid-auto-columns: 100%;
+    grid-auto-columns: 90%;
   }
 }
 </style>

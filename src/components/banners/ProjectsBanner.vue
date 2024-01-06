@@ -40,10 +40,10 @@ onBeforeMount(async () => {
   margin: 8rem auto;
 
   a {
-    color: var(--hover-3);
+    color: var(--hover-2);
 
     &:hover{
-      color: var(--hover-2);
+      color: var(--hover-3);
     }
   }
 

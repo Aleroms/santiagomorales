@@ -50,23 +50,15 @@ p {
     max-width: 370px;
   }
 }
-@media (max-width: 430px) {
-  .title {
-    font-size: 1.625rem;
-  }
-  p {
-    border-left: none;
-  }
-}
+
 
 @media (max-width: 430px) {
   .title {
-    font-size: 1.225rem;
+    font-size: 2.725rem;
   }
   .secondary {
     max-width: 370px;
     font-size: 16px;
-    padding-left: 0;
   }
 }
 </style>
