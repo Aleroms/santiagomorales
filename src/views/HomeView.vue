@@ -49,7 +49,7 @@ onBeforeMount(async () => {
       :isReady="homeStore.isReady"
     />
     <section class="about-me container">
-      <SectionHeader title="About Me" id="about-me" />
+      <SectionHeader title="About Me" id="about-me"/>
       <AboutMeCard
         :data="homeStore.data.introduction"
         v-if="homeStore.isReady"
@@ -67,7 +67,7 @@ onBeforeMount(async () => {
       <SectionHeader title="My Projects" id="Projects" />
       <CenteredMessage :text="homeStore.data.projects" v-if="homeStore.isReady" />
 
-      <ProjectsPreview />
+      <ProjectsPreview v-motion-fade-visible/>
       <CenteredLink :nav="{ id: '/projects', text: 'projects' }" />
     </section>
     <section class="contact container">

@@ -6,23 +6,23 @@
     />
     <section class="container">
       <SectionHeader title="Education" id="education" />
-      <section class="container-2" id="edu" v-if="!educationStore.isLoading">
+      <section class="container-2" id="edu" v-if="!educationStore.isLoading" v-motion-fade-visible>
         <EducationList :data="edu" v-for="edu in education" :key="edu.id" />
       </section>
       <SectionHeader title="My Values" id="my_values" />
-      <MyValuesCard v-if="isReady" :data="aboutPage.values" />
+      <MyValuesCard v-if="isReady" :data="aboutPage.values" v-motion-fade-visible/>
 
-      <SectionHeader title="Work Experience" id="work-exp" />
-      <section class="container-2" id="work" v-if="isReady">
+      <SectionHeader title="Work Experience" id="work-exp" v-motion-fade-visible/>
+      <section class="container-2" id="work" v-if="isReady" v-motion-fade-visible>
         <WorkExperienceList :data="work" v-for="work in workExp" :key="work.id" />
       </section>
       
       <SectionHeader title="How I Learn" id="how_i_learn" />
-      <article>
+      <article v-motion-fade-visible>
         <p class="text-block">{{ aboutPage.how_i_learn }}</p>
       </article>
       <SectionHeader title="What I am Currently Learning" id="currently-learning" />
-      <LearningComponent />
+      <LearningComponent v-motion-fade-visible/>
     </section>
   </div>
 </template>

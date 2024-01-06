@@ -10,7 +10,6 @@
     <div class="controls-wrapper">
       <div class="control" v-for="skill in skillCat" :key="skill.id">
         <img :src="skill.image.url" :alt="skill.image.name" @click="selectSkill(skill.id)" />
-        <!-- <p>{{ skill.name }}</p> -->
       </div>
     </div>
   </div>
@@ -44,6 +43,9 @@ onBeforeMount(async () => {
   border-radius: 5px;
   padding: 0.625rem;
   background-color: var(--secondary);
+  line-height: 1.7rem;
+  max-height: 250px;
+  overflow-y: auto;
 }
 .category-title {
   margin: 1rem;

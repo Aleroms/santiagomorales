@@ -1,8 +1,12 @@
 <template>
-  <div class="about-me-cards">
+  <div class="about-me-cards" v-motion-fade>
     <HorizontalScrollTemplate>
       <template #horizontal-item>
-        <CardTemplate v-for="card in props.data" :key="card.title" class="card-template">
+        <CardTemplate
+          v-for="card in props.data"
+          :key="card.title"
+          class="card-template"
+        >
           <template #title>
             <h3>{{ card.title }}</h3>
           </template>
@@ -29,12 +33,11 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .about-me-cards {
-
   p {
     margin: 0.625rem;
   }
 }
-.card-template{
+.card-template {
   padding-bottom: 1rem;
 }
 </style>

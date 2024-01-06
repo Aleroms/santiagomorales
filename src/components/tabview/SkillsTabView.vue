@@ -1,5 +1,5 @@
 <template>
-  <div class="skills-tab-view-wrapper">
+  <div class="skills-tab-view-wrapper" v-motion-fade-visible>
     <div class="heading">
       <div
         class="heading-item"

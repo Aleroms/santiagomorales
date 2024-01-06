@@ -1,5 +1,5 @@
 <template>
-  <div class="tagline">
+  <div class="tagline" v-motion-fade>
     <p>{{ props.text }}</p>
   </div>
 </template>

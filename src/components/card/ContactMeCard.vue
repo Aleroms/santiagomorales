@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-me">
+  <div class="contact-me" v-motion-fade-visible>
     <article class="contact">
       <h2>Send Me a DM</h2>
       <h3 class="subtitle">{{ props.contact }}</h3>
@@ -41,7 +41,6 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
-
 .link-wrapper {
   cursor: pointer;
   display: inline-block;

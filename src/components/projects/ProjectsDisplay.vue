@@ -15,7 +15,13 @@
             /> -->
             <picture>
               <source :srcset="proj.thumbnail.url" type="image/webp" />
-              <img :src="proj.fallback.url" :alt="proj.fallback.name" loading="lazy" />
+              <img
+                width="375"
+                height="200"
+                :src="proj.fallback.url"
+                :alt="proj.fallback.name"
+                loading="lazy"
+              />
             </picture>
           </div>
         </div>

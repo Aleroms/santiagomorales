@@ -2,7 +2,7 @@
   <div class="container">
     <ProjectsBanner />
     <section class="projects-container">
-      <ProjectsPreview />
+      <ProjectsPreview v-motion-fade/>
     </section>
   </div>
 </template>

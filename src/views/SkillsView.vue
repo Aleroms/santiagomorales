@@ -1,10 +1,10 @@
 <template>
   <div class="skills container">
-    <SkillsCategoryDisplay />
+    <SkillsCategoryDisplay v-motion-fade/>
     <SectionHeader title="How I Approach A Problem" id="approaching-problems" />
-    <p class="text-block">{{ skillsPage.approach_problem }}</p>
+    <p class="text-block" v-motion-fade>{{ skillsPage.approach_problem }}</p>
     <SectionHeader title="How I Program" id="how_i_program" />
-    <p class="text-block" v-for="item in skillsPage.how_i_program" :key="item">{{ item }}</p>
+    <p class="text-block" v-for="item in skillsPage.how_i_program" :key="item" v-motion-fade-visible>{{ item }}</p>
     <SectionHeader title="My Certificates" id="certificates" />
     <div v-if="isReady">
       <CertificateList
@@ -13,13 +13,13 @@
         :key="cert.id"
         class="certificate"
         :dontShowIcon="true"
+        v-motion-slide-visible-bottom
       />
     </div>
   </div>
 </template>
 
 <script setup>
-
 const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
 const SkillsCategoryDisplay = defineAsyncComponent(
   () => import('@/components/SkillsCategoryDisplay.vue')

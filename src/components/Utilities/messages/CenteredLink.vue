@@ -1,5 +1,5 @@
 <template>
-  <div class="view-more">
+  <div class="view-more" v-motion-fade-visible>
     <h2>view more</h2>
     <RouterLink :to="props.nav.id">{{ nav.text }}</RouterLink>
   </div>
