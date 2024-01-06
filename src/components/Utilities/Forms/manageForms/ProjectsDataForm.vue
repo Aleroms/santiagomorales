@@ -208,7 +208,7 @@
         <ButtonComponent
           type="outline"
           text="+ Add another"
-          @click="p.issues_encountered.push('')"
+          @click="placeholder.issues_encountered.push('')"
         />
       </FormKit>
     </div>

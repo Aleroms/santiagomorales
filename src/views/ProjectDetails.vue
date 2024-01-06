@@ -3,6 +3,7 @@
     <ProjectDetailsBanner
       :data="{
         image: project.image,
+        fallback: project.fallback,
         start: project.start,
         end: project.end,
         name: project.name,

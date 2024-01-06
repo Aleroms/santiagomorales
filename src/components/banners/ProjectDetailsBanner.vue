@@ -2,7 +2,13 @@
   <div class="project-detail-banner">
     <BannerTemplate class="test">
       <template #card>
-        <ImageCard :image="data.image" class="image" />
+        <div class="img-wrapper">
+          <!-- <img :src="data.image.url" :alt="data.image.name" /> -->
+          <picture>
+            <source :srcset="data.image.url" type="image/webp" />
+            <img :src="data.fallback.url" :alt="data.fallback.name" loading="lazy" />
+          </picture>
+        </div>
       </template>
       <template #primary>
         <h1 class="title">{{ data.name }}</h1>
@@ -20,7 +26,6 @@
 
 <script setup>
 import BannerTemplate from '@/components/Utilities/templates/BannerTemplate.vue'
-import ImageCard from '@/components/card/ImageCard.vue'
 import { calculateDuration } from '@/utils/date.js'
 
 const props = defineProps({
@@ -38,8 +43,22 @@ const endYear = props.data.end.year
 </script>
 
 <style lang="scss" scoped>
+.img-wrapper {
+  max-height: 450px;
+  max-width: 450px;
+
+  img {
+    width: 100%;
+    border-radius: 10px;
+    // padding: 0.625rem;
+    box-sizing: border-box;
+  }
+}
+
 .image {
   margin-left: 1rem;
+  border: 1px solid var(--divider-dark-1);
+  border-radius: 15px;
 }
 .test {
   align-items: center;
@@ -61,11 +80,15 @@ h3 {
   margin-bottom: 1rem;
   letter-spacing: 0.1rem;
 }
-.date{
-    margin: 1rem 0;
+.date {
+  margin: 1rem 0;
 }
 
 @media (max-width: 1026px) {
+  .img-wrapper {
+    max-width: 400px;
+    max-height: 400px;
+  }
   .test {
     flex-direction: column;
   }

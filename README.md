@@ -81,10 +81,6 @@ npm install @formkit/addons
 - [useMouseInElement](https://vueuse.org/core/useMouseInElement/#usemouseinelement) - the demo is really helpful to understand how it could be used
 - [defineAsyncComponent](https://vuejs.org/guide/components/async) - reducing bundle size by dynamically importing modules `code-splitting`
 
-## Reminder
-
-[ ] - lowercase on folders and fix the paths that break
-[x] - do date validation for forms
 
 ## What I learned
 

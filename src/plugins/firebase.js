@@ -95,7 +95,7 @@ const uploadFile3 = async (file, storageId) => {
   let filePath = `${storageId}/${fileName}`
   let fileRef = ref(storage, filePath)
   let fileURL
-  console.log(file, fileName, filePath, fileRef)
+  // console.log(file, fileName, filePath, fileRef)
 
   try {
     //if no error is thrown then file exists
@@ -109,12 +109,12 @@ const uploadFile3 = async (file, storageId) => {
     //upload modified file
     await uploadBytes(fileRef, file[0].file)
     fileURL = await getDownloadURL(fileRef)
-    console.log(`File ${file[0].name} already exists. Uploaded as ${fileName}`)
+    // console.log(`File ${file[0].name} already exists. Uploaded as ${fileName}`)
   } catch (error) {
     // upload new file - file DNE
     await uploadBytes(fileRef, file[0].file)
     fileURL = await getDownloadURL(fileRef)
-    console.log(`File ${fileName} uploaded successfully`)
+    // console.log(`File ${fileName} uploaded successfully`)
   }
 
   return {
@@ -128,32 +128,19 @@ const updateFile = async (file, storageId, editId) => {
   const prevFileDoc = await getDocument(storageId, editId)
 
   //image, cover and thumbnail
-  // if (Object.keys(prevFileDoc.image).length !== 0 && prevFileDoc.image.path !== '') {
-  //   await deleteFile(prevFileDoc.image.path)
-  // }
-  // if (Object.keys(prevFileDoc.thumbnail).length !== 0 && prevFileDoc.thumbnail.path !== '') {
-  //   await deleteFile(prevFileDoc.thumbnail.path)
-  // }
-  // if (Object.keys(prevFileDoc.fallback).length !== 0 && prevFileDoc.fallback.path !== '') {
-  //   await deleteFile(prevFileDoc.fallback.path)
-  // }
+  if (Object.keys(prevFileDoc.image).length !== 0 && prevFileDoc.image.path !== '') {
+    await deleteFile(prevFileDoc.image.path)
+  }
+  if (Object.keys(prevFileDoc.thumbnail).length !== 0 && prevFileDoc.thumbnail.path !== '') {
+    await deleteFile(prevFileDoc.thumbnail.path)
+  }
+  if (Object.keys(prevFileDoc.fallback).length !== 0 && prevFileDoc.fallback.path !== '') {
+    await deleteFile(prevFileDoc.fallback.path)
+  }
 
   return uploadFile3(file, storageId)
 
-  
-
-  // const fileName = file[0].name
-  // const filePath = `${storageId}/${fileName}`
-  // const fileRef = ref(storage, filePath)
-  // console.log('storage path', fileRef.fullPath)
-
-  // await uploadBytes(fileRef, file[0].file)
-  // const fileURL = await getDownloadURL(fileRef)
-  // return {
-  //   name: fileName,
-  //   path: filePath,
-  //   url: fileURL
-  // }
+ 
 }
 
 //deletes image from storage
