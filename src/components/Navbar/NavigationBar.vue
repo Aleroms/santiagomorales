@@ -5,7 +5,7 @@
         <img src="/logo.png" alt="logo" width="55" height="55" />
       </RouterLink>
       <RouterLink to="/" v-if="windowWidth > 446">
-        <h2>{{ pageTitle }}</h2>
+        <h2 class="title">{{ pageTitle }}</h2>
       </RouterLink>
       <!-- <h2 v-if="windowWidth > 446">{{ pageTitle }}</h2> -->
     </div>
@@ -60,6 +60,11 @@ const { windowWidth } = useWindowWidth()
 </script>
 
 <style lang="scss" scoped>
+.title {
+  &:hover {
+    color: var(--text-light-2);
+  }
+}
 .github-link {
   width: 24px;
   height: 24px;
@@ -72,6 +77,13 @@ const { windowWidth } = useWindowWidth()
   align-items: center;
   justify-content: space-between;
   gap: 19px;
+}
+.nav-links-primary {
+  a {
+    &:hover {
+      color: var(--text-light-2);
+    }
+  }
 }
 .nav-links {
   margin-right: 2rem;
@@ -88,9 +100,6 @@ const { windowWidth } = useWindowWidth()
   justify-content: space-evenly;
   list-style: none;
 
-  .router-link-active {
-    color: var(--primary);
-  }
   li {
     margin: 0 1rem;
   }

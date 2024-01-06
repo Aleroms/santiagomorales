@@ -17,6 +17,11 @@ const props = defineProps(['text', 'path', 'type'])
 .filled {
   background-color: var(--primary-blue);
   border: 2px solid var(--primary-blue);
+
+  &:hover{
+    background-color: var(--secondary-blue);
+    border: 2px solid var(--secondary-blue);
+  }
 }
 .outline {
   border: 2px solid var(--primary);

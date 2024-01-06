@@ -1,6 +1,6 @@
 <template>
   <div class="tools">
-    <ListItemTemplate :image="props.data.thumbnail" :fallback="data.fallback">
+    <ListItemTemplate :image="props.data.image">
       <template #info>
         <h3>{{ data.name }}</h3>
       </template>

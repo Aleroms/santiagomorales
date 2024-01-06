@@ -10,10 +10,19 @@
     />
     <FormKit
       type="file"
-      label="school logo"
+      label="school logo - fallback"
       name="image"
+      help="this is fallback jpg or png"
       :validation="manageStore.required"
       accept=".jpg,.png"
+    />
+    <FormKit
+      type="file"
+      label="school logo - cover"
+      name="thumbnail"
+      help="this is cover webp"
+      :validation="manageStore.required"
+      accept=".webp"
     />
     <FormKit
       type="select"

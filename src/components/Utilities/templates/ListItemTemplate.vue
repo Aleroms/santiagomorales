@@ -5,8 +5,8 @@
       v-if="image"
       :class="{ manage: eduStore.isManage, about: !eduStore.isManage }"
     >
-      <!-- <img :src="props.image.url" :alt="image.name" loading="lazy"/> -->
-      <picture>
+      <img :src="props.image.url" :alt="image.name" loading="lazy" v-if="!fallback" />
+      <picture v-else>
         <source :srcset="image.url" type="image/webp" />
         <img :src="props.fallback.url" :alt="fallback.name" loading="lazy" />
       </picture>

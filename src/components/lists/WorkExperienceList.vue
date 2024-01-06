@@ -1,6 +1,6 @@
 <template>
   <div class="exp-wrapper">
-    <listitemtemplate :image="data.image">
+    <listitemtemplate :fallback="data.image" :image="data.thumbnail">
       <template #info>
         <h3 class="title">{{ data.title }}</h3>
         <h4>{{ data.company }} - {{ data.emp_type }}</h4>

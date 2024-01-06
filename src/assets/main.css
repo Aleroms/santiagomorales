@@ -27,6 +27,9 @@
   --fa-light: #838383;
   --box-shadow-bg: hsl(232, 11%, 15%);
   --box-shadow-bg-light: hsl(233, 8%, 19%);
+  --hover-1: #fdec6e;
+  --hover-2: var(--primary);
+  --hover-3: var(--primary-blue);
 }
 
 /* scrollbar stuff  */
@@ -88,6 +91,11 @@ body {
 .collapse-active {
   overflow-y: hidden;
 }
+
+.router-link-active {
+  color: var(--primary) !important;
+}
+
 .container-1 {
   background-color: var(--secondary-soft);
   padding: 1rem;
@@ -160,7 +168,7 @@ body {
   background-image: linear-gradient(45deg, var(--secondary-blue), var(--secondary-green));
 }
 .g-text-2 {
-  background-image: linear-gradient(45deg, #f3ec78, #af4261);
+  background-image: linear-gradient(45deg, var(--primary-blue), var(--primary));
 }
 .g-rad-1 {
   background-image: radial-gradient(var(--secondary-green), var(--secondary-blue));
@@ -213,4 +221,8 @@ body {
 
   --box-shadow-bg: hsl(0, 0%, 100%);
   --box-shadow-bg-light: hsl(0, 0%, 100%);
+
+  --hover-1: var(--primary-blue);
+  --hover-2: var(--primary-blue);
+  --hover-3: var(--primary);
 }

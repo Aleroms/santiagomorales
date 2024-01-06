@@ -23,7 +23,7 @@ const props = defineProps({
 
   a {
     margin-left: 1rem;
-    color: var(--primary);
+    color: var(--hover-2);
     -moz-transition: all 0.2s ease-in;
     -o-transition: all 0.2s ease-in;
     -webkit-transition: all 0.2s ease-in;
@@ -31,8 +31,7 @@ const props = defineProps({
     font-size: 25px;
 
     &:hover {
-      color: #fdec6e;
-      text-shadow: 0px 0px 30px #fdec6e;
+      color: var(--hover-3);
       -moz-transition: all 0.2s ease-in;
       -o-transition: all 0.2s ease-in;
       -webkit-transition: all 0.2s ease-in;

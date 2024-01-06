@@ -49,6 +49,10 @@ onMounted(async () => {
 
   h3 {
     color: var(--primary);
+
+    &:hover{
+      color: var(--hover-3);
+    }
   }
 }
 .controls-wrapper {

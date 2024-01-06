@@ -72,7 +72,7 @@ export function useManageForm() {
     displayMessage.value = 'submitting...'
     disable.value = true
     display.value = true
-    // console.log(values)
+     console.log(values)
 
     try {
       if (manageStore.isEdit) {

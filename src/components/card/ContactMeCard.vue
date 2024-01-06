@@ -3,12 +3,14 @@
     <article class="contact">
       <h2>Send Me a DM</h2>
       <h3 class="subtitle">{{ props.contact }}</h3>
-      <div class="icons">
-        <SocialMedia social="linkedin" size="xl" :displayName="true" />
-        <SocialMedia social="github" size="xl" :displayName="true" />
-        <SocialMedia social="email" size="xl" :displayName="true" />
+      <div class="link-wrapper">
+        <div class="icons">
+          <SocialMedia social="linkedin" size="xl" :displayName="true" />
+          <SocialMedia social="github" size="xl" :displayName="true" />
+          <SocialMedia social="email" size="xl" :displayName="true" />
+        </div>
+        <ButtonExternalLink type="filled" :path="resume" text="resume" class="contact-btn" />
       </div>
-      <ButtonExternalLink type="filled" :path="resume" text="resume" />
     </article>
     <div class="img-wrapper">
       <img src="/logo.png" alt="logo" width="160" height="160" />
@@ -39,14 +41,20 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
+
+.link-wrapper {
+  cursor: pointer;
+  display: inline-block;
+}
 .icons {
   display: flex;
   flex-direction: column;
   gap: 25px;
-  margin: 1rem 0;
+  margin: 1rem 0 2rem;
   max-width: 300px;
 }
 .contact {
+  margin-bottom: 1rem;
   h3 {
     max-width: 400px;
     font-size: 16px;

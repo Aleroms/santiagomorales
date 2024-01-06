@@ -1,6 +1,6 @@
 <template>
   <div class="education-list">
-    <listItemTemplate :image="data.image">
+    <listItemTemplate :fallback="data.image" :image="data.thumbnail">
       <template #info>
         <h3>{{ data.school }}</h3>
         <h4>{{ data.degree }} {{ data.field_of_study }}</h4>

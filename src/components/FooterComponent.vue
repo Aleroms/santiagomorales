@@ -47,7 +47,7 @@
     </h4>
     <p class="subtitle made-with">
       Made with Vue + Firebase | source code on
-      <a class="subtitle" href="https://github.com/Aleroms/santiagomorales">github</a>
+      <a class="subtitle darker" href="https://github.com/Aleroms/santiagomorales">github</a>
     </p>
   </footer>
 </template>
@@ -59,6 +59,11 @@ const userStore = useUserStore()
 </script>
 
 <style lang="scss" scoped>
+.darker {
+  &:hover {
+    color: #6b6b6b;
+  }
+}
 .copyright {
   padding-right: 1rem;
   letter-spacing: 3px;
@@ -83,6 +88,10 @@ const userStore = useUserStore()
   a {
     margin: 5px 0;
     font-weight: 400;
+
+    &:hover {
+      color: var(--fa-light);
+    }
   }
 }
 .icon-link {

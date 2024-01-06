@@ -2,12 +2,17 @@
   <div>
     <div class="projects-banner">
       <div class="title">
-        <h1 class="gradient-text g-text-1">{{ projects.title }}</h1>
+        <h1
+          class="gradient-text"
+          :class="{ 'g-text-1': themeStore.isDark, 'g-text-2': !themeStore.isDark }"
+        >
+          {{ projects.title }}
+        </h1>
       </div>
       <p class="text">
         {{ projects.content }}
       </p>
-      <h2>view my <a href="https://github.com/Aleroms">Github</a> repository</h2>
+      <h2>view my <a href="https://github.com/Aleroms" class="hover">Github</a> repository</h2>
     </div>
   </div>
 </template>
@@ -15,7 +20,9 @@
 <script setup>
 import { getDocument } from '@/plugins/firebase.js'
 import { ref, onBeforeMount } from 'vue'
+import { useThemeStore } from '@/stores/theme.js'
 const projects = ref({})
+const themeStore = useThemeStore()
 
 onBeforeMount(async () => {
   try {
@@ -27,13 +34,17 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
+
 .projects-banner {
   max-width: 750px;
   margin: 8rem auto;
 
   a {
-    color: var(--primary);
-    cursor: pointer;
+    color: var(--hover-3);
+
+    &:hover{
+      color: var(--hover-2);
+    }
   }
 
   .text {

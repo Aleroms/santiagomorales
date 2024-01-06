@@ -135,6 +135,11 @@ const props = defineProps({
       transform: scale(1.2);
     }
   }
+  &:active {
+    .img-wrapper {
+      filter: brightness(0.8);
+    }
+  }
 }
 @media (max-width: 440px) {
   .item {

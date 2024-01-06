@@ -65,16 +65,18 @@ onMounted(async () => {
 a {
   display: inline-block;
   align-items: center;
+  &:hover {
+    color: var(--fa-light);
+  }
 }
 span {
   margin-left: 0.625rem;
   font-weight: 400;
-}
-svg {
-  transition: 0.3s ease-in;
-  margin-bottom: 0.125rem;
   &:hover {
     color: var(--fa-light);
   }
+}
+svg {
+  margin-bottom: 0.125rem;
 }
 </style>
