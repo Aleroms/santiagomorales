@@ -53,8 +53,8 @@ const test = (category) => {
 }
 onMounted(async () => {
   try {
-    if (category.length === 0) category.value = await getDocuments('skillsCategory')
-    if (skills.length === 0) skills.value = await getDocuments('skills')
+    if (category.value.length === 0) category.value = await getDocuments('skillsCategory')
+    if (skills.value.length === 0) skills.value = await getDocuments('skills')
     test(category.value[3].name)
   } catch (error) {
     console.log(error)
