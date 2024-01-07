@@ -13,15 +13,18 @@
         githubLink: project.githubLink
       }"
     />
-    <section class="details container">
+    <div class="container">
       <!-- what i used  -->
-      <SectionHeader title="What I Used" id="what-i-used" />
-      <div class="tools-used">
-        <div class="img-wrapper tooltip" v-for="item in project.tools" :key="item.id">
-          <img :src="item.image.url" :alt="item.image.name" />
-          <span class="tooltiptext">{{ item.name }}</span>
+      <section class="what-i-used" v-if="project.tools.length !== 0">
+        <SectionHeader title="What I Used" id="what-i-used" />
+        <div class="tools-used">
+          <div class="img-wrapper tooltip" v-for="item in project.tools" :key="item.id">
+            <img :src="item.image.url" :alt="item.image.name" />
+            <span class="tooltiptext">{{ item.name }}</span>
+          </div>
         </div>
-      </div>
+      </section>
+
       <!-- my process  -->
       <SectionHeader title="My Process" id="my-process" />
       <article class="my-process">
@@ -48,7 +51,7 @@
           <a :href="link.link" class="link">{{ link.name }}</a> - {{ link.desc }}
         </p>
       </article>
-    </section>
+    </div>
   </div>
 </template>
 

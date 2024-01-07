@@ -39,7 +39,6 @@ onBeforeMount(async () => {
 .projects-banner {
   max-width: 750px;
   margin: 8rem auto;
-  max-height: 300px;
 
   a {
     color: var(--hover-2);
@@ -52,6 +51,8 @@ onBeforeMount(async () => {
   .text {
     margin: 2rem 0;
     line-height: 1.8rem;
+    max-height: 300px;
+    overflow: auto;
   }
 }
 .title {

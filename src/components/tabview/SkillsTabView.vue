@@ -17,8 +17,8 @@
       <div class="item" v-for="skill in selectedSkills" :key="skill.id">
         <div class="img-wrapper">
           <img
-            width="100"
-            height="100"
+            width="70"
+            height="70"
             :src="skill.image.url"
             :alt="skill.image.name"
             loading="lazy"
@@ -64,7 +64,6 @@ onMounted(async () => {
   }
 }
 .img-wrapper {
-  aspect-ratio: 1/1;
   object-fit: contain;
   max-width: 90px;
 
@@ -134,9 +133,7 @@ onMounted(async () => {
   .skills-tab-view-wrapper {
     margin: 1rem;
   }
-  .content {
-    justify-content: center;
-  }
+
 }
 @media (max-width: 450px) {
   .heading {

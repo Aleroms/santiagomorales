@@ -21,11 +21,13 @@
       </div>
       <div class="socials">
         <h3 class="title">Links</h3>
-        <div class="icon-link">
-          <SocialMedia social="linkedin" displayName="true" />
-        </div>
-        <div class="icon-link">
-          <SocialMedia social="github" displayName="true" />
+        <div class="icon-container">
+          <div class="icon-link">
+            <SocialMedia social="linkedin" displayName="true" />
+          </div>
+          <div class="icon-link">
+            <SocialMedia social="github" displayName="true" />
+          </div>
         </div>
       </div>
       <div class="navigation">
@@ -139,6 +141,19 @@ footer {
     padding-left: 0;
     padding-top: 1rem;
     border-top: 1px solid var(--divider-dark-1);
+  }
+  .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    a {
+      margin: 5px;
+    }
+  }
+  .icon-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 }
 @media (min-width: 555px) {
