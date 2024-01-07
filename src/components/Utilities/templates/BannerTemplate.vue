@@ -40,6 +40,7 @@
   flex-direction: row-reverse;
   margin: 3rem;
   justify-content: space-evenly;
+  align-items: center;
   gap: 10px;
 }
 

@@ -16,7 +16,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .tagline {
   text-align: center;
-  max-width: 550px;
+  max-width:750px;
   margin: 4rem auto;
   line-height: 3rem;
   font-size: 20px;

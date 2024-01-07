@@ -6,13 +6,6 @@
         <RouterLink :to="`/projects/${proj.id}`" :aria-label="proj.id" />
         <div class="item-img">
           <div class="img-wrapper">
-            <!-- <img
-              width="375"
-              height="200"
-              :src="proj.image.url"
-              :alt="proj.image.name"
-              loading="lazy"
-            /> -->
             <picture>
               <source :srcset="proj.thumbnail.url" type="image/webp" />
               <img

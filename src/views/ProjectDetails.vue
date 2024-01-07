@@ -7,75 +7,104 @@
         start: project.start,
         end: project.end,
         name: project.name,
-        desc: project.desc
+        desc: project.desc,
+        isPrivate: project.isPrivate,
+        liveSite: project.liveSiteLink,
+        githubLink: project.githubLink
       }"
     />
     <section class="details container">
+      <!-- what i used  -->
       <SectionHeader title="What I Used" id="what-i-used" />
       <div class="tools-used">
-        <div class="img-wrapper" v-for="item in project.tools" :key="item.id">
+        <div class="img-wrapper tooltip" v-for="item in project.tools" :key="item.id">
           <img :src="item.image.url" :alt="item.image.name" />
+          <span class="tooltiptext">{{ item.name }}</span>
         </div>
       </div>
+      <!-- my process  -->
       <SectionHeader title="My Process" id="my-process" />
       <article class="my-process">
         <p v-for="process in project.my_process" :key="process" class="text-block">
           {{ process }}
         </p>
       </article>
+      <!-- issues encountered  -->
       <SectionHeader title="Issues Encountered" id="issues-encountered" />
       <ul class="issues-encountered">
         <li v-for="issue in project.issues_encountered" :key="issue">
           <p class="text-block">{{ issue }}</p>
         </li>
       </ul>
+      <!-- what i learned  -->
       <SectionHeader title="What I Learned" id="what-i-learned" />
       <p v-for="learn in project.what_i_learned" :key="learn" class="text-block">
         {{ learn }}
       </p>
+      <!-- useful links  -->
       <SectionHeader title="Useful Links" id="useful-links" />
       <article class="useful-links" v-for="link in project.usefulLinks" :key="link.link">
         <p class="text">
           <a :href="link.link" class="link">{{ link.name }}</a> - {{ link.desc }}
         </p>
       </article>
-      <h3 v-if="!project.isPrivate">
-        View Source Code on <a :href="project.githubLink" class="github-link">Github</a>.
-      </h3>
-      <h3 class="subtitle" v-else>
-        <font-awesome-icon icon="fa-solid fa-lock" color="#006837" size="sm" /> This Repository is
-        Private . . .
-      </h3>
     </section>
   </div>
 </template>
 
 <script setup>
 import { useProjectStore } from '@/stores/projects.js'
+import { useToolStore } from '@/stores/tools'
 import { ref, onBeforeMount, defineAsyncComponent } from 'vue'
-import { getDocuments } from '@/plugins/firebase.js'
 const ProjectDetailsBanner = defineAsyncComponent(
   () => import('@/components/banners/ProjectDetailsBanner.vue')
 )
 const SectionHeader = defineAsyncComponent(() => import('@/components/Utilities/SectionHeader.vue'))
 const projectStore = useProjectStore()
+const toolStore = useToolStore()
 const project = ref({})
-const toolsUsed = ref([])
 onBeforeMount(async () => {
+  toolStore.initialize()
   project.value = projectStore.getProjectDetails
   try {
-    toolsUsed.value = await getDocuments('tools')
-    project.value.tools = toolsUsed.value.filter((item) =>
+    project.value.tools = toolStore.data.filter((item) =>
       project.value.toolsUsed.includes(item.name)
     )
   } catch (error) {
     console.log(error)
   }
-  // console.log(project.value.tools)
 })
 </script>
 
 <style lang="scss" scoped>
+// tool tip css
+.tooltip {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  .tooltiptext {
+    opacity: 0;
+    background-color: var(--secondary);
+    border: 1px solid var(--divider-dark-1);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: -30px;
+  }
+
+  &:hover {
+    .tooltiptext {
+      opacity: 1;
+    }
+  }
+}
+
 .tools-used {
   padding: 0.625rem 1.625rem;
   margin: 1rem 2rem;

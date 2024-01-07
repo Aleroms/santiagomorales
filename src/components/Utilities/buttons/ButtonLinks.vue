@@ -20,5 +20,9 @@ const currPath = '/' + props.path
 }
 .outline {
   border: 2px solid var(--primary);
+
+  &:hover{
+    border: 2px solid var(--primary-green);
+  }
 }
 </style>

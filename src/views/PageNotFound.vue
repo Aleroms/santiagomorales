@@ -13,7 +13,7 @@
         </div>
         <div class="buttons-wrapper">
           <ButtonLinks text="Go Home" path="home" type="filled" />
-          <ButtonLinks text="Back" path="back" type="outline" />
+          <ButtonLinks text="Back" type="outline" @click="router.back" />
         </div>
       </div>
     </div>
@@ -22,11 +22,12 @@
 
 <script setup>
 import { defineAsyncComponent, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 const ButtonLinks = defineAsyncComponent(
   () => import('@/components/Utilities/buttons/ButtonLinks.vue')
 )
 const currentRoute = useRoute()
+const router = useRouter()
 const codeText = ref('')
 codeText.value = currentRoute.path.slice(0, 37)
 codeText.value += '...'

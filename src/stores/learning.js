@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia'
 import { getDocuments } from '@/plugins/firebase.js'
+import { useSessionStorage } from '@vueuse/core'
 export const useLearningStore = defineStore('learningStore', {
   state: () => ({
     isLoading: false,
     activeItem: {},
-    learning: []
+    learning: useSessionStorage('activeLearning', [])
   }),
   actions: {
     async initialize() {
       this.isLoading = true
       try {
-        this.learning = await getDocuments('activeLearning')
+        if (Object.keys(this.learning).length === 0)
+          this.learning = await getDocuments('activeLearning')
       } catch (error) {
         console.log(error)
       } finally {

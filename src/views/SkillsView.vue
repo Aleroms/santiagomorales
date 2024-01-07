@@ -1,15 +1,22 @@
 <template>
   <div class="skills container">
-    <SkillsCategoryDisplay v-motion-fade/>
+    <SkillsCategoryDisplay v-motion-fade />
     <SectionHeader title="How I Approach A Problem" id="approaching-problems" />
-    <p class="text-block" v-motion-fade>{{ skillsPage.approach_problem }}</p>
+    <p class="text-block" v-motion-fade>{{ skillStore.data.approach_problem }}</p>
     <SectionHeader title="How I Program" id="how_i_program" />
-    <p class="text-block" v-for="item in skillsPage.how_i_program" :key="item" v-motion-fade-visible>{{ item }}</p>
+    <p
+      class="text-block"
+      v-for="item in skillStore.data.how_i_program"
+      :key="item"
+      v-motion-fade-visible
+    >
+      {{ item }}
+    </p>
     <SectionHeader title="My Certificates" id="certificates" />
-    <div v-if="isReady">
+    <div v-if="certificateStore.isReady">
       <CertificateList
         :data="cert"
-        v-for="cert in certificates"
+        v-for="cert in certificateStore.data"
         :key="cert.id"
         class="certificate"
         :dontShowIcon="true"
@@ -25,20 +32,19 @@ const SkillsCategoryDisplay = defineAsyncComponent(
   () => import('@/components/SkillsCategoryDisplay.vue')
 )
 const CertificateList = defineAsyncComponent(() => import('@/components/lists/CertificateList.vue'))
-import { getDocuments, getDocument } from '@/plugins/firebase.js'
-import { ref, onBeforeMount, defineAsyncComponent } from 'vue'
-const skillsPage = ref({})
-const certificates = ref({})
-const isReady = ref(false)
+import { onBeforeMount, defineAsyncComponent } from 'vue'
+import { useSkillsStore } from '@/stores/skills'
+import { useCertificateStore } from '@/stores/certificates.js'
+
+const skillStore = useSkillsStore()
+const certificateStore = useCertificateStore()
 
 onBeforeMount(async () => {
   try {
-    skillsPage.value = await getDocument('pageContent', 'skillsPage')
-    certificates.value = await getDocuments('certificates')
+    skillStore.initialize()
+    certificateStore.initialize()
   } catch (error) {
     console.log(error)
-  } finally {
-    isReady.value = true
   }
 })
 </script>

@@ -5,12 +5,13 @@
         <h1
           class="gradient-text"
           :class="{ 'g-text-1': themeStore.isDark, 'g-text-2': !themeStore.isDark }"
+          v-if="projectStore.isReady"
         >
-          {{ projects.title }}
+          {{ projectStore.data.title }}
         </h1>
       </div>
-      <p class="text">
-        {{ projects.content }}
+      <p class="text" v-if="projectStore.isReady">
+        {{ projectStore.data.content }}
       </p>
       <h2>view my <a href="https://github.com/Aleroms" class="hover">Github</a> repository</h2>
     </div>
@@ -18,15 +19,16 @@
 </template>
 
 <script setup>
-import { getDocument } from '@/plugins/firebase.js'
-import { ref, onBeforeMount } from 'vue'
+import { onBeforeMount } from 'vue'
 import { useThemeStore } from '@/stores/theme.js'
-const projects = ref({})
+import { useProjectPageStore } from '@/stores/projectPage.js'
+
+const projectStore = useProjectPageStore()
 const themeStore = useThemeStore()
 
 onBeforeMount(async () => {
   try {
-    projects.value = await getDocument('pageContent', 'projectsPage')
+    projectStore.initialize()
   } catch (error) {
     console.log(error)
   }
@@ -34,15 +36,15 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss" scoped>
-
 .projects-banner {
   max-width: 750px;
   margin: 8rem auto;
+  max-height: 300px;
 
   a {
     color: var(--hover-2);
 
-    &:hover{
+    &:hover {
       color: var(--hover-3);
     }
   }

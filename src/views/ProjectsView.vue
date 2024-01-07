@@ -2,7 +2,7 @@
   <div class="container">
     <ProjectsBanner />
     <section class="projects-container">
-      <ProjectsPreview v-motion-fade/>
+      <ProjectsPreview v-motion-fade />
     </section>
   </div>
 </template>
@@ -15,6 +15,8 @@ const ProjectsBanner = defineAsyncComponent(() => import('@/components/banners/P
 const ProjectsPreview = defineAsyncComponent(
   () => import('@/components/projects/ProjectsPreview.vue')
 )
+
+
 const projectStore = useProjectStore()
 projectStore.showComplete()
 </script>

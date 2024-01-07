@@ -48,28 +48,32 @@ onBeforeMount(async () => {
       }"
       :isReady="homeStore.isReady"
     />
+    <!-- about me  -->
     <section class="about-me container">
-      <SectionHeader title="About Me" id="about-me"/>
+      <SectionHeader title="About Me" id="about-me" />
       <AboutMeCard
         :data="homeStore.data.introduction"
         v-if="homeStore.isReady"
         class="about-cards"
       />
-      <CenteredLink :nav="{ id: '/about', text: 'about me' }" />
+      <CenteredLink :nav="{ id: 'about', text: 'about me' }" />
     </section>
+    <!-- skills container  -->
     <section class="skills container">
       <SectionHeader title="My Skills" id="skills" />
       <CenteredMessage :text="homeStore.data.skills" v-if="homeStore.isReady" />
       <SkillsTabView />
-      <CenteredLink :nav="{ id: '/skills', text: 'skills' }" />
+      <CenteredLink :nav="{ id: 'skills', text: 'skills' }" />
     </section>
+    <!-- projects container  -->
     <section class="projects container">
       <SectionHeader title="My Projects" id="Projects" />
       <CenteredMessage :text="homeStore.data.projects" v-if="homeStore.isReady" />
 
-      <ProjectsPreview v-motion-fade-visible/>
-      <CenteredLink :nav="{ id: '/projects', text: 'projects' }" />
+      <ProjectsPreview v-motion-fade-visible />
+      <CenteredLink :nav="{ id: 'projects', text: 'projects' }" />
     </section>
+    <!-- contact container  -->
     <section class="contact container">
       <SectionHeader title="Contact Me" id="Contact" />
       <ContactMeCard :contact="homeStore.data.contact" v-if="homeStore.isReady" />
@@ -86,9 +90,9 @@ onBeforeMount(async () => {
   margin: 1rem auto;
   padding: 0 1.625rem;
 }
-@media(max-width: 720px){
+@media (max-width: 720px) {
   .about-cards {
-  margin-top: 4rem;
-}
+    margin-top: 4rem;
+  }
 }
 </style>

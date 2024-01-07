@@ -1,22 +1,19 @@
 <template>
   <div class="contact-page container">
-    <ContactMeCard :contact="contact.contact" v-if="isDataReady" />
+    <ContactMeCard :contact="homeStore.data.contact" v-if="homeStore.isReady" />
   </div>
 </template>
 
 <script setup>
-import { defineAsyncComponent, onBeforeMount, ref } from 'vue'
-import { getDocument } from '@/plugins/firebase.js'
+import { defineAsyncComponent, onBeforeMount } from 'vue'
+import { useHomeStore } from '@/stores/home.js'
 const ContactMeCard = defineAsyncComponent(() => import('@/components/card/ContactMeCard.vue'))
-const contact = ref('')
-const isDataReady = ref(false)
+const homeStore = useHomeStore()
 onBeforeMount(async () => {
   try {
-    contact.value = await getDocument('pageContent', 'homePage')
+    homeStore.initialize()
   } catch (error) {
     console.log(error)
-  } finally {
-    isDataReady.value = true
   }
 })
 </script>

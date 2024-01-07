@@ -1,11 +1,13 @@
 <template>
   <div class="view-more" v-motion-fade-visible>
     <h2>view more</h2>
-    <RouterLink :to="props.nav.id">{{ nav.text }}</RouterLink>
+    <!-- <RouterLink :to="props.nav.id">{{ nav.text }}</RouterLink> -->
+    <ButtonLinks type="outline" :text="props.nav.text" :path="nav.id" />
   </div>
 </template>
 
 <script setup>
+import ButtonLinks from '@/components/Utilities/buttons/ButtonLinks.vue'
 const props = defineProps({
   nav: {
     type: Object,
@@ -23,7 +25,7 @@ const props = defineProps({
 
   a {
     margin-left: 1rem;
-    color: var(--hover-2);
+    color: var(--text-light-1);
     -moz-transition: all 0.2s ease-in;
     -o-transition: all 0.2s ease-in;
     -webkit-transition: all 0.2s ease-in;
@@ -31,7 +33,7 @@ const props = defineProps({
     font-size: 25px;
 
     &:hover {
-      color: var(--hover-3);
+      color: var(--text-light-2);
       -moz-transition: all 0.2s ease-in;
       -o-transition: all 0.2s ease-in;
       -webkit-transition: all 0.2s ease-in;

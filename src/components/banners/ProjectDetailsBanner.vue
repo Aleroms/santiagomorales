@@ -3,7 +3,6 @@
     <BannerTemplate class="test">
       <template #card>
         <div class="img-wrapper">
-          <!-- <img :src="data.image.url" :alt="data.image.name" /> -->
           <picture>
             <source :srcset="data.image.url" type="image/webp" />
             <img :src="data.fallback.url" :alt="data.fallback.name" loading="lazy" />
@@ -19,6 +18,25 @@
       </template>
       <template #secondary>
         <p class="text">{{ data.desc }}</p>
+        <div class="links">
+          <h3>
+            View Live Site
+            <a :href="data.liveSite" target="_blank">
+              <font-awesome-icon
+                class="icon"
+                icon="fa-solid fa-arrow-up-right-from-square"
+                size="sm"
+                color="#42b983"
+            /></a>
+          </h3>
+          <h3 v-if="!data.isPrivate">
+            View Source Code on <a :href="data.githubLink" class="github-link">Github</a>.
+          </h3>
+          <h3 class="subtitle" v-else>
+            <font-awesome-icon icon="fa-solid fa-lock" color="#006837" size="sm" /> This Repository
+            is Private . . .
+          </h3>
+        </div>
       </template>
     </BannerTemplate>
   </div>
@@ -43,6 +61,9 @@ const endYear = props.data.end.year
 </script>
 
 <style lang="scss" scoped>
+.links{
+  margin-top: 2rem;
+}
 .img-wrapper {
   max-height: 450px;
   max-width: 450px;
@@ -62,6 +83,9 @@ const endYear = props.data.end.year
 }
 .test {
   align-items: center;
+}
+.github-link {
+  color: var(--primary);
 }
 .text {
   max-width: 500px;

@@ -1,23 +1,21 @@
 import { defineStore } from 'pinia'
+import { getDocuments } from '@/plugins/firebase.js'
 import { useSessionStorage } from '@vueuse/core'
-import { getDocument } from '@/plugins/firebase.js'
-
-export const useHomeStore = defineStore('homeStore', {
+export const useCertificateStore = defineStore('certificateStore', {
   state: () => ({
-    data: useSessionStorage('home', {}),
+    data: useSessionStorage('certificates', []),
     isReady: false
   }),
   actions: {
     async initialize() {
       try {
-
         if (Object.keys(this.data).length === 0)
-          this.data = await getDocument('pageContent', 'homePage')
+          this.data = await getDocuments('certificates')
       } catch (error) {
         console.log(error)
       } finally {
         this.isReady = true
       }
-    }
+    },
   }
 })
