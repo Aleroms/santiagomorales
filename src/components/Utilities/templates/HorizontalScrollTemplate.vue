@@ -1,12 +1,18 @@
 <template>
-  <div class="scroll-container snap-inline">
+  <div class="scroll-container snap-inline" :style="{gridAutoColumns: `${scrollWidth}%`}">
     <slot name="horizontal-item">
       <p>Loading . . .</p>
     </slot>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+  scrollWidth: {
+    type: Number
+  }
+})
+</script>
 
 <style lang="scss" scoped>
 .scroll-container {
@@ -45,7 +51,7 @@
     justify-content: start;
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 66%;
+    // grid-auto-columns: 66%;
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-inline: contain;
@@ -55,7 +61,7 @@
 
 @media (max-width: 510px) {
   .scroll-container {
-    grid-auto-columns: 90%;
+    // grid-auto-columns: 90%;
   }
 }
 </style>

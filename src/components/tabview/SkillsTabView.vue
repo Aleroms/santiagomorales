@@ -13,7 +13,7 @@
       </div>
     </div>
     <hr class="custom-hr-1" />
-    <div class="content">
+    <div class="content" v-if="windowWidth > 700">
       <div class="item" v-for="skill in selectedSkills" :key="skill.id">
         <div class="img-wrapper">
           <img
@@ -27,6 +27,17 @@
       </div>
       <p class="subtitle" v-if="noItem">no items 😔</p>
     </div>
+    <div v-else>
+      <HorizontalScrollTemplate :scrollWidth="36">
+        <template #horizontal-item>
+          <div class="item" v-for="skill in selectedSkills" :key="skill.id">
+            <div class="img-wrapper">
+              <img :src="skill.image.url" :alt="skill.image.name" loading="lazy" />
+            </div>
+          </div>
+        </template>
+      </HorizontalScrollTemplate>
+    </div>
   </div>
 </template>
 
@@ -34,12 +45,15 @@
 import { ref, onMounted } from 'vue'
 import { getDocuments } from '@/plugins/firebase.js'
 import { useSessionStorage } from '@vueuse/core'
+import { useWindowWidth } from '@/composables/windowWidth.js'
+import HorizontalScrollTemplate from '@/components/Utilities/templates/HorizontalScrollTemplate.vue'
 const category = useSessionStorage('skillCategory', [])
 const skills = useSessionStorage('mySkills', [])
 const tools = useSessionStorage('tools', [])
 const selectedCategory = ref(null)
 const selectedSkills = ref(null)
 const noItem = ref(false)
+const { windowWidth } = useWindowWidth()
 
 const test = (category) => {
   selectedCategory.value = category
@@ -50,11 +64,13 @@ const test = (category) => {
     selectedSkills.value = skills.value.filter((item) => item.category === selectedCategory.value)
   }
   noItem.value = selectedSkills.value.length === 0 ? true : false
+  console.log(selectedSkills.value)
 }
 onMounted(async () => {
   try {
     if (category.value.length === 0) category.value = await getDocuments('skillsCategory')
     if (skills.value.length === 0) skills.value = await getDocuments('skills')
+    if (tools.value.length === 0) tools.value = await getDocuments('tools')
     test(category.value[3].name)
   } catch (error) {
     console.log(error)
@@ -80,7 +96,7 @@ onMounted(async () => {
 }
 .skills-tab-view-wrapper {
   max-width: 900px;
-  min-height: 426px;
+  min-height: 200px;
   margin: 1rem auto;
 }
 .heading {
