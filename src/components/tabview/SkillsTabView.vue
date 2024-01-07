@@ -64,7 +64,6 @@ const test = (category) => {
     selectedSkills.value = skills.value.filter((item) => item.category === selectedCategory.value)
   }
   noItem.value = selectedSkills.value.length === 0 ? true : false
-  console.log(selectedSkills.value)
 }
 onMounted(async () => {
   try {

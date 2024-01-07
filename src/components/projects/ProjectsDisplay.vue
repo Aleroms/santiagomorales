@@ -1,5 +1,5 @@
 <template>
-  <div class="project-display-wrapper">
+  <div class="project-display-wrapper" v-if="windowWidth > 400">
     <div class="project-display" v-if="!projectStore.isSwap">
       <!-- displays all or preview items  -->
       <div class="item" v-for="proj in props.data" :key="proj.id">
@@ -29,15 +29,49 @@
       </div>
     </div>
   </div>
+  <div class="project-display-wrapper" v-else>
+    <HorizontalScrollTemplate :scrollWidth="95">
+      <template #horizontal-item>
+        <div class="item" v-for="proj in props.data" :key="proj.id">
+          <RouterLink :to="`/projects/${proj.id}`" :aria-label="proj.id" />
+          <div class="item-img">
+            <div class="img-wrapper">
+              <picture>
+                <source :srcset="proj.thumbnail.url" type="image/webp" />
+                <img
+                  width="375"
+                  height="200"
+                  :src="proj.fallback.url"
+                  :alt="proj.fallback.name"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
+          <!-- <NuxtHoverEffect /> -->
+        </div>
+        <!-- if preview is enabled -->
+        <div class="item" v-if="projectStore.isPreview">
+          <div class="preview" :class="{ dark: !themeStore.isDark, light: themeStore.isDark }">
+            <routerLink to="/projects" class="link">view more projects</routerLink>
+          </div>
+          <!-- <NuxtHoverEffect /> -->
+        </div>
+      </template>
+    </HorizontalScrollTemplate>
+  </div>
 </template>
 
 <script setup>
 import NuxtHoverEffect from '@/components/Utilities/NuxtHoverEffect.vue'
+import HorizontalScrollTemplate from '@/components/Utilities/templates/HorizontalScrollTemplate.vue'
 import { useProjectStore } from '@/stores/projects'
 import { useThemeStore } from '@/stores/theme.js'
+import { useWindowWidth } from '@/composables/windowWidth.js'
 
 const themeStore = useThemeStore()
 const projectStore = useProjectStore()
+const { windowWidth } = useWindowWidth()
 const props = defineProps({
   data: {
     type: Array,
@@ -47,6 +81,10 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+.item-2 {
+  width: 200px;
+  margin-right: 1rem;
+}
 .dark {
   background:
     linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
