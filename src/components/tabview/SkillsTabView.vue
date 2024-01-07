@@ -33,21 +33,28 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getDocuments } from '@/plugins/firebase.js'
-const category = ref([])
-const skills = ref([])
+import { useSessionStorage } from '@vueuse/core'
+const category = useSessionStorage('skillCategory', [])
+const skills = useSessionStorage('mySkills', [])
+const tools = useSessionStorage('tools', [])
 const selectedCategory = ref(null)
 const selectedSkills = ref(null)
 const noItem = ref(false)
 
 const test = (category) => {
   selectedCategory.value = category
-  selectedSkills.value = skills.value.filter((item) => item.category === selectedCategory.value)
+
+  if (category === 'Tools') {
+    selectedSkills.value = tools.value
+  } else {
+    selectedSkills.value = skills.value.filter((item) => item.category === selectedCategory.value)
+  }
   noItem.value = selectedSkills.value.length === 0 ? true : false
 }
 onMounted(async () => {
   try {
-    category.value = await getDocuments('skillsCategory')
-    skills.value = await getDocuments('skills')
+    if (category.length === 0) category.value = await getDocuments('skillsCategory')
+    if (skills.length === 0) skills.value = await getDocuments('skills')
     test(category.value[3].name)
   } catch (error) {
     console.log(error)
@@ -133,7 +140,6 @@ onMounted(async () => {
   .skills-tab-view-wrapper {
     margin: 1rem;
   }
-
 }
 @media (max-width: 450px) {
   .heading {
