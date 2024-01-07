@@ -10,7 +10,7 @@ export const useWorkExpStore = defineStore('workExpStore', {
   actions: {
     async initialize() {
       try {
-        if (Object.keys(this.data).length === 0) this.data = await getDocuments('education')
+        if (Object.keys(this.data).length === 0) this.data = await getDocuments('workExperience')
       } catch (error) {
         console.log(error)
       } finally {
