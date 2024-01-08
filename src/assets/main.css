@@ -144,7 +144,9 @@ body {
 .number-pad {
   margin-top: 1.4rem;
 }
-
+.scroll-item {
+  scroll-snap-align: start;
+}
 .gradient-text {
   /* Fallback: Set a background color. */
   background-color: var(--primary-blue);

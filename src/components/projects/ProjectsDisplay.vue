@@ -32,7 +32,7 @@
   <div class="project-display-wrapper" v-else>
     <HorizontalScrollTemplate :scrollWidth="95">
       <template #horizontal-item>
-        <div class="item" v-for="proj in props.data" :key="proj.id">
+        <div class="item scroll-item" v-for="proj in props.data" :key="proj.id">
           <RouterLink :to="`/projects/${proj.id}`" :aria-label="proj.id" />
           <div class="item-img">
             <div class="img-wrapper">
@@ -51,7 +51,7 @@
           <!-- <NuxtHoverEffect /> -->
         </div>
         <!-- if preview is enabled -->
-        <div class="item" v-if="projectStore.isPreview">
+        <div class="item scroll-item" v-if="projectStore.isPreview">
           <div class="preview" :class="{ dark: !themeStore.isDark, light: themeStore.isDark }">
             <routerLink to="/projects" class="link">view more projects</routerLink>
           </div>

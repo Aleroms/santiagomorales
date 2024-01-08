@@ -2,7 +2,7 @@
   <div class="about-me-cards" v-motion-fade>
     <HorizontalScrollTemplate :scroll-width="windowWidth < 510 ? 90 : 66">
       <template #horizontal-item>
-        <CardTemplate v-for="card in props.data" :key="card.title" class="card-template">
+        <CardTemplate v-for="card in props.data" :key="card.title" class="card-template scroll-item">
           <template #title>
             <h3>{{ card.title }}</h3>
           </template>

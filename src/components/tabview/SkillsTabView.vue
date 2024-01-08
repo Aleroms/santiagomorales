@@ -28,9 +28,9 @@
       <p class="subtitle" v-if="noItem">no items 😔</p>
     </div>
     <div v-else>
-      <HorizontalScrollTemplate :scrollWidth="36">
+      <HorizontalScrollTemplate :scrollWidth="36" class="skills-tab-mobile">
         <template #horizontal-item>
-          <div class="item" v-for="skill in selectedSkills" :key="skill.id">
+          <div class="item scroll-item" v-for="skill in selectedSkills" :key="skill.id">
             <div class="img-wrapper">
               <img :src="skill.image.url" :alt="skill.image.name" loading="lazy" />
             </div>
@@ -78,8 +78,12 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.skills-tab-mobile{
+  height: 170px;
+}
 .item {
   transition: transform 0.3s ease-in-out;
+  column-gap: 50px;
 
   &:hover {
     transform: scale(1.1);

@@ -42,16 +42,12 @@ defineProps({
   scroll-snap-type: inline mandatory;
   scroll-padding-inline: 1rem;
 }
-.snap-inline > * {
-  scroll-snap-align: start;
-}
 
 @media (max-width: 720px) {
   .scroll-container {
     justify-content: start;
     display: grid;
     grid-auto-flow: column;
-    // grid-auto-columns: 66%;
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-inline: contain;
