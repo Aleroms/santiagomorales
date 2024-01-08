@@ -16,23 +16,19 @@ const submit = async (values) => {
   disable.value = true
   displayMessage.value = 'submitting...'
   display.value = true
-  console.log(values)
+  // console.log(values)
 
   manageStore.setEdit()
 
   try {
     let resFile = undefined
-    let avatarImage = undefined
+    // let avatarImage = undefined
     if (values.resume.length !== 0) {
       resFile = await uploadFile3(values.resume, 'resume')
       setResumePath(values.resume.path)
     }
-    if (values.avatar.length !== 0) {
-      avatarImage = await uploadFile3(values.avatar, 'misc')
-    }
-
     values.resume = resFile
-    values.avatar = avatarImage
+
 
     const filteredForm = filterForm(values)
 
@@ -59,7 +55,6 @@ onMounted(async () => {
 <template>
   <FormKit type="form" id="home-form" @submit="submit" :disabled="disable">
     <FormKit type="file" label="resume" accept=".pdf" multiple="false" name="resume" />
-    <FormKit type="file" label="avatar" accept=".jpg,.png" multiple="false" name="avatar" />
     <FormKit
       type="text"
       label="title"

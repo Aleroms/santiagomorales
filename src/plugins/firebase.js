@@ -35,7 +35,7 @@ const db = getFirestore(app)
 const storage = getStorage(app)
 
 //resume
-let resumeRef = ref(storage, 'resume.pdf')
+let resumeRef = ref(storage, 'resume/resume_frontend_01-06-24.pdf')
 const resumeURL = async () => {
   try {
     const url = await getDownloadURL(resumeRef)
@@ -139,8 +139,6 @@ const updateFile = async (file, storageId, editId) => {
   }
 
   return uploadFile3(file, storageId)
-
- 
 }
 
 //deletes image from storage
