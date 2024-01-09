@@ -14,6 +14,12 @@
         <h2 class="gradient-text g-text-1">{{ data.subtitle }}</h2>
         <Typewriter :data="data.slug" />
       </template>
+      <!-- skeleton section for primary -->
+      <template #primary v-else>
+        <div class="skeleton skele-title"></div>
+        <div class="skeleton skele-subtitle"></div>
+        <div class="skeleton skele-slug"></div>
+      </template>
       <template #secondary v-if="isReady">
         <div class="secondary">
           <p>{{ data.keywords }}</p>
@@ -24,6 +30,15 @@
           <SocialMedia social="threads" size="xl" />
         </div>
         <ButtonExternalLink type="filled" :path="data.resume.url" text="resume" class="resume" />
+      </template>
+      <template #secondary v-else>
+        <div class="skeleton skele-keywords"></div>
+        <div class="socials">
+          <div class="skeleton skele-icon"></div>
+          <div class="skeleton skele-icon"></div>
+          <div class="skeleton skele-icon"></div>
+        </div>
+        <div class="skeleton skele-button"></div>
       </template>
     </BannerTemplate>
   </div>
@@ -49,6 +64,60 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+//skeleton section that is used to render before api is rcv
+
+@keyframes shimmer {
+  0% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: 0;
+  }
+}
+.skeleton {
+  animation: shimmer 1s linear infinite;
+  background-size: 400%;
+  background-image: linear-gradient(
+    to right,
+    var(--skeleton-1) 0%,
+    var(--skeleton-1) 30%,
+    var(--skeleton-2) 45%,
+    var(--skeleton-2) 50%,
+    var(--skeleton-1) 60%,
+    var(--skeleton-1) 100%
+  );
+}
+.skele-title {
+  width: 500px;
+  height: 46px;
+  margin-bottom: 1rem;
+}
+.skele-subtitle {
+  width: 300px;
+  height: 26px;
+  margin-bottom: 1rem;
+}
+.skele-slug {
+  width: 260px;
+  height: 16px;
+  margin-bottom: 1rem;
+}
+.skele-keywords {
+  width: 500px;
+  height: 86px;
+  margin: 3rem 0;
+}
+.skele-icon {
+  width: 23px;
+  height: 23px;
+  border-radius: 30px;
+}
+.skele-button {
+  width: 82px;
+  height: 35px;
+  border-radius: 30px;
+}
 .socials {
   display: flex;
   flex-direction: row;
@@ -123,6 +192,50 @@ h3 {
 @media (max-width: 350px) {
   h1 {
     font-size: 28px;
+  }
+}
+@media (max-width: 1200px) {
+  .skele-title {
+    width: 400px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+  .skele-subtitle {
+    width: 200px;
+    height: 16px;
+    margin-bottom: 1rem;
+  }
+  .skele-slug {
+    width: 100px;
+    height: 10px;
+    margin-bottom: 1rem;
+  }
+  .skele-keywords {
+    width: 300px;
+    height: 76px;
+    margin: 2rem 0;
+  }
+}
+@media (max-width: 800px) {
+  .skele-title {
+    width: 300px;
+    height: 36px;
+    margin-bottom: 1rem;
+  }
+  .skele-subtitle {
+    width: 200px;
+    height: 16px;
+    margin-bottom: 1rem;
+  }
+  .skele-slug {
+    width: 160px;
+    height: 10px;
+    margin-bottom: 1rem;
+  }
+  .skele-keywords {
+    width: 300px;
+    height: 76px;
+    margin: 2rem 0;
   }
 }
 </style>
