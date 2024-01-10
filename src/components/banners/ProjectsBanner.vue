@@ -9,10 +9,12 @@
         >
           {{ projectStore.data.title }}
         </h1>
+        <SkeletonComponent v-else :width="700" :height="60" />
       </div>
       <p class="text" v-if="projectStore.isReady">
         {{ projectStore.data.content }}
       </p>
+      <SkeletonComponent v-else :width="700" :height="144" class="text"/>
       <h2>view my <a href="https://github.com/Aleroms" class="hover">Github</a> repository</h2>
     </div>
   </div>
@@ -22,6 +24,7 @@
 import { onBeforeMount } from 'vue'
 import { useThemeStore } from '@/stores/theme.js'
 import { useProjectPageStore } from '@/stores/projectPage.js'
+import SkeletonComponent from '@/components/Utilities/SkeletonComponent.vue'
 
 const projectStore = useProjectPageStore()
 const themeStore = useThemeStore()

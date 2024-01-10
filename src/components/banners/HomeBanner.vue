@@ -16,9 +16,9 @@
       </template>
       <!-- skeleton section for primary -->
       <template #primary v-else>
-        <div class="skeleton skele-title"></div>
-        <div class="skeleton skele-subtitle"></div>
-        <div class="skeleton skele-slug"></div>
+        <SkeletonComponent :width="500" :height="46" />
+        <SkeletonComponent :width="300" :height="26" />
+        <SkeletonComponent :width="260" :height="16" />
       </template>
       <template #secondary v-if="isReady">
         <div class="secondary">
@@ -49,6 +49,7 @@ import Typewriter from '@/components/Utilities/TypeWriter.vue'
 import BannerTemplate from '@/components/Utilities/templates/BannerTemplate.vue'
 import SocialMedia from '@/components/socials/SocialMedia.vue'
 import ButtonExternalLink from '@/components/Utilities/buttons/ButtonExternalLink.vue'
+import SkeletonComponent from '@/components/Utilities/SkeletonComponent.vue'
 import { motionFloat } from '@/plugins/motion'
 
 const props = defineProps({
@@ -107,6 +108,7 @@ const props = defineProps({
   width: 500px;
   height: 86px;
   margin: 3rem 0;
+  border-radius: 3px;
 }
 .skele-icon {
   width: 23px;
