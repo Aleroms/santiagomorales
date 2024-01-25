@@ -7,6 +7,9 @@
         <RouterLink to="/skills" @click="closeMenu">Skills</RouterLink>
         <RouterLink to="/projects" @click="closeMenu">Projects</RouterLink>
         <RouterLink to="/contact" @click="closeMenu">Contact</RouterLink>
+        <RouterLink :to="!userStore.userLoggedIn ? '/login' : '/manage'" @click="closeMenu">{{
+          !userStore.userLoggedIn ? 'Login' : 'Manage'
+        }}</RouterLink>
       </div>
       <div class="container-1">
         <h5>Appearance</h5>
@@ -24,8 +27,10 @@
 import ToggleSwitch from '../Utilities/ToggleSwitch.vue'
 import { useCollapsedMenuStore } from '@/stores/collapsedMenu'
 import SocialMedia from '@/components/socials/SocialMedia.vue'
+import { useUserStore } from '@/stores/user.js'
 
 const collapsedMenu = useCollapsedMenuStore()
+const userStore = useUserStore()
 
 const closeMenu = () => {
   //remove collapse menu overflow

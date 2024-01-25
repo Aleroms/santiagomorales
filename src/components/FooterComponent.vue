@@ -38,8 +38,9 @@
           <RouterLink to="/skills">Skills</RouterLink>
           <RouterLink to="/projects">Projects</RouterLink>
           <RouterLink to="/contact">Contact</RouterLink>
-          <RouterLink to="/login" v-if="!userStore.userLoggedIn">Login</RouterLink>
-          <RouterLink to="/manage" v-else>Manage</RouterLink>
+          <RouterLink :to="!userStore.userLoggedIn ? '/login' : '/manage'">{{
+            !userStore.userLoggedIn ? 'Login' : 'Manage'
+          }}</RouterLink>
         </div>
       </div>
     </div>
@@ -149,7 +150,7 @@ footer {
       margin: 5px;
     }
   }
-  .icon-container{
+  .icon-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
