@@ -58,13 +58,21 @@ export function useManageForm() {
     }
   }
   const submitCreate = async (values) => {
-    const image = await uploadFile3(values.image, manageStore.collectionId)
-    values.image = image
-    const thumbnail = await uploadFile3(values.thumbnail, manageStore.collectionId)
-    values.thumbnail = thumbnail
-    const fallback = await uploadFile3(values.fallback, manageStore.collectionId)
-    values.fallback = fallback
-    console.log(values.image, values.thumbnail, values.fallback)
+    if (values.image !== undefined) {
+      const image = await uploadFile3(values.image, manageStore.collectionId)
+      values.image = image
+    }
+
+    if (values.thumbnail !== undefined) {
+      const thumbnail = await uploadFile3(values.thumbnail, manageStore.collectionId)
+      values.thumbnail = thumbnail
+    }
+    if (values.fallback !== undefined) {
+      const fallback = await uploadFile3(values.fallback, manageStore.collectionId)
+      values.fallback = fallback
+    }
+
+    // console.log(values.image, values.thumbnail, values.fallback)
     await submitForm(values, manageStore.collectionId, values.id)
   }
 
@@ -72,7 +80,7 @@ export function useManageForm() {
     displayMessage.value = 'submitting...'
     disable.value = true
     display.value = true
-     console.log(values)
+    // console.log(values)
 
     try {
       if (manageStore.isEdit) {

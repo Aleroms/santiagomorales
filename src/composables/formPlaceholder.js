@@ -50,7 +50,7 @@ export function useFormPlaceholder() {
         placeholder.value = await getDocument(manageStore.collectionId, manageStore.editId)
         // console.log('edit mode', placeholder.value)
       } else {
-        console.log(manageStore.collectionId)
+        // console.log(manageStore.collectionId)
         placeholder.value = getPlaceholder(manageStore.collectionId)
         // console.log('new entry', placeholder.value)
       }
